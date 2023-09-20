@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GanadoControlAPI", "GanadoControlAPI.csproj", "{45952AD2-E5D4-4632-B125-4E48F28674D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "..\Models\Models.csproj", "{D33A0996-EA9D-4684-A0F5-BCED60D3E925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "..\Data\Data.csproj", "{14102BC9-30E4-4B05-84FB-6310BDCB6E48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45952AD2-E5D4-4632-B125-4E48F28674D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45952AD2-E5D4-4632-B125-4E48F28674D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45952AD2-E5D4-4632-B125-4E48F28674D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45952AD2-E5D4-4632-B125-4E48F28674D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D33A0996-EA9D-4684-A0F5-BCED60D3E925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D33A0996-EA9D-4684-A0F5-BCED60D3E925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D33A0996-EA9D-4684-A0F5-BCED60D3E925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D33A0996-EA9D-4684-A0F5-BCED60D3E925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14102BC9-30E4-4B05-84FB-6310BDCB6E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14102BC9-30E4-4B05-84FB-6310BDCB6E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14102BC9-30E4-4B05-84FB-6310BDCB6E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14102BC9-30E4-4B05-84FB-6310BDCB6E48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {745C9AAA-C605-4454-9683-CCA88D3FB8F3}
+	EndGlobalSection
+EndGlobal

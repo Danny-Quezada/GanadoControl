@@ -1,0 +1,142 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Data\\Data.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Data\\Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Data\\Data.csproj",
+        "projectName": "Data",
+        "projectPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.SqlServer.Server": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\Models.csproj",
+        "projectName": "Models",
+        "projectPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.SqlServer.Server": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
