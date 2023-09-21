@@ -7,7 +7,8 @@ class PillWidget extends StatelessWidget {
   String title;
   int? count;
   Pharmaceuticals pharmaceuticals;
-  PillWidget(this.count, {required this.pharmaceuticals, required this.title});
+  PillWidget(this.count,
+      {super.key, required this.pharmaceuticals, required this.title});
 
   @override
   Widget build(BuildContext context) {

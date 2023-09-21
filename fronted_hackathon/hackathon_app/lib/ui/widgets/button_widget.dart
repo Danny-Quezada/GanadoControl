@@ -8,7 +8,8 @@ class ButtonWidget extends StatelessWidget {
   double rounded;
   Size size;
   ButtonWidget(
-      {required this.text,
+      {super.key,
+      required this.text,
       required this.size,
       required this.color,
       required this.rounded,

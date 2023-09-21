@@ -3,11 +3,10 @@ import 'package:hackathon_app/domain/models/cow.dart';
 import 'package:hackathon_app/domain/models/enums/pharmaceuticals.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
 import 'package:hackathon_app/ui/widgets/pills_widget.dart';
-import 'package:provider/provider.dart';
 
 class CowInformationPage extends StatelessWidget {
   Cow cow;
-  CowInformationPage({required this.cow});
+  CowInformationPage({super.key, required this.cow});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,6 @@ class CowInformationPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Stack(
-
           children: [
             Container(
               color: Colors.grey.shade100,
@@ -57,23 +55,27 @@ class CowInformationPage extends StatelessWidget {
                             color: ColorPalette.colorFontTextFieldPrincipal,
                             fontWeight: FontWeight.w900),
                       ),
-                      const SizedBox(height: 20,),
+                      const SizedBox(
+                        height: 20,
+                      ),
                       const OptionMenu(),
-                      Container(
-                      
+                      SizedBox(
                         width: size.width,
-                        height: size.height*0.5,
+                        height: size.height * 0.5,
                         child: ListView(
-                          
-                          padding: EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(15),
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top:10.0),
-                              child: PillWidget(2, pharmaceuticals: Pharmaceuticals.vaccine, title: "Derri A plus"),
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: PillWidget(2,
+                                  pharmaceuticals: Pharmaceuticals.vaccine,
+                                  title: "Derri A plus"),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top:10.0),
-                              child: PillWidget(2, pharmaceuticals: Pharmaceuticals.medications, title: "Marbox"),
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: PillWidget(2,
+                                  pharmaceuticals: Pharmaceuticals.medications,
+                                  title: "Marbox"),
                             )
                           ],
                         ),
@@ -98,46 +100,59 @@ class OptionMenu extends StatefulWidget {
 }
 
 class _OptionMenuState extends State<OptionMenu> {
-   String value="Todo";
+  String value = "Todo";
   @override
   Widget build(BuildContext context) {
-   
     return Padding(
-      padding: const EdgeInsets.only(left: 18,right: 18),
+      padding: const EdgeInsets.only(left: 18, right: 18),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            padding: const EdgeInsets.only(left: 10,right: 10,),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadiusDirectional.circular(12),
-              border: Border.all(color: Colors.grey.shade100,width: 2)
+            padding: const EdgeInsets.only(
+              left: 10,
+              right: 10,
             ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadiusDirectional.circular(12),
+                border: Border.all(color: Colors.grey.shade100, width: 2)),
             child: DropdownButton(
-              
               items: const [
-                DropdownMenuItem(child: Text("Todo"),value: "Todo",),
-                DropdownMenuItem(child: Text("Medicamentos"),value: "Medicamentos",),
-                DropdownMenuItem(child: Text("Vitaminas"),value: "Vitaminas",),
-                DropdownMenuItem(child: Text("Vacunas"),value: "Vacunas"),
+                DropdownMenuItem(
+                  child: Text("Todo"),
+                  value: "Todo",
+                ),
+                DropdownMenuItem(
+                  child: Text("Medicamentos"),
+                  value: "Medicamentos",
+                ),
+                DropdownMenuItem(
+                  child: Text("Vitaminas"),
+                  value: "Vitaminas",
+                ),
+                DropdownMenuItem(child: Text("Vacunas"), value: "Vacunas"),
               ],
-              style: TextStyle(color: Colors.grey.shade400,fontFamily: "Karla"),
+              style:
+                  TextStyle(color: Colors.grey.shade400, fontFamily: "Karla"),
               underline: Container(),
-             value: value,
-             elevation: 5,
+              value: value,
+              elevation: 5,
               onChanged: (valuee) {
                 setState(() {
-                  value=valuee!;
+                  value = valuee!;
                 });
-              }
-            ,
-              
+              },
             ),
           ),
-          
-      IconButton(onPressed: (){}, icon: Image.asset("assets/images/icons/calendar.png")),
-        IconButton(onPressed: (){}, icon: Image.asset("assets/images/icons/cowFamily.png")),
-       IconButton(onPressed: (){}, icon: Image.asset("assets/images/icons/greenPlus.png"))
+          IconButton(
+              onPressed: () {},
+              icon: Image.asset("assets/images/icons/calendar.png")),
+          IconButton(
+              onPressed: () {},
+              icon: Image.asset("assets/images/icons/cowFamily.png")),
+          IconButton(
+              onPressed: () {},
+              icon: Image.asset("assets/images/icons/greenPlus.png"))
         ],
       ),
     );

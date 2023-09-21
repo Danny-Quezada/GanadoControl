@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon_app/ui/pages/farm_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/farm_page.dart';
 
 class PrincipalPage extends StatefulWidget {
   const PrincipalPage({super.key});
@@ -7,7 +7,8 @@ class PrincipalPage extends StatefulWidget {
   @override
   State<PrincipalPage> createState() => _PrincipalPageState();
 }
-List<Widget> pages=[
+
+List<Widget> pages = [
   Container(),
   FarmPage(idUser: 2),
   Container(),
@@ -22,12 +23,12 @@ class _PrincipalPageState extends State<PrincipalPage> {
       child: Scaffold(
         body: pages[_index],
         bottomNavigationBar: BottomNavigationBar(
-          onTap: (value) {
-            setState(() {
-              _index=value;
-            });
-          },
-          currentIndex: _index,
+            onTap: (value) {
+              setState(() {
+                _index = value;
+              });
+            },
+            currentIndex: _index,
             elevation: 0,
             backgroundColor: Colors.white,
             iconSize: 32,

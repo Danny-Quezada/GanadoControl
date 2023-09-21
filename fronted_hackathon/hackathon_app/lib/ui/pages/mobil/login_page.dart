@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon_app/ui/pages/principal_page.dart';
-
-import '../config/color_palette.dart';
-import '../util/validator_textfield.dart';
-import '../widgets/button_widget.dart';
-import '../widgets/custom_form_field.dart';
-import '../widgets/text_button_widget.dart';
+import 'package:hackathon_app/ui/config/color_palette.dart';
+import 'package:hackathon_app/ui/pages/mobil/principal_page.dart';
+import 'package:hackathon_app/ui/util/validator_textfield.dart';
+import 'package:hackathon_app/ui/widgets/button_widget.dart';
+import 'package:hackathon_app/ui/widgets/custom_form_field.dart';
+import 'package:hackathon_app/ui/widgets/text_button_widget.dart';
 
 class LoginPage extends StatelessWidget {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
   final userNameFocus = FocusNode();
@@ -90,7 +89,7 @@ class LoginPage extends StatelessWidget {
 
   void principalPage(context) {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => PrincipalPage()),
+        MaterialPageRoute(builder: (context) => const PrincipalPage()),
         (route) => false);
   }
 }

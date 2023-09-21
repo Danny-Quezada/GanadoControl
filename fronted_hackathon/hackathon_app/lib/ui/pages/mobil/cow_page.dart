@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:hackathon_app/domain/models/cow.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
 import 'package:hackathon_app/ui/widgets/button_widget.dart';
-
-import '../widgets/custom_card_widget.dart';
+import 'package:hackathon_app/ui/widgets/custom_card_widget.dart';
 import 'cow_information_page.dart';
 
 class CowPage extends StatelessWidget {
   int idCastle;
-  CowPage({required this.idCastle});
+  CowPage({super.key, required this.idCastle});
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-      floatingActionButton: Container(
+      floatingActionButton: SizedBox(
         width: size.width,
-       
         height: 70,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -76,7 +74,8 @@ class CowPage extends StatelessWidget {
                       height: 10,
                     ),
                     CustomCardWdiget(
-                        function: () =>cowInformationPage(context, Cow(idCow: 2)),
+                        function: () =>
+                            cowInformationPage(context, Cow(idCow: 2)),
                         const [
                           "Reyna",
                           "4 años",
@@ -94,11 +93,13 @@ class CowPage extends StatelessWidget {
         ),
       ),
     ));
-
   }
-  void cowInformationPage(BuildContext context, Cow cow){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return CowInformationPage(cow: cow);
-    },));
+
+  void cowInformationPage(BuildContext context, Cow cow) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) {
+        return CowInformationPage(cow: cow);
+      },
+    ));
   }
 }

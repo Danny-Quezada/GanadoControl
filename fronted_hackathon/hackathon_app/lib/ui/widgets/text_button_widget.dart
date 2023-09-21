@@ -7,7 +7,8 @@ class TextButtonWidget extends StatelessWidget {
   Color color;
 
   TextButtonWidget(
-      {required this.text,
+      {super.key,
+      required this.text,
       required this.color,
       required this.fontSize,
       required this.function});
