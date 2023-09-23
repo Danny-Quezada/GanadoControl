@@ -12,5 +12,6 @@ namespace Models.Entities
         public string IdGanado { get; set; }
         public string Tipo { get; set; }
         public bool Exitoso { get; set; }
+        public DateTime Fecha { get; set; }
     }
 }

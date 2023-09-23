@@ -17,5 +17,7 @@ namespace Models.Entities
         public DateTime FechaEntrega { get; set; }
         public float Precio { get; set; }
         public int Cantidad { get; set; }
+        public string FotoURL { get; set; }
+        public int IdFinca { get; set; }
     }
 }
