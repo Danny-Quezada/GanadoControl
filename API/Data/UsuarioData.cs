@@ -61,5 +61,10 @@ namespace Data
                 }
             }
         }
+
+        Task IRepository<Usuario>.Insertar(Usuario data)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

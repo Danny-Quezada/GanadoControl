@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d33a0996-ea9d-4684-a0f5-bced60d3e925": {
+      "ProjectGuid": "d33a0996-ea9d-4684-a0f5-bced60d3e925",
+      "DisplayName": "Models",
+      "ColorIndex": 0
+    },
+    "14102bc9-30e4-4b05-84fb-6310bdcb6e48": {
+      "ProjectGuid": "14102bc9-30e4-4b05-84fb-6310bdcb6e48",
+      "DisplayName": "Data",
+      "ColorIndex": 1
+    },
+    "45952ad2-e5d4-4632-b125-4e48f28674d0": {
+      "ProjectGuid": "45952ad2-e5d4-4632-b125-4e48f28674d0",
+      "DisplayName": "GanadoControlAPI",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

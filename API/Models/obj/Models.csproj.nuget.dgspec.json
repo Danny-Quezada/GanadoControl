@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\Models.csproj": {}
+    "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\Models.csproj": {
+    "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\Backend\\Models\\obj\\",
+        "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,8 +59,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -65,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

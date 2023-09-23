@@ -8,6 +8,6 @@ namespace Data
 {
     public static class Conexion
     {
-        public static string Cn = @"Data Source=LAPTOP-P8O459K8; Initial Catalog=GanadoControlDB; user=GanadoControlAdmin; password=g4n4d0Controladmin2023";
+        public static string Cn = @"Data Source=DESKTOP-NT796C9; Initial Catalog=GanadoControlDB1; user=sa; password=123456";
     }
 }

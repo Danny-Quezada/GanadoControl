@@ -8,6 +8,6 @@ namespace Models.Interfaces
 {
     public interface IRepository<T>
     {
-        void Insertar(T data);
+        Task Insertar(T data);
     }
 }
