@@ -1,49 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon_app/domain/models/cow.dart';
-import 'package:hackathon_app/ui/config/color_palette.dart';
-import 'package:hackathon_app/ui/widgets/button_widget.dart';
-import 'package:hackathon_app/ui/widgets/custom_card_widget.dart';
+
+
+import '../../../domain/models/Entities/cattle.dart';
+import '../../config/color_palette.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/custom_card_widget.dart';
+import '../../widgets/search_bar.dart';
 import 'cow_information_page.dart';
 
 class CowPage extends StatelessWidget {
   int idCastle;
   CowPage({super.key, required this.idCastle});
+  TextEditingController _controller=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-      floatingActionButton: SizedBox(
-        width: size.width,
-        height: 70,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            ButtonWidget(
-                text: "Seleccionar",
-                size: Size(size.width / 3.2, 20),
-                color: Colors.blue.shade400,
-                rounded: 20,
-                function: () {},
-                fontSize: 14),
-            ButtonWidget(
-                text: "Crear vaca",
-                size: Size(size.width / 3.2, 20),
-                color: ColorPalette.colorPrincipal,
-                rounded: 20,
-                function: () {},
-                fontSize: 14),
-            ButtonWidget(
-                text: "Crear toro",
-                size: Size(size.width / 3.2, 20),
-                color: ColorPalette.colorPrincipal,
-                rounded: 20,
-                function: () {},
-                fontSize: 14)
-          ],
-        ),
-      ),
+      floatingActionButton: const floatingActionButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
         padding: const EdgeInsets.only(left: 15, right: 15),
@@ -53,18 +29,7 @@ class CowPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
-                  height: 35,
-                  child: const SearchBar(
-                    elevation: MaterialStatePropertyAll<double?>(0),
-                    leading: Icon(
-                      Icons.search,
-                      color: Color(0xffABA5A5),
-                    ),
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Color(0xFFf2f2f2)),
-                  )),
+               searchBar(controller: _controller,height: 35,padding: 16,iconColor:const Color(0xffABA5A5),backgroundColor: const Color(0xFFf2f2f2)),
               SizedBox(
                 width: size.width,
                 height: size.height - 35,
@@ -75,7 +40,7 @@ class CowPage extends StatelessWidget {
                     ),
                     CustomCardWdiget(
                         function: () =>
-                            cowInformationPage(context, Cow(idCow: 2)),
+                            cowInformationPage(context, Cattle(birthDate: DateTime.now(),groupId: 2,idCattle: "",race: "",type: "",weight: 22,fatherId:"",motherId: "")),
                         const [
                           "Reyna",
                           "4 años",
@@ -95,11 +60,55 @@ class CowPage extends StatelessWidget {
     ));
   }
 
-  void cowInformationPage(BuildContext context, Cow cow) {
+  void cowInformationPage(BuildContext context, Cattle ganado) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
-        return CowInformationPage(cow: cow);
+        return CowInformationPage(cow: ganado);
       },
     ));
+  }
+}
+
+class floatingActionButton extends StatelessWidget {
+  const floatingActionButton({
+    super.key,
+   
+  });
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
+    return SizedBox(
+      width: size.width,
+      height: 70,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ButtonWidget(
+              text: "Seleccionar",
+              size: Size(size.width / 3.2, 20),
+              color: Colors.blue.shade400,
+              rounded: 20,
+              function: () {},
+              fontSize: 14),
+          ButtonWidget(
+              text: "Crear vaca",
+              size: Size(size.width / 3.2, 20),
+              color: ColorPalette.colorPrincipal,
+              rounded: 20,
+              function: () {},
+              fontSize: 14),
+          ButtonWidget(
+              text: "Crear toro",
+              size: Size(size.width / 3.2, 20),
+              color: ColorPalette.colorPrincipal,
+              rounded: 20,
+              function: () {},
+              fontSize: 14)
+        ],
+      ),
+    );
   }
 }

@@ -20,10 +20,10 @@ class CustomCardWdiget extends StatelessWidget {
     return GestureDetector(
       onTap: function,
       child: Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 2),
         child: Container(
           width: size.width,
-          height: size.height * .159,
+          height: size.height * .166,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(radius),
               border: Border.all(color: Colors.grey.shade300, width: 2)),
@@ -46,18 +46,22 @@ class CustomCardWdiget extends StatelessWidget {
                 width: size.width * .03,
               ),
               Container(
+               
                 padding: const EdgeInsets.only(
                   top: 10,
                 ),
                 height: size.height * .15,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title,
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
-                    Text(description, style: const TextStyle(fontSize: 12)),
-                    chips()
-                  ],
+                child: InkWell(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(title,
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      Text(description, style: const TextStyle(fontSize: 12)),
+                      chips()
+                    ],
+                  ),
                 ),
               )
             ],
@@ -75,16 +79,18 @@ class CustomCardWdiget extends StatelessWidget {
     }
     List<Widget> chips = [];
     for (int i = 0; i < labelChip!.length; i++) {
-      chips.add(Padding(
-          padding: const EdgeInsets.all(1),
-          child: Chip(
-            label: Text(
-              labelChip![i],
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-            backgroundColor: colors[i],
-          )));
+      chips.add(Transform(
+        transform:  new Matrix4.identity()..scale(0.8),
+        child: Chip(
+          
+          label: Text(
+            labelChip![i],
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: colors[i],
+        ),
+      ));
     }
     return Row(
       children: chips,

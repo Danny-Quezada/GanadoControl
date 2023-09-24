@@ -7,21 +7,46 @@ namespace Data
 {
     public class UsuarioData : IUsuarioRepository
     {
-        //public void InsertarUsuario(Usuario usuario)
-        public void Insertar(Usuario usuario)
+        private readonly string cadenaConexion;
+        public UsuarioData(string cadenaConexion)
         {
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            this.cadenaConexion = cadenaConexion;
+        }
+        public async Task CambiarEstado(int idUsuario, bool estado)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("uspCambiarEstadoUsuario", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@idUsuario", SqlDbType.Int)).Value = idUsuario;
+                cmd.Parameters.Add(new SqlParameter("@estado", SqlDbType.Bit)).Value = estado;
+                try
+                {
+                    await conexion.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
+        //public void InsertarUsuario(Usuario usuario)
+        public async Task Insertar(Usuario usuario)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspIngresarUsuario", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@correo", SqlDbType.VarChar, 200)).Value = usuario.Correo;
                 cmd.Parameters.Add(new SqlParameter("@contraseña", SqlDbType.VarChar, 200)).Value = usuario.Contraseña;
-                cmd.Parameters.Add(new SqlParameter("@rol", SqlDbType.VarChar, 30)).Value = usuario.Rol;
+                cmd.Parameters.Add(new SqlParameter("@cargo", SqlDbType.VarChar, 30)).Value = usuario.Cargo;
                 cmd.Parameters.Add(new SqlParameter("@nombreUsuario", SqlDbType.VarChar, 30)).Value = usuario.NombreUsuario;
                 try
                 {
-                    conexion.Open();
-                    cmd.ExecuteNonQuery();
+                    await conexion.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
                 catch(Exception ex)
                 {
@@ -30,10 +55,10 @@ namespace Data
             }
         }
 
-        public Usuario VerificarUsuario(string nombreUsuario, string contraseña)
+        public async Task<Usuario> VerificarUsuario(string nombreUsuario, string contraseña)
         {
             Usuario usuario=new Usuario();
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspValidarIngreso", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -41,15 +66,15 @@ namespace Data
                 cmd.Parameters.Add(new SqlParameter("@contraseña", SqlDbType.VarChar, 200)).Value = contraseña;
                 try
                 {
-                    conexion.Open();
+                    await conexion.OpenAsync();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
-                        while (dr.Read())
+                        while (await dr.ReadAsync())
                         {
                             usuario = new Usuario()
                             {
                                 Id = Convert.ToInt32(dr["IdUsuario"]),
-                                Rol = dr["Rol"].ToString(),
+                                Cargo = dr["Cargo"].ToString(),
                             };
                         }
                     }
@@ -60,11 +85,6 @@ namespace Data
                     throw new Exception(ex.Message);
                 }
             }
-        }
-
-        Task IRepository<Usuario>.Insertar(Usuario data)
-        {
-            throw new NotImplementedException();
         }
     }
 }
