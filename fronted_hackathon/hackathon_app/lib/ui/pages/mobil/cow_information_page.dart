@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hackathon_app/domain/models/cow.dart';
+import 'package:hackathon_app/domain/models/Entities/cattle.dart';
 import 'package:hackathon_app/domain/models/enums/pharmaceuticals.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
 import 'package:hackathon_app/ui/widgets/pills_widget.dart';
 
 class CowInformationPage extends StatelessWidget {
-  Cow cow;
+  Cattle cow;
   CowInformationPage({super.key, required this.cow});
 
   @override
@@ -50,7 +50,7 @@ class CowInformationPage extends StatelessWidget {
                             fontFamily: "Karla", fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        cow.idCow.toString(),
+                        cow.idCattle.toString(),
                         style: TextStyle(
                             color: ColorPalette.colorFontTextFieldPrincipal,
                             fontWeight: FontWeight.w900),
@@ -59,27 +59,7 @@ class CowInformationPage extends StatelessWidget {
                         height: 20,
                       ),
                       const OptionMenu(),
-                      SizedBox(
-                        width: size.width,
-                        height: size.height * 0.5,
-                        child: ListView(
-                          padding: const EdgeInsets.all(15),
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: PillWidget(2,
-                                  pharmaceuticals: Pharmaceuticals.vaccine,
-                                  title: "Derri A plus"),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: PillWidget(2,
-                                  pharmaceuticals: Pharmaceuticals.medications,
-                                  title: "Marbox"),
-                            )
-                          ],
-                        ),
-                      )
+                      const ListMedical()
                     ],
                   ),
                 ),
@@ -87,6 +67,40 @@ class CowInformationPage extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ListMedical extends StatelessWidget {
+  const ListMedical({
+    super.key,
+    
+  });
+
+
+  @override
+  Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
+    return SizedBox(
+      width: size.width,
+      height: size.height * 0.5,
+      child: ListView(
+        padding: const EdgeInsets.all(15),
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: PillWidget(2,
+                pharmaceuticals: Pharmaceuticals.vaccine,
+                title: "Derri A plus"),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: PillWidget(2,
+                pharmaceuticals: Pharmaceuticals.medications,
+                title: "Marbox"),
+          )
+        ],
       ),
     );
   }

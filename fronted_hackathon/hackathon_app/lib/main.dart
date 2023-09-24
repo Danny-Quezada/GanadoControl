@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
-import 'package:hackathon_app/ui/pages/web/initial_page.dart';
+
+import 'ui/pages/mobil/initial_page.dart';
+
 
 void main(List<String> args) {
   runApp(MaterialApp(
