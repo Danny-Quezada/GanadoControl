@@ -14,31 +14,31 @@ namespace Data
 {
     public class GanadoData : IGanadoRepository
     {
-       
-        public async Task<List<DTOGanado>> GetAllGanado()
+        public async Task<List<DAOGanado>> GetAllGanadoByGrupo(int IdGrupo)
         {
             using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
             {
                 SqlCommand cmd = new SqlCommand("uspGetAllGanado", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                
+                cmd.Parameters.Add(new SqlParameter("@IdGrupo", SqlDbType.Int)).Value = IdGrupo;
                 try
                 {
                     await conexion.OpenAsync();
                     SqlDataReader dr = await cmd.ExecuteReaderAsync();
-                    List<DTOGanado> ganados = new List<DTOGanado>();
+                    List<DAOGanado> ganados = new List<DAOGanado>();
                     while (dr.Read())
                     {
 
-                        DTOGanado gando = new DTOGanado()
+                        DAOGanado gando = new DAOGanado()
                         {
                             IdGanado = dr["Ganado"].ToString(),
                             Tipo = dr["Tipo"].ToString(),
                             UltimaVacuna = Convert.ToDateTime(dr["UltimaVacuna"] == DBNull.Value ? null : dr["UltimaVacuna"]),
-                            Ultimadesparacitacion = Convert.ToDateTime(dr["UltimaDesparacitación"]==DBNull.Value?null: dr["UltimaDesparacitación"]),
+                            Ultimadesparacitacion = Convert.ToDateTime(dr["UltimaDesparacitación"] == DBNull.Value ? null : dr["UltimaDesparacitación"]),
                             Peso = (float)dr["Peso"],
                             FechaNacimiento = Convert.ToDateTime(dr["fechanacimiento"]),
-                            Raza = dr["Raza"]==null? null : dr["Raza"].ToString(),
+                            Raza = dr["Raza"] == null ? null : dr["Raza"].ToString(),
+                            FotoURL = dr["FotoURL"].ToString(),
                         };
 
                         ganados.Add(gando);
@@ -117,5 +117,6 @@ namespace Data
                 }
             }
         }
+        
     }
 }

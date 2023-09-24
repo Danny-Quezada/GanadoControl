@@ -13,27 +13,28 @@ namespace Data
 {
     public class FincaData : IFincaRepository
     {
-        public async Task<List<DTOFinca>> GetAllFinca()
+        public async Task<List<DAOFinca>> GetAllFincaByUsuario(int IdUsuario)
         {
             using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
             {
                 SqlCommand cmd = new SqlCommand("uspGetAllFinca", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-
+                cmd.Parameters.Add(new SqlParameter("@IdUsuario", SqlDbType.Int)).Value = IdUsuario;
                 try
                 {
                     await conexion.OpenAsync();
                     SqlDataReader dr = await cmd.ExecuteReaderAsync();
-                    List<DTOFinca> fincas = new List<DTOFinca>();
+                    List<DAOFinca> fincas = new List<DAOFinca>();
                     while (dr.Read())
                     {
 
-                        DTOFinca gando = new DTOFinca()
+                        DAOFinca gando = new DAOFinca()
                         {
                             IdFinca = Convert.ToInt32(dr["IdFinca"]),
                             Grupos = Convert.ToInt32(dr["Grupos"]),
                             Ubicacion = dr["Ubicacion"].ToString(),
-                            Hectareas = Convert.ToInt32(dr["Hectareas"])
+                            Hectareas = Convert.ToInt32(dr["Hectareas"]),
+                            FotoURL = dr["FotoURL"].ToString()
                         };
 
                         fincas.Add(gando);
@@ -83,8 +84,36 @@ namespace Data
             }
         }
 
+        public async Task<int> GetLastId()
+        {
+            int id = 0;
+            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            {
+                SqlCommand cmd = new SqlCommand("uspUltimoIdFinca", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    await conexion.OpenAsync();
+                    using (SqlDataReader dr = await cmd.ExecuteReaderAsync())
+                    {
+                        while (dr.Read())
+                        {
+                            id = Convert.ToInt32(dr["IdFinca"]);
+                        } 
+
+                    }
+                    return id;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
         public async Task Insertar(Finca finca)
         {
+
             using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarFinca", conexion);
@@ -93,6 +122,8 @@ namespace Data
                 cmd.Parameters.Add(new SqlParameter("@Ubicacion", SqlDbType.VarChar, 100)).Value = finca.Ubicacion;
                 cmd.Parameters.Add(new SqlParameter("@Hectareas", SqlDbType.Int)).Value = finca.Hectareas;
                 cmd.Parameters.Add(new SqlParameter("@NombreDueño", SqlDbType.VarChar, 50)).Value = finca.NombreDueño;
+               // ultimoID = (int)cmd.ExecuteScalar();
+                
                 try
                 {
                     await conexion.OpenAsync();
@@ -103,6 +134,7 @@ namespace Data
                     throw new Exception(ex.Message);
                 }
             }
+            
         }
     }
 }

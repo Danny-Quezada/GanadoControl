@@ -14,6 +14,8 @@ namespace Data
     {
         public async Task Insertar(DetalleFincaFoto data)
         {
+            var webRootPath = AppDomain.CurrentDomain.BaseDirectory;
+       
             using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarDetalleFincaFoto", conexion);

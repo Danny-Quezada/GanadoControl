@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "V7Fizols+tCAhiroNOY5o72RWBoUelPIrOG93i586aY=",
+  "Hash": "fvxAbM0X9yL/FvqYTkaJxRoPL+07nSD7qVeoj089OmU=",
   "Source": "GanadoControlAPI",
   "BasePath": "_content/GanadoControlAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "GanadoControlAPI\\wwwroot",
+      "Source": "GanadoControlAPI",
+      "ContentRoot": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "BasePath": "_content/GanadoControlAPI",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

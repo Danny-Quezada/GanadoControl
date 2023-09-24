@@ -10,7 +10,7 @@ namespace Models.Interfaces
 {
     public interface IGanadoRepository : IRepository<Ganado>
     {
-        Task<List<DTOGanado>> GetAllGanado();
+        Task<List<DAOGanado>> GetAllGanadoByGrupo(int IdGrupo);
         Task<Ganado> GetGanado(string id);
     }
 }

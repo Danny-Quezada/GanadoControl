@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {}
+    "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Data\\Data.csproj": {
+    "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Data\\obj\\",
+        "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj"
+              "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj"
               }
             }
           }
@@ -76,14 +76,14 @@
         }
       }
     },
-    "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {
+    "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+        "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
         "projectName": "GanadoControlAPI",
-        "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+        "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\GanadoControlAPI\\obj\\",
+        "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\GanadoControlAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -104,11 +104,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Data\\Data.csproj": {
-                "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Data\\Data.csproj"
+              "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Data\\Data.csproj"
               },
-              "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj"
+              "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj"
               }
             }
           }
@@ -158,14 +158,14 @@
         }
       }
     },
-    "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj": {
+    "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\Models.csproj",
+        "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\Models\\obj\\",
+        "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -198,6 +198,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Microsoft.SqlServer.Server": {
               "target": "Package",
               "version": "[1.0.0, )"

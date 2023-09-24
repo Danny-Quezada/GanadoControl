@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "TrxkqNQvWMrxu0Hd2ySvQK/RymN84V6y9KGrme9cw2SHFZRnF9Zw2EA8sInjE59ljvX2aOr+0Ob1o5vQ9x3gfg==",
+  "dgSpecHash": "75ddVkrUlgX40xYD7DbPDAhr8A0cLPcidc+uEv0pxJc59gHeMl4pPpKEibI0mN/6xmgUs6COfCdpRyIZlBwKlw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\ApiHackaton\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+  "projectFilePath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\carlo\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
@@ -18,6 +20,7 @@
     "C:\\Users\\carlo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",
+    "C:\\Users\\carlo\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
   ],

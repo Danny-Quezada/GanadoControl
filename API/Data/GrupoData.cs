@@ -33,26 +33,26 @@ namespace Data
                 }
             }
         }
-        public async Task<List<DTOGrupo>> GetAll()
+        public async Task<List<DAOGrupo>> GetAllByFinca(int IdFinca)
         {
             using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
             {
                 SqlCommand cmd = new SqlCommand("uspGetAllGrupos", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-
+                cmd.Parameters.Add(new SqlParameter("@IdFinca", SqlDbType.Int)).Value = IdFinca;
                 try
                 {
                     await conexion.OpenAsync();
                     SqlDataReader dr = await cmd.ExecuteReaderAsync();
-                    List<DTOGrupo> grupos = new List<DTOGrupo>();
+                    List<DAOGrupo> grupos = new List<DAOGrupo>();
                     while (dr.Read())
                     {
 
-                        DTOGrupo grupo = new DTOGrupo()
+                        DAOGrupo grupo = new DAOGrupo()
                         {
                             IdGrupo = Convert.ToInt32(dr["idgrupo"]),
                             CantidadGanado = Convert.ToInt32(dr["CantidadDeGanados"]),
-
+                            FotoURL = dr["FotoURL"].ToString(),
                         };
 
                         grupos.Add(grupo);
@@ -91,6 +91,33 @@ namespace Data
                         }
                     }
                     return grupo;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
+        public async Task<int> GetLastId()
+        {
+            int id = 0;
+            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            {
+                SqlCommand cmd = new SqlCommand("uspUltimoIdGrupo", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    await conexion.OpenAsync();
+                    using (SqlDataReader dr = await cmd.ExecuteReaderAsync())
+                    {
+                        while (dr.Read())
+                        {
+                            id = Convert.ToInt32(dr["IdGrupo"]);
+                        }
+
+                    }
+                    return id;
                 }
                 catch (Exception ex)
                 {

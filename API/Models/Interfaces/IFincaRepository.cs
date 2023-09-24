@@ -11,7 +11,8 @@ namespace Models.Interfaces
 {
     public interface IFincaRepository : IRepository<Finca>
     {
-       Task<List<DTOFinca>> GetAllFinca();
+       Task<List<DAOFinca>> GetAllFincaByUsuario(int IdUsuario);
         Task<Finca> GetFinca(int Id);
+        Task<int> GetLastId();
     }
 }
