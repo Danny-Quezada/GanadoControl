@@ -1,6 +1,43 @@
 import 'package:hackathon_app/ui/util/string_extensions.dart';
 
 class ValidatorTextField{
+
+
+    static String? genericDecimalValidator(String? s){
+       if(s==null || s.isWhitespace()){
+      return "Campo requerido";
+    }
+    else if(double.tryParse(s)!=null){
+      double? value=double.tryParse(s);
+      if(value!<=0){
+        return "No puede ser menor o igual que 0";
+      }
+    }
+    
+    }
+
+  static String? genericNumberValidator(String? s){
+  
+     if(s==null || s.isWhitespace()){
+      return "Campo requerido";
+    }
+   
+    else if(int.tryParse(s)!=null){
+      int? value=int.tryParse(s);
+      if(value!<0){
+        return "No puede ser menor que 0";
+      }
+    }
+    else{
+      return "Campo debe de ser un número entero";
+    }
+  }
+
+  static String? genericStringValidator(String? s){
+     if(s==null || s.isWhitespace()){
+      return "Campo requerido";
+    }
+  }
   String? password;
   static String? userNameValidator(String? s){
     if(s==null || s.isWhitespace()){

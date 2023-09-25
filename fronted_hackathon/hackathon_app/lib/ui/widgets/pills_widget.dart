@@ -7,39 +7,43 @@ class PillWidget extends StatelessWidget {
   String title;
   int? count;
   Pharmaceuticals pharmaceuticals;
+  VoidCallback function;
   PillWidget(this.count,
-      {super.key, required this.pharmaceuticals, required this.title});
+      {super.key, required this.pharmaceuticals, required this.title,required this.function});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            CircleAvatar(
-              radius: 25,
-              child: icon(),
-              backgroundColor: containerColor(),
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(title),
-          ],
-        ),
-        count != null
-            ? CircleAvatar(
-                radius: 14,
+    return GestureDetector(
+      onTap: function,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 25,
+                child: icon(),
                 backgroundColor: containerColor(),
-                child: Text(
-                  count!.toString(),
-                  style: const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w900),
-                ),
-              )
-            : Container()
-      ],
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(title),
+            ],
+          ),
+          count != null
+              ? CircleAvatar(
+                  radius: 14,
+                  backgroundColor: containerColor(),
+                  child: Text(
+                    count!.toString(),
+                    style: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w900),
+                  ),
+                )
+              : Container()
+        ],
+      ),
     );
   }
 

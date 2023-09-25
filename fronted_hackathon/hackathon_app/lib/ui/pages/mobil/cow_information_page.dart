@@ -92,13 +92,14 @@ class ListMedical extends StatelessWidget {
             padding: const EdgeInsets.only(top: 10.0),
             child: PillWidget(2,
                 pharmaceuticals: Pharmaceuticals.vaccine,
-                title: "Derri A plus"),
+                title: "Derri A plus",function: (){}),
+              
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: PillWidget(2,
                 pharmaceuticals: Pharmaceuticals.medications,
-                title: "Marbox"),
+                title: "Marbox",function: (){}),
           )
         ],
       ),

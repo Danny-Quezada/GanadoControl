@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_app/ui/pages/mobil/inventary_page.dart';
 
 import '../../widgets/custom_card_widget.dart';
 import '../../widgets/search_bar.dart';
 import 'cow_page.dart';
 
-class CastlePage extends StatelessWidget {
-  int idFarm;
-  CastlePage({super.key, required this.idFarm});
-  TextEditingController _controller=TextEditingController(); 
+class CattlePage extends StatelessWidget {
+  int farmId;
+  CattlePage({super.key, required this.farmId});
+  TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -20,8 +21,13 @@ class CastlePage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              searchBar(controller: _controller,height: 35,padding: 16,iconColor:const Color(0xffABA5A5),backgroundColor: const Color(0xFFf2f2f2)),
-              const inventaryButton(),
+              searchBar(
+                  controller: _controller,
+                  height: 35,
+                  padding: 16,
+                  iconColor: const Color(0xffABA5A5),
+                  backgroundColor: const Color(0xFFf2f2f2)),
+              inventaryButton(farmId: farmId),
               CustomCardWdiget(null,
                   function: () => cowPage(context, 2),
                   urlImage: "",
@@ -38,29 +44,30 @@ class CastlePage extends StatelessWidget {
   void cowPage(BuildContext context, int idCastle) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
-        return CowPage(idCastle: idCastle);
+        return CowPage(farmId: idCastle);
       },
     ));
   }
 }
 
 class inventaryButton extends StatelessWidget {
-  const inventaryButton({
-    super.key,
-    
-  });
-
-  
+  int farmId;
+  inventaryButton({required this.farmId});
 
   @override
   Widget build(BuildContext context) {
-    Size size=MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.only(left: size.width * .05),
       child: TextButton(
-          style: const ButtonStyle(
-              splashFactory: NoSplash.splashFactory),
-          onPressed: () {},
+          style: const ButtonStyle(splashFactory: NoSplash.splashFactory),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return InventaryPage(farmId: farmId);
+              },
+            ));
+          },
           child: Row(
             children: [
               Image.asset(
@@ -74,8 +81,7 @@ class inventaryButton extends StatelessWidget {
               const Text(
                 "Inventario",
                 style: TextStyle(
-                    color: Color(0xFFCA78FF),
-                    fontWeight: FontWeight.bold),
+                    color: Color(0xFFCA78FF), fontWeight: FontWeight.bold),
               )
             ],
           )),

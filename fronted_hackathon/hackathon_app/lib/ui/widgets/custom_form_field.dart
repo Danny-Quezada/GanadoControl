@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
 
 class CustomFormField extends StatelessWidget {
@@ -8,10 +9,11 @@ class CustomFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final String hintText;
   final String labelText;
+   TextInputType? textInput;
   bool obscureText;
 
   CustomFormField(
-      {super.key,
+      {this.textInput=TextInputType.emailAddress,
       required this.textEditingController,
       required this.validator,
       required this.nextFocusNode,
@@ -25,8 +27,9 @@ class CustomFormField extends StatelessWidget {
       focusNode: focusNode,
       onFieldSubmitted: (_) => nextFocusNode?.requestFocus(),
       controller: textEditingController,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: textInput,
       decoration: InputDecoration(
+
         hintStyle: TextStyle(color: ColorPalette.colorFontTextFieldPrincipal),
         labelStyle: TextStyle(color: ColorPalette.colorFontTextFieldPrincipal),
         hintText: hintText,

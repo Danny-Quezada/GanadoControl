@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_app/ui/pages/mobil/add_cow_page.dart';
 
 
 import '../../../domain/models/Entities/cattle.dart';
@@ -9,8 +10,8 @@ import '../../widgets/search_bar.dart';
 import 'cow_information_page.dart';
 
 class CowPage extends StatelessWidget {
-  int idCastle;
-  CowPage({super.key, required this.idCastle});
+  int farmId;
+  CowPage({super.key, required this.farmId});
   TextEditingController _controller=TextEditingController();
 
   @override
@@ -19,7 +20,7 @@ class CowPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-      floatingActionButton: const floatingActionButton(),
+      floatingActionButton:  floatingActionButton(farmId: farmId),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
         padding: const EdgeInsets.only(left: 15, right: 15),
@@ -70,8 +71,10 @@ class CowPage extends StatelessWidget {
 }
 
 class floatingActionButton extends StatelessWidget {
-  const floatingActionButton({
-    super.key,
+
+  int farmId;
+   floatingActionButton({
+    required this.farmId
    
   });
 
@@ -98,7 +101,11 @@ class floatingActionButton extends StatelessWidget {
               size: Size(size.width / 3.2, 20),
               color: ColorPalette.colorPrincipal,
               rounded: 20,
-              function: () {},
+              function: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return AddCowPage(famrId: farmId,);
+                },));
+              },
               fontSize: 14),
           ButtonWidget(
               text: "Crear toro",

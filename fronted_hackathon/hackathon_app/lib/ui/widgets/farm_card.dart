@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
-import 'package:hackathon_app/ui/pages/mobil/castle_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/cattle_page.dart';
 
 class FarmCard extends StatelessWidget {
   int idFarm;
@@ -67,7 +67,7 @@ class FarmCard extends StatelessWidget {
   void castlePage(BuildContext context, int idFarm) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
-        return CastlePage(idFarm: idFarm);
+        return CattlePage(farmId: idFarm);
       },
     ));
   }
