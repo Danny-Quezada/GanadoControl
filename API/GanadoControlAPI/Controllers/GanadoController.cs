@@ -10,12 +10,14 @@ namespace GanadoControlAPI.Controllers
     [ApiController]
     public class GanadoController : ControllerBase
     {
-        public GanadoController(IWebHostEnvironment _webHostEnvironment1)
+        public GanadoController(IWebHostEnvironment _webHostEnvironment1,IGanadoRepository ganadoRepository,IDetalleGanadoRepository detalleGanadoRepository)
         {
             _webHostEnvironment = _webHostEnvironment1;
+            this.ganadoRepository = ganadoRepository;
+            this.detalleGanadoRepository = detalleGanadoRepository;
         }
-        IGanadoRepository ganadoRepository = new GanadoData();
-        IDetalleGanadoRepository detalleGanadoRepository = new DetalleGanadoData();
+        IGanadoRepository ganadoRepository;
+        IDetalleGanadoRepository detalleGanadoRepository;
         [HttpPost]
         public async Task<IActionResult> InsertarGanado([FromForm] DTOInsertarGanado dtoganado)
         {
@@ -42,6 +44,7 @@ namespace GanadoControlAPI.Controllers
                 Peso = dtoganado.Peso,
                 Tipo = dtoganado.Tipo,
                 IdGanado = dtoganado.IdGanado,
+                Estado = dtoganado.Estado,
             };
             await ganadoRepository.Insertar(ganado);
             detalleGanado.IdGanado = dtoganado.IdGanado;
@@ -57,6 +60,35 @@ namespace GanadoControlAPI.Controllers
         public async Task<IActionResult> GetGanado(string id)
         {
             return Ok(await ganadoRepository.GetGanado(id));
+        }
+        [HttpPut]
+        public async Task<IActionResult> Post([FromForm] DTOInsertarGanado ganado)
+        {
+            DAOGanado ganado1 = new DAOGanado();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (ganado.FotoURL != null)
+            {
+                using var stream = new MemoryStream();
+                await ganado.FotoURL.CopyToAsync(stream);
+                var bytes = stream.ToArray();
+
+                ganado1.FotoURL = await CrearImagen(bytes, ganado.FotoURL.ContentType, Path.GetExtension(ganado.FotoURL.FileName), "FotosDeGanados", Guid.NewGuid().ToString());
+            }
+            ganado1.IdPadre = ganado.IdPadre;
+            ganado1.IdMadre = ganado.IdMadre;
+            ganado1.Peso = (float)ganado.Peso;
+            ganado1.Estado = ganado.Estado;
+            ganado1.IdGanado = ganado.IdGanado;
+            ganado1.Tipo = ganado.Tipo;
+            ganado1.FechaNacimiento = ganado.FechaNacimiento;
+            ganado1.IdGrupo = ganado.IdGrupo;
+            ganado1.Estado = ganado.Estado;
+            ganado1.Raza = ganado.Raza;
+            await ganadoRepository.UpdateGanado(ganado1);
+            return Ok("Actualizado Correctamente");
         }
         private readonly IWebHostEnvironment _webHostEnvironment;
         [NoApiRoute]

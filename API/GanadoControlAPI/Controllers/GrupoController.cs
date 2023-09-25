@@ -10,12 +10,14 @@ namespace GanadoControlAPI.Controllers
     [ApiController]
     public class GrupoController:ControllerBase
     {
-        public GrupoController(IWebHostEnvironment _webHostEnvironment1)
+        public GrupoController(IWebHostEnvironment _webHostEnvironment1, IGrupoRepository grupoRepository, IDetalleGrupoFotoRepository detalleGrupoFoto)
         {
             _webHostEnvironment = _webHostEnvironment1;
+            this.grupoRepository = grupoRepository;
+            this.detalleGrupofoto = detalleGrupoFoto;
         }
-        IGrupoRepository grupoRepository = new GrupoData();
-        IDetalleGrupoFotoRepository detalleGrupofoto = new DetalleGrupoFotoData();
+        IGrupoRepository grupoRepository;
+        IDetalleGrupoFotoRepository detalleGrupofoto;
         [HttpPost]
         public async Task<IActionResult> InsertarGrupo([FromForm] DTOInsertGrupo dtogrupo)
         {
@@ -53,6 +55,28 @@ namespace GanadoControlAPI.Controllers
         public async Task<IActionResult> Get(int id)
         {
             return Ok(await grupoRepository.GetGrupo(id));
+        }
+        [HttpPut]
+        public async Task<IActionResult> Put([FromForm] DTOInsertGrupo grupo)
+        {
+            DAOGrupo dAOGrupo = new DAOGrupo();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (grupo.FotoURL != null)
+            {
+                using var stream = new MemoryStream();
+                await grupo.FotoURL.CopyToAsync(stream);
+                var bytes = stream.ToArray();
+
+                dAOGrupo.FotoURL = await CrearImagen(bytes, grupo.FotoURL.ContentType, Path.GetExtension(grupo.FotoURL.FileName), "FotosDeFincas", Guid.NewGuid().ToString());
+            }
+            dAOGrupo.IdGrupo = grupo.IdGrupo;
+            dAOGrupo.IdFinca = grupo.IdFinca;
+            dAOGrupo.Nombre = grupo.Nombre;
+            await grupoRepository.UpdateGrupo(dAOGrupo);
+            return Ok("Actualizado Correctamente");
         }
         private readonly IWebHostEnvironment _webHostEnvironment;
         [NoApiRoute]

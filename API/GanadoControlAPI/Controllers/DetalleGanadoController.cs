@@ -9,7 +9,11 @@ namespace GanadoControlAPI.Controllers
     [ApiController]
     public class DetalleGanadoController:ControllerBase
     {
-        IDetalleGanadoRepository detalleGanadoRepository = new DetalleGanadoData();
+        public DetalleGanadoController(IDetalleGanadoRepository detalleGanadoRepository)
+        {
+            this.detalleGanadoRepository = detalleGanadoRepository;
+        }
+        IDetalleGanadoRepository detalleGanadoRepository;
         [HttpPost]
         public async Task<IActionResult> Insertar([FromBody] DetalleGanado detalleGanado)
         {
@@ -17,5 +21,6 @@ namespace GanadoControlAPI.Controllers
             await detalleGanadoRepository.Insertar(detalleGanado);
             return Created("Creado", true);
         }
+        
     }
 }

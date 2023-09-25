@@ -10,6 +10,8 @@ namespace Models.DTO
     public class DAOGrupo
     {
         public int IdGrupo { get; set; }
+        public int IdFinca { get; set; }
+        public string? Nombre { get; set; }
         public int CantidadGanado { get; set; }
         public string FotoURL { get; set; }
     }

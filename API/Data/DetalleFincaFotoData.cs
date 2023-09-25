@@ -12,11 +12,16 @@ namespace Data
 {
     public class DetalleFincaFotoData : IDetalleFincaFotoRepository
     {
+        private readonly string CadenaConexion;
+        public DetalleFincaFotoData(string CadenaConexion)
+        {
+            this.CadenaConexion = CadenaConexion;
+        }
         public async Task Insertar(DetalleFincaFoto data)
         {
             var webRootPath = AppDomain.CurrentDomain.BaseDirectory;
        
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarDetalleFincaFoto", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;

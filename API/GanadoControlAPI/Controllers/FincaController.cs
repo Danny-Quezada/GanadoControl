@@ -1,4 +1,4 @@
-﻿using Data;
+﻿ using Data;
 using Microsoft.AspNetCore.Mvc;
 using Models.DTO;
 using Models.Entities;
@@ -12,12 +12,14 @@ namespace GanadoControlAPI.Controllers
 
     public class FincaController : ControllerBase
     {
-        public FincaController(IWebHostEnvironment _webHostEnvironment1)
+        public FincaController(IWebHostEnvironment _webHostEnvironment1, IFincaRepository fincaRepository, IDetalleFincaFotoRepository detalleFincaFotoRepository)
         {
             _webHostEnvironment = _webHostEnvironment1;
+            this.fincaRepository = fincaRepository;
+            this.fincaFotoRepository = detalleFincaFotoRepository;
         }
-        IFincaRepository fincaRepository = new FincaData();
-        IDetalleFincaFotoRepository fincaFotoRepository = new DetalleFincaFotoData();
+        IFincaRepository fincaRepository;
+        IDetalleFincaFotoRepository fincaFotoRepository;
         [HttpPost]
         public async Task<IActionResult> InsertarFinca([FromForm] DTOInsertFinca dtofinca)
         {
@@ -58,6 +60,30 @@ namespace GanadoControlAPI.Controllers
         public async Task<IActionResult> Get(int id)
         {
             return Ok(await fincaRepository.GetFinca(id));
+        }
+        [HttpPut]
+        public async Task<IActionResult> Put([FromForm] DTOInsertFinca insertFinca)
+        {
+            DAOFinca finca = new DAOFinca();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (insertFinca.FotoURL != null)
+            {
+                using var stream = new MemoryStream();
+                await insertFinca.FotoURL.CopyToAsync(stream);
+                var bytes = stream.ToArray();
+
+                finca.FotoURL = await CrearImagen(bytes, insertFinca.FotoURL.ContentType, Path.GetExtension(insertFinca.FotoURL.FileName), "FotosDeFincas", Guid.NewGuid().ToString());
+            }
+            finca.IdFinca = insertFinca.IdFinca;
+            finca.Nombre = insertFinca.Nombre;
+            finca.Hectareas = insertFinca.Hectareas;
+            finca.NombreDueño = insertFinca.NombreDueño;
+            finca.Ubicacion = insertFinca.Ubicacion;
+            await fincaRepository.UpdateFinca(finca);
+           return Ok("Actualizado Correctamente");
         }
         //////////////////
         private readonly IWebHostEnvironment _webHostEnvironment;

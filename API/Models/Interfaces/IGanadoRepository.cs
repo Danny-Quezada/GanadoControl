@@ -11,6 +11,7 @@ namespace Models.Interfaces
     public interface IGanadoRepository : IRepository<Ganado>
     {
         Task<List<DAOGanado>> GetAllGanadoByGrupo(int IdGrupo);
-        Task<Ganado> GetGanado(string id);
+        Task<DAOGanado> GetGanado(string id);
+        Task UpdateGanado(DAOGanado ganado);
     }
 }

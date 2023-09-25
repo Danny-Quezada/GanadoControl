@@ -13,9 +13,14 @@ namespace Data
 {
     public class FincaData : IFincaRepository
     {
+        private readonly string CadenaConexion;
+        public FincaData(string CadenaConexion)
+        {
+            this.CadenaConexion = CadenaConexion;
+        }
         public async Task<List<DAOFinca>> GetAllFincaByUsuario(int IdUsuario)
         {
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspGetAllFinca", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -34,7 +39,9 @@ namespace Data
                             Grupos = Convert.ToInt32(dr["Grupos"]),
                             Ubicacion = dr["Ubicacion"].ToString(),
                             Hectareas = Convert.ToInt32(dr["Hectareas"]),
-                            FotoURL = dr["FotoURL"].ToString()
+                            FotoURL = dr["FotoURL"].ToString(),
+                            Nombre = dr["Nombre"].ToString(),
+                            NombreDueño = dr["NombreDueño"].ToString(),
                         };
 
                         fincas.Add(gando);
@@ -49,10 +56,10 @@ namespace Data
             }
         }
 
-        public async Task<Finca> GetFinca(int Id)
+        public async Task<DAOFinca> GetFinca(int Id)
         {
-            Finca finca = new Finca();
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            DAOFinca finca = new DAOFinca();
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspGetFinca", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -64,14 +71,15 @@ namespace Data
                     {
                         while (dr.Read())
                         {
-                            finca = new Finca()
+                            finca = new DAOFinca()
                             {
 
-                                Id = Convert.ToInt32(dr["IdFinca"]),
+                                IdFinca = Convert.ToInt32(dr["IdFinca"]),
                                 Nombre = dr["Nombre"].ToString(),
                                 Ubicacion = dr["Ubicacion"].ToString(),
                                 Hectareas = Convert.ToInt32(dr["Hectareas"]),
                                 NombreDueño = dr["NombreDueño"].ToString(),
+                                FotoURL = dr["FotoURL"].ToString(),
                             };
                         }
                     }
@@ -87,7 +95,7 @@ namespace Data
         public async Task<int> GetLastId()
         {
             int id = 0;
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspUltimoIdFinca", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -114,7 +122,7 @@ namespace Data
         public async Task Insertar(Finca finca)
         {
 
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarFinca", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -135,6 +143,32 @@ namespace Data
                 }
             }
             
+        }
+
+        public async Task UpdateFinca(DAOFinca DAOFinca)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("uspUpdateFinca", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@IdFinca", SqlDbType.Int)).Value = DAOFinca.IdFinca;
+                cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.VarChar, 50)).Value = DAOFinca.Nombre;
+                cmd.Parameters.Add(new SqlParameter("@Ubicacion", SqlDbType.VarChar, 100)).Value = DAOFinca.Ubicacion;
+                cmd.Parameters.Add(new SqlParameter("@Hectareas", SqlDbType.Int)).Value = DAOFinca.Hectareas;
+                cmd.Parameters.Add(new SqlParameter("@NombreDueño", SqlDbType.VarChar, 50)).Value = DAOFinca.NombreDueño;
+                cmd.Parameters.Add(new SqlParameter("@FotoURL", SqlDbType.VarChar, 100)).Value = DAOFinca.FotoURL;
+                // ultimoID = (int)cmd.ExecuteScalar();
+
+                try
+                {
+                    await conexion.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
         }
     }
 }

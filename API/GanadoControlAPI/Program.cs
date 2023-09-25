@@ -2,8 +2,8 @@ using Data.Repository;
 using Data;
 using Models.Interfaces;
 
-var builder = WebApplication.CreateBuilder(args);
 
+var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -17,9 +17,15 @@ builder.Services.AddScoped<IProblemaFisicoRepository>(provider => new ProblemaFi
 builder.Services.AddScoped<IPartoRepository>(provider => new PartoData(builder.Configuration["ConnectionString"]));
 builder.Services.AddScoped<IInseminacionRepository>(provider => new InseminacionData(builder.Configuration["ConnectionString"]));
 builder.Services.AddScoped<IFarmacoRepository>(provider => new FarmacoData(builder.Configuration["ConnectionString"]));
+builder.Services.AddScoped<IGanadoRepository>(provider => new GanadoData(builder.Configuration["ConnectionString"]));
+builder.Services.AddScoped<IDetalleGanadoRepository>(provider => new DetalleGanadoData(builder.Configuration["ConnectionString"]));
+builder.Services.AddScoped<IFincaRepository>(provider => new FincaData(builder.Configuration["ConnectionString"]));
+builder.Services.AddScoped<IDetalleFincaFotoRepository>(provider => new DetalleFincaFotoData(builder.Configuration["ConnectionString"]));
+builder.Services.AddScoped<IGrupoRepository>(provider => new GrupoData(builder.Configuration["ConnectionString"]));
+builder.Services.AddScoped<IDetalleGrupoFotoRepository>(provider => new DetalleGrupoFotoData(builder.Configuration["ConnectionString"]));
+builder.Services.AddScoped<IDetalleFincaRepository>(provider => new DetalleFincaData(builder.Configuration["ConnectionString"]));
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

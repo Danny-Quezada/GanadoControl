@@ -12,9 +12,14 @@ namespace Data
 {
     public class DetalleGrupoFotoData : IDetalleGrupoFotoRepository
     {
+        private readonly string CadenaConexion;
+        public DetalleGrupoFotoData(string CadenaConexion)
+        {
+            this.CadenaConexion = CadenaConexion;
+        }
         public async Task Insertar(DetalleGrupoFoto data)
         {
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarDetalleGrupoFoto", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;

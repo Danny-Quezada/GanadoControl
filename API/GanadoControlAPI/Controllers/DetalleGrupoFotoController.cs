@@ -9,7 +9,11 @@ namespace GanadoControlAPI.Controllers
     [ApiController]
     public class DetalleGrupoFotoController:ControllerBase
     {
-        IDetalleGrupoFotoRepository detalleGrupoFotoRepository = new DetalleGrupoFotoData();
+        public DetalleGrupoFotoController(IDetalleGrupoFotoRepository detalleGrupoFoto)
+        {
+            this.detalleGrupoFotoRepository = detalleGrupoFoto;
+        }
+        IDetalleGrupoFotoRepository detalleGrupoFotoRepository;
 
         [HttpPost]
         public async Task<IActionResult> Insertar([FromBody] DetalleGrupoFoto detalleGrupoFoto)

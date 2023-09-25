@@ -11,7 +11,8 @@ namespace Models.Interfaces
     public interface IGrupoRepository : IRepository<Grupo>
     {
         public Task<List<DAOGrupo>> GetAllByFinca(int IdFinca);
-        public Task<Grupo> GetGrupo(int id);
+        public Task<DAOGrupo> GetGrupo(int id);
         public Task<int> GetLastId();
+        public Task UpdateGrupo(DAOGrupo grupo);
     }
 }

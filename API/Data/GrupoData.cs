@@ -13,9 +13,14 @@ namespace Data
 {
     public class GrupoData : IGrupoRepository
     {
+        private readonly string CadenaConexion;
+        public GrupoData(string CadenaConexion)
+        {
+            this.CadenaConexion = CadenaConexion;
+        }
         public async Task Insertar(Grupo grupo)
         {
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarGrupo", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -35,7 +40,7 @@ namespace Data
         }
         public async Task<List<DAOGrupo>> GetAllByFinca(int IdFinca)
         {
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspGetAllGrupos", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -50,9 +55,11 @@ namespace Data
 
                         DAOGrupo grupo = new DAOGrupo()
                         {
-                            IdGrupo = Convert.ToInt32(dr["idgrupo"]),
+                            IdGrupo = Convert.ToInt32(dr["IdGrupo"]),
+                            IdFinca = Convert.ToInt32(dr["IdFinca"]),
+                            Nombre = dr["Nombre"].ToString(),
                             CantidadGanado = Convert.ToInt32(dr["CantidadDeGanados"]),
-                            FotoURL = dr["FotoURL"].ToString(),
+                            FotoURL = dr["FotoURL"].ToString()
                         };
 
                         grupos.Add(grupo);
@@ -67,10 +74,10 @@ namespace Data
             }
         }
 
-        public async Task<Grupo> GetGrupo(int id)
+        public async Task<DAOGrupo> GetGrupo(int id)
         {
-            Grupo grupo = new Grupo();
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            DAOGrupo grupo = new DAOGrupo();
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspGetGrupo", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -82,11 +89,13 @@ namespace Data
                     {
                         while (dr.Read())
                         {
-                            grupo = new Grupo()
+                            grupo = new DAOGrupo()
                             {
                                 IdGrupo = Convert.ToInt32(dr["IdGrupo"]),
                                 IdFinca = Convert.ToInt32(dr["IdFinca"]),
                                 Nombre = dr["Nombre"].ToString(),
+                                CantidadGanado = Convert.ToInt32(dr["CantidadDeGanados"]),
+                                FotoURL = dr["FotoURL"].ToString(),
                             };
                         }
                     }
@@ -102,7 +111,7 @@ namespace Data
         public async Task<int> GetLastId()
         {
             int id = 0;
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspUltimoIdGrupo", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -118,6 +127,28 @@ namespace Data
 
                     }
                     return id;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
+        public async Task UpdateGrupo(DAOGrupo grupo)
+        {
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("uspUpdateGrupo", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Nombre", SqlDbType.VarChar, 50)).Value = grupo.Nombre;
+                cmd.Parameters.Add(new SqlParameter("@IdFinca", SqlDbType.Int)).Value = grupo.IdFinca;
+                cmd.Parameters.Add(new SqlParameter("@IdGrupo", SqlDbType.Int)).Value = grupo.IdGrupo;
+                cmd.Parameters.Add(new SqlParameter("@FotoURL", SqlDbType.VarChar, 100)).Value = grupo.FotoURL;
+                try
+                {
+                    await conexion.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
                 catch (Exception ex)
                 {

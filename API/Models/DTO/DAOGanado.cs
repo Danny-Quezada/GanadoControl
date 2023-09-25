@@ -16,6 +16,11 @@ namespace Models.DTO
         public DateTime? FechaNacimiento { get; set; }
         public string? Raza { get; set; }
         public float Peso { get; set; }
+        public string? IdPadre { get; set; }
+        public string? IdMadre { get; set; }
+        public int IdGrupo { get; set; }
+        public string Estado { get; set; }
         public string FotoURL { get; set; }
+
     }
 }

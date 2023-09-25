@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Data\\Data.csproj": {}
   },
   "projects": {
@@ -13,22 +12,13 @@
         "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Data\\obj\\",
-=======
-    "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Data\\Data.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Data\\Data.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Data\\Data.csproj",
-        "projectName": "Data",
-        "projectPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Data\\obj\\",
->>>>>>> 6dba1c8111894bb3f5001dcc67274f9f82eba40e
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -42,13 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-<<<<<<< HEAD
               "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj": {
                 "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj"
-=======
-              "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Models\\Models.csproj"
->>>>>>> 6dba1c8111894bb3f5001dcc67274f9f82eba40e
               }
             }
           }
@@ -78,8 +63,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -88,11 +72,10 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-<<<<<<< HEAD
     "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -101,19 +84,13 @@
         "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\APIChakaton2\\Hackathon-app\\API\\Models\\obj\\",
-=======
-    "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Models\\Models.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Models\\Models.csproj",
-        "projectName": "Models",
-        "projectPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Hackathon-app\\API\\Models\\obj\\",
->>>>>>> 6dba1c8111894bb3f5001dcc67274f9f82eba40e
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -158,8 +135,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -168,7 +144,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -12,9 +12,14 @@ namespace Data
 {
     public class DetalleFincaData : IDetalleFincaRepository
     {
+        private readonly string CadenaConexion;
+        public DetalleFincaData(string CadenaConexion)
+        {
+            this.CadenaConexion = CadenaConexion;
+        }
         public async Task Insertar(DetalleFinca data)
         {
-            using (SqlConnection conexion = new SqlConnection(Conexion.Cn))
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarDetalleFinca", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;

@@ -9,6 +9,7 @@ namespace Models.DTO
 {
     public class DTOInsertGrupo
     {
+        public int IdGrupo { get; set; }
         public string Nombre { get; set; }
         public int IdFinca { get; set; }
         public IFormFile FotoURL { get; set; }

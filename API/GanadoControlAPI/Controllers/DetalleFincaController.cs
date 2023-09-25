@@ -9,7 +9,11 @@ namespace GanadoControlAPI.Controllers
     [ApiController]
     public class DetalleFincaController : ControllerBase
     {
-        IDetalleFincaRepository detalleFincaRepository = new DetalleFincaData();
+        public DetalleFincaController(IDetalleFincaRepository detalleFinca)
+        {
+            detalleFincaRepository = detalleFinca;
+        }
+        IDetalleFincaRepository detalleFincaRepository;
         [HttpPost]
         public async Task<IActionResult> InsertarDetalleFinca([FromBody] DetalleFinca detallefinca)
         {

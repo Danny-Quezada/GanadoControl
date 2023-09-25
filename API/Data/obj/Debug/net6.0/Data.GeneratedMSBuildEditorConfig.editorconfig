@@ -5,11 +5,6 @@ build_property.UsingMicrosoftNETSdkWeb =
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Data
-<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\carlo\OneDrive\Escritorio\APIChakaton2\Hackathon-app\API\Data\
-=======
-build_property.ProjectDir = C:\Users\sanro\OneDrive\Documentos\UNIVERSIDAD\Hackathon\App\Hackathon-app\API\Data\
->>>>>>> 6dba1c8111894bb3f5001dcc67274f9f82eba40e
