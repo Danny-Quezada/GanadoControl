@@ -15,9 +15,8 @@ namespace GanadoControlAPI.Controllers
         }
         IDetalleGanadoRepository detalleGanadoRepository;
         [HttpPost]
-        public async Task<IActionResult> Insertar([FromBody] DetalleGanado detalleGanado)
+        public async Task<IActionResult> Insertar([FromForm] DetalleGanado detalleGanado)
         {
-
             await detalleGanadoRepository.Insertar(detalleGanado);
             return Created("Creado", true);
         }

@@ -52,12 +52,12 @@ namespace GanadoControlAPI.Controllers
             return Created("Creado", true);
         }
         [HttpGet("Usuario/{id}")]
-        public async Task<IActionResult> GetAllFincaByUsuario(int id)
+        public async Task<IActionResult> GetAllFincaByUsuario([FromForm] int id)
         {
             return Ok(await fincaRepository.GetAllFincaByUsuario(id));
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get([FromForm] int id)
         {
             return Ok(await fincaRepository.GetFinca(id));
         }

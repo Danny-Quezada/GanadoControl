@@ -56,9 +56,9 @@ namespace Data
             }
         }
 
-        public async Task<DAOUsuario> VerificarUsuario(string nombreUsuario, string contraseña)
+        public async Task<Usuario> VerificarUsuario(string nombreUsuario, string contraseña)
         {
-            DAOUsuario usuario=new DAOUsuario();
+            Usuario usuario=new Usuario();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspValidarIngreso", conexion);
@@ -72,10 +72,13 @@ namespace Data
                     {
                         while (await dr.ReadAsync())
                         {
-                            usuario = new DAOUsuario()
+                            usuario = new Usuario()
                             {
                                 Id = Convert.ToInt32(dr["IdUsuario"]),
                                 Cargo = dr["Cargo"].ToString(),
+                                Contraseña = dr["Contraseña"].ToString(),
+                                Correo = dr["Correo"].ToString(),
+                                NombreUsuario = dr["NombreUsuario"].ToString()
                             };
                         }
                     }

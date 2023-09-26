@@ -12,7 +12,7 @@ namespace Models.Interfaces
     public interface IUsuarioRepository : IRepository<Usuario>
     {
         //void InsertarUsuario(Usuario usuario);
-        Task<DAOUsuario> VerificarUsuario(string nombreUsuario, string contraseña);
+        Task<Usuario> VerificarUsuario(string nombreUsuario, string contraseña);
         //Task ActualizarUsuario(Usuario usuario);
         Task CambiarEstado(int idUsuario, bool estado);
 
