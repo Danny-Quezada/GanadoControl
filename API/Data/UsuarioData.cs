@@ -13,7 +13,7 @@ namespace Data
         {
             this.cadenaConexion = cadenaConexion;
         }
-        public async Task CambiarEstado(int idUsuario, bool estado)
+        public async Task<bool> CambiarEstado(int idUsuario, bool estado)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -24,7 +24,7 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    return (await cmd.ExecuteNonQueryAsync())>0;
                 }
                 catch (Exception ex)
                 {
@@ -64,9 +64,9 @@ namespace Data
             }
         }
 
-        public async Task<Usuario> VerificarUsuario(string nombreUsuario, string contraseña)
+        public async Task<DAOUsuario> VerificarUsuario(string nombreUsuario, string contraseña)
         {
-            Usuario usuario=new Usuario();
+            DAOUsuario usuario =new DAOUsuario();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspValidarIngreso", conexion);
@@ -80,12 +80,10 @@ namespace Data
                     {
                         while (await dr.ReadAsync())
                         {
-                            usuario = new Usuario()
+                            usuario = new DAOUsuario()
                             {
                                 Id = Convert.ToInt32(dr["IdUsuario"]),
                                 Cargo = dr["Cargo"].ToString(),
-                                Contraseña = dr["Contraseña"].ToString(),
-                                Correo = dr["Correo"].ToString(),
                                 NombreUsuario = dr["NombreUsuario"].ToString()
                             };
                         }

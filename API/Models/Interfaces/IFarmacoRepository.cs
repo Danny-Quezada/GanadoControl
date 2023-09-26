@@ -10,7 +10,7 @@ namespace Models.Interfaces
     public  interface IFarmacoRepository: IData<Farmaco>
     {
         Task<List<Farmaco>> ObtenerFarmacosPorFinca(int idFinca);
-        Task ActualizarFarmaco(Farmaco farmaco);
-        Task EliminarFarmaco(int id);
+        Task<bool> ActualizarFarmaco(Farmaco farmaco);
+        Task<bool> EliminarFarmaco(int id);
     }
 }

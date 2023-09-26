@@ -12,14 +12,16 @@ namespace GanadoControlAPI.Controllers
 
     public class FincaController : ControllerBase
     {
-        public FincaController(IWebHostEnvironment _webHostEnvironment1, IFincaRepository fincaRepository, IDetalleFincaFotoRepository detalleFincaFotoRepository)
+        public FincaController(IWebHostEnvironment _webHostEnvironment1, IFincaRepository fincaRepository, IDetalleFincaFotoRepository detalleFincaFotoRepository, IDetalleFincaRepository detalleFincaRepository)
         {
             _webHostEnvironment = _webHostEnvironment1;
             this.fincaRepository = fincaRepository;
             this.fincaFotoRepository = detalleFincaFotoRepository;
+            this.detalleFincaRepository = detalleFincaRepository;
         }
         IFincaRepository fincaRepository;
         IDetalleFincaFotoRepository fincaFotoRepository;
+        IDetalleFincaRepository detalleFincaRepository;
         [HttpPost]
         public async Task<IActionResult> InsertarFinca([FromForm] DTOInsertFinca dtofinca)
         {
@@ -45,8 +47,16 @@ namespace GanadoControlAPI.Controllers
                 Hectareas = dtofinca.Hectareas,
 
             };
+            DetalleFinca detalleFinca= new DetalleFinca()
+            {
+                IdFinca = dtofinca.IdFinca,
+                IdUsuario = dtofinca.IdUsuario,
+                Fecha = dtofinca.Fecha,
+                RolUsuario = dtofinca.RolUsuario
+            };
             await fincaRepository.Insertar(finca);
             detalleFincaFoto.IdFinca = fincaRepository.GetLastId().Result;
+            await detalleFincaRepository.Insertar(detalleFinca);
             await fincaFotoRepository.Insertar(detalleFincaFoto);
             return Ok (detalleFincaFoto.IdFinca);
         }

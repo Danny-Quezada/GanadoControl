@@ -12,9 +12,9 @@ namespace Models.Interfaces
     public interface IUsuarioRepository : IData<Usuario>
     {
         //void InsertarUsuario(Usuario usuario);
-        Task<Usuario> VerificarUsuario(string nombreUsuario, string contraseña);
+        Task<DAOUsuario> VerificarUsuario(string nombreUsuario, string contraseña);
         //Task ActualizarUsuario(Usuario usuario);
-        Task CambiarEstado(int idUsuario, bool estado);
+        Task<bool> CambiarEstado(int idUsuario, bool estado);
 
     }
 }

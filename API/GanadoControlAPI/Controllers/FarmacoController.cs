@@ -61,14 +61,12 @@ namespace GanadoControlAPI.Controllers
         public async Task<IActionResult> Put([FromForm] Farmaco farmaco, [FromForm]int id)
         {
             farmaco.Id = id;
-            await farmacoRepository.ActualizarFarmaco(farmaco);
-            return Ok("Actualizado correctamente");
+            return Ok(await farmacoRepository.ActualizarFarmaco(farmaco));
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromForm] int id)
         {
-            await farmacoRepository.EliminarFarmaco(id);
-            return NoContent();
+            return Ok(await farmacoRepository.EliminarFarmaco(id));
         }
         [NoApiRoute]
         private async Task<String> CrearImagen(byte[] file, string contentType, string extension, string container, string nombre)

@@ -19,7 +19,7 @@ namespace Data
             this.cadenaConexion = cadenaConexion;
         }
 
-        public async Task ActualizarFarmaco(Farmaco farmaco)
+        public async Task<bool> ActualizarFarmaco(Farmaco farmaco)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -39,7 +39,7 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    return (await cmd.ExecuteNonQueryAsync()) > 0;
                 }
                 catch (Exception ex)
                 {
@@ -48,7 +48,7 @@ namespace Data
             }
         }
 
-        public async Task EliminarFarmaco(int id)
+        public async Task<bool> EliminarFarmaco(int id)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -58,7 +58,7 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    return (await cmd.ExecuteNonQueryAsync()) > 0;
                 }
                 catch (Exception ex)
                 {

@@ -30,8 +30,7 @@ namespace GanadoControlAPI.Controllers
         [HttpPut("estado/{id}, {estado}")]
         public async Task<IActionResult> CambiarEstado(int id,  bool estado)
         {
-            await usuarioRepository.CambiarEstado(id, estado);
-            return Ok("Estado actualizado correctamentes");
+            return Ok(await usuarioRepository.CambiarEstado(id, estado));
         }
     }
 }

@@ -135,7 +135,6 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await conexion.OpenAsync();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (await dr.ReadAsync())

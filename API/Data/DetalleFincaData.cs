@@ -26,7 +26,7 @@ namespace Data
                 cmd.Parameters.Add(new SqlParameter("@IdFinca", SqlDbType.Int)).Value = data.IdFinca;
                 cmd.Parameters.Add(new SqlParameter("@IdUsuario", SqlDbType.Int)).Value = data.IdUsuario;
                 cmd.Parameters.Add(new SqlParameter("@Fecha", SqlDbType.Date)).Value = data.Fecha;
-
+                cmd.Parameters.Add(new SqlParameter("@rol", SqlDbType.VarChar, 30)).Value = data.RolUsuario;
                 try
                 {
                     await conexion.OpenAsync();

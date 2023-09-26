@@ -1,5 +1,37 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\0dc391eb-292f-48e0-892f-fb669e6b81bd.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>GanadoControlAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GanadoControlAPI</BasePath>
+      <RelativePath>FotosDeFincas/0dc391eb-292f-48e0-892f-fb669e6b81bd.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\0dc391eb-292f-48e0-892f-fb669e6b81bd.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\2cd41eab-073b-41e6-9717-44f4d67ef334.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>GanadoControlAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GanadoControlAPI</BasePath>
+      <RelativePath>FotosDeFincas/2cd41eab-073b-41e6-9717-44f4d67ef334.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\2cd41eab-073b-41e6-9717-44f4d67ef334.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\32a12940-b126-411d-9a2e-06fedff2d9b5.png))">
       <SourceType>Package</SourceType>
       <SourceId>GanadoControlAPI</SourceId>
@@ -63,6 +95,54 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\9839bff9-960f-409b-9e32-851db54eec37.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\a98626c5-97dd-4de2-9bf8-fdc4604a21fc.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>GanadoControlAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GanadoControlAPI</BasePath>
+      <RelativePath>FotosDeFincas/a98626c5-97dd-4de2-9bf8-fdc4604a21fc.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\a98626c5-97dd-4de2-9bf8-fdc4604a21fc.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\c2bdb221-9e4b-4dd5-92ca-8995de5b879c.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>GanadoControlAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GanadoControlAPI</BasePath>
+      <RelativePath>FotosDeFincas/c2bdb221-9e4b-4dd5-92ca-8995de5b879c.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\c2bdb221-9e4b-4dd5-92ca-8995de5b879c.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\d09f0e9f-f1eb-4f40-a3dc-15704a2cabe7.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>GanadoControlAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GanadoControlAPI</BasePath>
+      <RelativePath>FotosDeFincas/d09f0e9f-f1eb-4f40-a3dc-15704a2cabe7.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\d09f0e9f-f1eb-4f40-a3dc-15704a2cabe7.png))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\ffabbbf1-5ac3-4fd4-8a60-ef519a64fafc.png))">
       <SourceType>Package</SourceType>
