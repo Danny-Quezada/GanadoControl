@@ -25,12 +25,12 @@ namespace GanadoControlAPI.Controllers
             return Created("Creado", true);
         }
         [HttpGet(("verificar/{nombreUsuario}, {contraseña}"))]
-        public async Task<IActionResult> VerificarUsuario([FromForm]string nombreUsuario, [FromForm]string contraseña)
+        public async Task<IActionResult> VerificarUsuario(string nombreUsuario, string contraseña)
         {
             return Ok(await usuarioRepository.VerificarUsuario(nombreUsuario, contraseña));
         }
         [HttpPut("estado/{id}, {estado}")]
-        public async Task<IActionResult> CambiarEstado([FromForm]int id, [FromForm] bool estado)
+        public async Task<IActionResult> CambiarEstado(int id,  bool estado)
         {
             await usuarioRepository.CambiarEstado(id, estado);
             return Ok("Estado actualizado correctamentes");

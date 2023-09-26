@@ -867,19 +867,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sanro\\.nuget\\packages\\": {}
+    "C:\\Users\\Quezada\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Repos\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
       "projectName": "GanadoControlAPI",
-      "projectPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Repos\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
-      "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Repos\\Hackathon-app\\API\\GanadoControlAPI\\obj\\",
+      "projectPath": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+      "packagesPath": "C:\\Users\\Quezada\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Quezada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -887,17 +892,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Repos\\Hackathon-app\\API\\Data\\Data.csproj": {
-              "projectPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Repos\\Hackathon-app\\API\\Data\\Data.csproj"
+            "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\Data\\Data.csproj"
             },
-            "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Repos\\Hackathon-app\\API\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\sanro\\OneDrive\\Documentos\\UNIVERSIDAD\\Hackathon\\App\\Repos\\Hackathon-app\\API\\Models\\Models.csproj"
+            "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\Models\\Models.csproj"
             }
           }
         }
@@ -944,7 +950,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

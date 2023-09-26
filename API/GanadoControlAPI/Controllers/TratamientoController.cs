@@ -18,7 +18,7 @@ namespace GanadoControlAPI.Controllers
         }
 
         [HttpGet("Usuario/{idUsuario}")]
-        public async Task<IActionResult> GetTratamientosPorGanado([FromForm] int idUsuario)
+        public async Task<IActionResult> GetTratamientosPorGanado( int idUsuario)
         {
             return Ok(await tratamientoRepository.ObtenerTratamientosPorUsuario(idUsuario));
         }

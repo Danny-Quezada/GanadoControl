@@ -24,16 +24,15 @@ builder.Services.AddScoped<IDetalleFincaFotoRepository>(provider => new DetalleF
 builder.Services.AddScoped<IGrupoRepository>(provider => new GrupoData(builder.Configuration["ConnectionString"]));
 builder.Services.AddScoped<IDetalleGrupoFotoRepository>(provider => new DetalleGrupoFotoData(builder.Configuration["ConnectionString"]));
 builder.Services.AddScoped<IDetalleFincaRepository>(provider => new DetalleFincaData(builder.Configuration["ConnectionString"]));
-
+builder.WebHost.UseUrls("http://192.168.1.14:5000");
 var app = builder.Build();
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
-app.UseHttpsRedirection();
+app.UseSwagger();
+app.UseSwaggerUI();
+
+
+app.UseStaticFiles();
 
 app.UseAuthorization();
 
