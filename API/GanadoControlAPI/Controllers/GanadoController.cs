@@ -52,12 +52,12 @@ namespace GanadoControlAPI.Controllers
             return Created("Creado", true);
         }
         [HttpGet("Grupo/{id}")]
-        public async Task<IActionResult> GetAll([FromForm]int id)
+        public async Task<IActionResult> GetAll(int id)
         {
             return Ok(await ganadoRepository.GetAllGanadoByGrupo(id));
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetGanado([FromForm]string id)
+        public async Task<IActionResult> GetGanado(string id)
         {
             return Ok(await ganadoRepository.GetGanado(id));
         }

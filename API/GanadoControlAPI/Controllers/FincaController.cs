@@ -57,7 +57,7 @@ namespace GanadoControlAPI.Controllers
             return Ok(await fincaRepository.GetAllFincaByUsuario(id));
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromForm] int id)
+        public async Task<IActionResult> Get( int id)
         {
             return Ok(await fincaRepository.GetFinca(id));
         }

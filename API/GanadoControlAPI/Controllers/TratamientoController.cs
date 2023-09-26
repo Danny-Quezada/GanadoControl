@@ -30,17 +30,17 @@ namespace GanadoControlAPI.Controllers
             return Created("Creado", true);
         }
         [HttpGet("Ganado/{idGanado}")]
-        public async Task<IActionResult> ObtenerTratamientoPorGanado([FromForm] string Ganado)
+        public async Task<IActionResult> ObtenerTratamientoPorGanado( string Ganado)
         {
             return Ok(await tratamientoRepository.ObtenerTratamientoPorGanado(Ganado));
         }
         [HttpGet("Grupo/{idGrupo}")]
-        public async Task<IActionResult> ObtenerTratamientoPorGrupo([FromForm] int idGrupo)
+        public async Task<IActionResult> ObtenerTratamientoPorGrupo(int idGrupo)
         {
             return Ok(await tratamientoRepository.ObtenerTratamientoPorGrupo(idGrupo));
         }
         [HttpGet("Finca/{idFinca}")]
-        public async Task<IActionResult> ObtenerTratamientoPorFinca([FromForm] int idFinca)
+        public async Task<IActionResult> ObtenerTratamientoPorFinca(int idFinca)
         {
             return Ok(await tratamientoRepository.ObtenerTratamientoPorFinca(idFinca));
         }

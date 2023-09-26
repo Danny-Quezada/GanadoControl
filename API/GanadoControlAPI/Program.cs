@@ -6,6 +6,7 @@ using Models.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +25,9 @@ builder.Services.AddScoped<IDetalleFincaFotoRepository>(provider => new DetalleF
 builder.Services.AddScoped<IGrupoRepository>(provider => new GrupoData(builder.Configuration["ConnectionString"]));
 builder.Services.AddScoped<IDetalleGrupoFotoRepository>(provider => new DetalleGrupoFotoData(builder.Configuration["ConnectionString"]));
 builder.Services.AddScoped<IDetalleFincaRepository>(provider => new DetalleFincaData(builder.Configuration["ConnectionString"]));
+
+
+//http://direccion ip:5000
 builder.WebHost.UseUrls("http://192.168.1.14:5000");
 var app = builder.Build();
 // Configure the HTTP request pipeline.
