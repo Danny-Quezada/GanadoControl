@@ -18,11 +18,9 @@ namespace GanadoControlAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult InsertarUsuario([FromForm]Usuario usuario)
+        public async Task<IActionResult> InsertarUsuario([FromForm]Usuario usuario)
         {
-            //usuarioRepository.InsertarUsuario(usuario);
-            usuarioRepository.Insertar(usuario);
-            return Created("Creado", true);
+            return Ok(await usuarioRepository.Insertar(usuario));
         }
         [HttpGet(("verificar/{nombreUsuario}, {contraseña}"))]
         public async Task<IActionResult> VerificarUsuario(string nombreUsuario, string contraseña)

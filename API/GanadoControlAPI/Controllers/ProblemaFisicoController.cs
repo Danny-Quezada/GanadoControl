@@ -18,13 +18,13 @@ namespace GanadoControlAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult InsertarParto([FromForm] ProblemaFisico problemaFisico)
+        public async Task<IActionResult> InsertarParto([FromForm] ProblemaFisico problemaFisico)
         {
-            problemaFisicoRepository.Insertar(problemaFisico);
+            await problemaFisicoRepository.Insertar(problemaFisico);
             return Created("Creado", true);
         }
         [HttpGet("ganado/{idGanado}")]
-        public async Task<IActionResult> ObtenerProbFisicoXGanado(string idGanado)
+        public async Task<IActionResult> ObtenerProbFisicoXGanado([FromForm] string idGanado)
         {
             return Ok(await problemaFisicoRepository.ObtenerProblemasFisicosPorGanado(idGanado));
         }
@@ -36,7 +36,7 @@ namespace GanadoControlAPI.Controllers
             return Ok("Actualizado correctamente");
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> EliminarProbFisico(int id)
+        public async Task<IActionResult> EliminarProbFisico([FromForm]int id)
         {
             await problemaFisicoRepository.EliminarProblemaFisico(id);
             return NoContent();

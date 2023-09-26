@@ -1,5 +1,7 @@
 ﻿using Data;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Models.DTO;
 using Models.Entities;
 using Models.Interfaces;
 
@@ -12,37 +14,89 @@ namespace GanadoControlAPI.Controllers
     public class FarmacoController : ControllerBase
     {
         private readonly IFarmacoRepository farmacoRepository;
-
-        public FarmacoController(IFarmacoRepository farmacoRepository)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public FarmacoController(IFarmacoRepository farmacoRepository, IWebHostEnvironment webHostEnvironment)
         {
             this.farmacoRepository = farmacoRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet("finca/{idFinca}")]
-        public async Task<IActionResult> GetFarmacos(int idFinca)
+        public async Task<IActionResult> GetFarmacos([FromForm]int idFinca)
         {
             return Ok(await farmacoRepository.ObtenerFarmacosPorFinca(idFinca));
         }
 
         [HttpPost]
-        public IActionResult Post([FromForm] Farmaco farmaco)
+        public async Task<IActionResult> Post([FromForm] DTOInsertarFarmaco farmacoDTO)
         {
-            farmacoRepository.Insertar(farmaco);
-            return Created("Creado", true);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            Farmaco farmaco = new Farmaco()
+            {
+                Id = farmacoDTO.Id,
+                FechaCaducidad = farmacoDTO.FechaCaducidad,
+                FechaEntrega = farmacoDTO.FechaEntrega,
+                IdFinca = farmacoDTO.IdFinca,
+                Cantidad = farmacoDTO.Cantidad,
+                Precio = farmacoDTO.Precio,
+                Proveedor = farmacoDTO.Proveedor,
+                Nombre = farmacoDTO.Nombre,
+                Tipo= farmacoDTO.Tipo,
+                UnidadMedida = farmacoDTO.UnidadMedida,
+            };
+            if (farmacoDTO.Foto != null)
+            {
+                using var stream = new MemoryStream();
+                await farmacoDTO.Foto.CopyToAsync(stream);
+                var bytes = stream.ToArray();
+                farmaco.FotoURL = await CrearImagen(bytes, farmacoDTO.Foto.ContentType, Path.GetExtension(farmacoDTO.Foto.FileName), "FotosDeFarmacos", Guid.NewGuid().ToString());
+            }
+            return Ok(await farmacoRepository.Insertar(farmaco));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromForm] Farmaco farmaco, int id)
+        public async Task<IActionResult> Put([FromForm] Farmaco farmaco, [FromForm]int id)
         {
             farmaco.Id = id;
             await farmacoRepository.ActualizarFarmaco(farmaco);
             return Ok("Actualizado correctamente");
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromForm] int id)
         {
             await farmacoRepository.EliminarFarmaco(id);
             return NoContent();
+        }
+        [NoApiRoute]
+        private async Task<String> CrearImagen(byte[] file, string contentType, string extension, string container, string nombre)
+        {
+
+            string wwwrootPath = _webHostEnvironment.WebRootPath;
+
+
+            if (string.IsNullOrEmpty(wwwrootPath))
+            {
+                throw new Exception();
+            }
+
+            string carpetaArchivo = Path.Combine(wwwrootPath, container);
+            if (!Directory.Exists(carpetaArchivo))
+            {
+                Directory.CreateDirectory(carpetaArchivo
+                    );
+            }
+            string nombreFinal = $"{nombre}{extension}";
+            string rutaFinal = Path.Combine(carpetaArchivo, nombreFinal);
+
+            await System.IO.File.WriteAllBytesAsync(rutaFinal, file);
+            string urlActual = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+
+            string dbUrl = Path.Combine(urlActual, container, nombreFinal).Replace("\\", "/");
+            return dbUrl;
+
         }
     }
 }

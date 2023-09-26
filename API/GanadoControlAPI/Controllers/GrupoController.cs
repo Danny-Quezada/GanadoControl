@@ -44,15 +44,15 @@ namespace GanadoControlAPI.Controllers
             await grupoRepository.Insertar(grupo);
             detalleGrupo.IdGrupo = await grupoRepository.GetLastId();
             await detalleGrupofoto.Insertar(detalleGrupo);
-            return Created("Creado", true);
+            return Ok(detalleGrupo.IdGrupo);
         }
         [HttpGet("Finca/{id}")]
-        public async Task<IActionResult> GetAllByFinca(int id)
+        public async Task<IActionResult> GetAllByFinca([FromForm] int id)
         {
             return Ok(await grupoRepository.GetAllByFinca(id));
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get([FromForm] int id)
         {
             return Ok(await grupoRepository.GetGrupo(id));
         }

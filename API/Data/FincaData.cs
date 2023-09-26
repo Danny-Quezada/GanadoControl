@@ -119,9 +119,9 @@ namespace Data
             }
         }
 
-        public async Task Insertar(Finca finca)
+        public async Task<int> Insertar(Finca finca)
         {
-
+            int ultimoId = 0;   
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarFinca", conexion);
@@ -135,7 +135,15 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    await conexion.OpenAsync();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (await dr.ReadAsync())
+                        {
+                            ultimoId = Convert.ToInt32(dr["UltimoID"]);
+                        }
+                    }
+                    return ultimoId;
                 }
                 catch (Exception ex)
                 {

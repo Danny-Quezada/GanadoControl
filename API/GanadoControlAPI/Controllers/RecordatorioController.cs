@@ -18,15 +18,15 @@ namespace GanadoControlAPI.Controllers
         }
 
         [HttpGet("Ganado/{idGanado}")]
-        public async Task<IActionResult> GetRecordatorioPorGanado(string idGanado)
+        public async Task<IActionResult> GetRecordatorioPorGanado([FromForm] string idGanado)
         {
             return Ok(await recordatorioRepository.ObtenerRecordatoriosPorGanado(idGanado));
         }
 
         [HttpPost]
-        public IActionResult Post([FromForm] Recordatorio recordatorio)
+        public async Task<IActionResult> Post([FromForm] Recordatorio recordatorio)
         {
-            recordatorioRepository.Insertar(recordatorio);
+            await recordatorioRepository.Insertar(recordatorio);
             return Created("Creado", true);
         }
         [HttpDelete("{id}")]
@@ -36,7 +36,7 @@ namespace GanadoControlAPI.Controllers
             return NoContent();
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromBody] Recordatorio recordatorio, int id)
+        public async Task<IActionResult> Update([FromBody] Recordatorio recordatorio, [FromForm] int id)
         {
             recordatorio.Id = id;
             await recordatorioRepository.ActualizarRecordatorio(recordatorio);

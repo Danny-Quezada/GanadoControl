@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Models.Interfaces
 {
-    public interface IGrupoRepository : IRepository<Grupo>
+    public interface IGrupoRepository : IData<Grupo>
     {
         public Task<List<DAOGrupo>> GetAllByFinca(int IdFinca);
         public Task<DAOGrupo> GetGrupo(int id);

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ch7OI0yjH0VbKvQiD72dfbbbYY3RkTObhpl3maMYl0o=",
+  "Hash": "1Jg+K2Wha353vCJuMM+2wGMajYc6e+HxsaUHc9H4qsg=",
   "Source": "GanadoControlAPI",
   "BasePath": "_content/GanadoControlAPI",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "GanadoControlAPI\\wwwroot",
       "Source": "GanadoControlAPI",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeFincas\\32a12940-b126-411d-9a2e-06fedff2d9b5.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeFincas\\32a12940-b126-411d-9a2e-06fedff2d9b5.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeFincas/32a12940-b126-411d-9a2e-06fedff2d9b5.png",
       "AssetKind": "All",
@@ -34,10 +34,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeFincas\\32a12940-b126-411d-9a2e-06fedff2d9b5.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeFincas\\531d8465-1da6-41cc-b0f7-e4f899758970.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeFincas\\531d8465-1da6-41cc-b0f7-e4f899758970.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeFincas/531d8465-1da6-41cc-b0f7-e4f899758970.png",
       "AssetKind": "All",
@@ -51,10 +51,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeFincas\\531d8465-1da6-41cc-b0f7-e4f899758970.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeFincas\\5be4218b-c430-44da-9b14-9189e702348b.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeFincas\\5be4218b-c430-44da-9b14-9189e702348b.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeFincas/5be4218b-c430-44da-9b14-9189e702348b.png",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeFincas\\5be4218b-c430-44da-9b14-9189e702348b.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeFincas\\9839bff9-960f-409b-9e32-851db54eec37.jpg",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeFincas\\9839bff9-960f-409b-9e32-851db54eec37.jpg",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeFincas/9839bff9-960f-409b-9e32-851db54eec37.jpg",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeFincas\\9839bff9-960f-409b-9e32-851db54eec37.jpg"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeFincas\\ffabbbf1-5ac3-4fd4-8a60-ef519a64fafc.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeFincas\\ffabbbf1-5ac3-4fd4-8a60-ef519a64fafc.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeFincas/ffabbbf1-5ac3-4fd4-8a60-ef519a64fafc.png",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeFincas\\ffabbbf1-5ac3-4fd4-8a60-ef519a64fafc.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\04008d64-f24a-4760-aeb1-b5228cd1fc5b.avif",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\04008d64-f24a-4760-aeb1-b5228cd1fc5b.avif",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/04008d64-f24a-4760-aeb1-b5228cd1fc5b.avif",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\04008d64-f24a-4760-aeb1-b5228cd1fc5b.avif"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\0c1da903-4f94-4dcd-86c1-a7478c400d76.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\0c1da903-4f94-4dcd-86c1-a7478c400d76.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/0c1da903-4f94-4dcd-86c1-a7478c400d76.png",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\0c1da903-4f94-4dcd-86c1-a7478c400d76.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\11a697e8-86d1-445e-91d7-23870bddc326.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\11a697e8-86d1-445e-91d7-23870bddc326.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/11a697e8-86d1-445e-91d7-23870bddc326.png",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\11a697e8-86d1-445e-91d7-23870bddc326.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\19adb6c4-bf63-4b78-a91f-6fd381d3b43c.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\19adb6c4-bf63-4b78-a91f-6fd381d3b43c.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/19adb6c4-bf63-4b78-a91f-6fd381d3b43c.png",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\19adb6c4-bf63-4b78-a91f-6fd381d3b43c.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\23d05eca-09f9-49da-b34f-c70458874127.avif",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\23d05eca-09f9-49da-b34f-c70458874127.avif",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/23d05eca-09f9-49da-b34f-c70458874127.avif",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\23d05eca-09f9-49da-b34f-c70458874127.avif"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\2956e1ec-4ac2-487a-85c9-9f26817c566d.jpg",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\2956e1ec-4ac2-487a-85c9-9f26817c566d.jpg",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/2956e1ec-4ac2-487a-85c9-9f26817c566d.jpg",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\2956e1ec-4ac2-487a-85c9-9f26817c566d.jpg"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\2f50411d-818d-43a8-a450-d76e63a07cfc.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\2f50411d-818d-43a8-a450-d76e63a07cfc.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/2f50411d-818d-43a8-a450-d76e63a07cfc.png",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\2f50411d-818d-43a8-a450-d76e63a07cfc.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\3e89b131-a6fb-481a-a02b-55a80eda5efc.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\3e89b131-a6fb-481a-a02b-55a80eda5efc.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/3e89b131-a6fb-481a-a02b-55a80eda5efc.png",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\3e89b131-a6fb-481a-a02b-55a80eda5efc.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\6cd5508a-db83-4aef-9c57-b7d9ea50b067.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\6cd5508a-db83-4aef-9c57-b7d9ea50b067.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/6cd5508a-db83-4aef-9c57-b7d9ea50b067.png",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\6cd5508a-db83-4aef-9c57-b7d9ea50b067.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\6e23dffa-6f66-4f4d-9408-d88f6c362a50.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\6e23dffa-6f66-4f4d-9408-d88f6c362a50.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/6e23dffa-6f66-4f4d-9408-d88f6c362a50.png",
       "AssetKind": "All",
@@ -272,10 +272,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\6e23dffa-6f66-4f4d-9408-d88f6c362a50.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\91075d3f-898a-4bfe-a525-154b51dd78db.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\91075d3f-898a-4bfe-a525-154b51dd78db.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/91075d3f-898a-4bfe-a525-154b51dd78db.png",
       "AssetKind": "All",
@@ -289,10 +289,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\91075d3f-898a-4bfe-a525-154b51dd78db.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\9221bc7e-cedf-4397-afae-dbbe4afe783d.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\9221bc7e-cedf-4397-afae-dbbe4afe783d.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/9221bc7e-cedf-4397-afae-dbbe4afe783d.png",
       "AssetKind": "All",
@@ -306,10 +306,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\9221bc7e-cedf-4397-afae-dbbe4afe783d.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\9f909de1-bde9-4627-a362-4653ecbe5834.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\9f909de1-bde9-4627-a362-4653ecbe5834.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/9f909de1-bde9-4627-a362-4653ecbe5834.png",
       "AssetKind": "All",
@@ -323,10 +323,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\9f909de1-bde9-4627-a362-4653ecbe5834.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\adbe4212-87d0-436a-855f-7dfd501dd190.avif",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\adbe4212-87d0-436a-855f-7dfd501dd190.avif",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/adbe4212-87d0-436a-855f-7dfd501dd190.avif",
       "AssetKind": "All",
@@ -340,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\adbe4212-87d0-436a-855f-7dfd501dd190.avif"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\dc760fa9-db3f-4cf5-93c4-9b0845fc7817.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\dc760fa9-db3f-4cf5-93c4-9b0845fc7817.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/dc760fa9-db3f-4cf5-93c4-9b0845fc7817.png",
       "AssetKind": "All",
@@ -357,10 +357,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\dc760fa9-db3f-4cf5-93c4-9b0845fc7817.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\e174f0c8-6b6d-49f0-9a2d-233e54b39e65.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGanados\\e174f0c8-6b6d-49f0-9a2d-233e54b39e65.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGanados/e174f0c8-6b6d-49f0-9a2d-233e54b39e65.png",
       "AssetKind": "All",
@@ -374,10 +374,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGanados\\e174f0c8-6b6d-49f0-9a2d-233e54b39e65.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGrupos\\60f6cd34-2928-4431-ad73-4adbc4c23f36.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGrupos\\60f6cd34-2928-4431-ad73-4adbc4c23f36.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGrupos/60f6cd34-2928-4431-ad73-4adbc4c23f36.png",
       "AssetKind": "All",
@@ -391,10 +391,10 @@
       "OriginalItemSpec": "wwwroot\\FotosDeGrupos\\60f6cd34-2928-4431-ad73-4adbc4c23f36.png"
     },
     {
-      "Identity": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGrupos\\d185813a-a2a6-4319-973f-629b80d405df.png",
+      "Identity": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\FotosDeGrupos\\d185813a-a2a6-4319-973f-629b80d405df.png",
       "SourceId": "GanadoControlAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Quezada\\Desktop\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\Hackathon-app\\API\\GanadoControlAPI\\wwwroot\\",
       "BasePath": "_content/GanadoControlAPI",
       "RelativePath": "FotosDeGrupos/d185813a-a2a6-4319-973f-629b80d405df.png",
       "AssetKind": "All",

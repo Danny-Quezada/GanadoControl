@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models.Interfaces
 {
-    public  interface IFarmacoRepository: IRepository<Farmaco>
+    public  interface IFarmacoRepository: IData<Farmaco>
     {
         Task<List<Farmaco>> ObtenerFarmacosPorFinca(int idFinca);
         Task ActualizarFarmaco(Farmaco farmaco);

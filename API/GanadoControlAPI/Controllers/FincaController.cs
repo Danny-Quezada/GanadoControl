@@ -48,8 +48,7 @@ namespace GanadoControlAPI.Controllers
             await fincaRepository.Insertar(finca);
             detalleFincaFoto.IdFinca = fincaRepository.GetLastId().Result;
             await fincaFotoRepository.Insertar(detalleFincaFoto);
-            //  await finca
-            return Created("Creado", true);
+            return Ok (detalleFincaFoto.IdFinca);
         }
         [HttpGet("Usuario/{id}")]
         public async Task<IActionResult> GetAllFincaByUsuario([FromForm] int id)
@@ -57,7 +56,7 @@ namespace GanadoControlAPI.Controllers
             return Ok(await fincaRepository.GetAllFincaByUsuario(id));
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get( int id)
+        public async Task<IActionResult> Get([FromForm] int id)
         {
             return Ok(await fincaRepository.GetFinca(id));
         }

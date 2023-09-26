@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Models.Interfaces
 {
-    public interface IFincaRepository : IRepository<Finca>
+    public interface IFincaRepository : IData<Finca>
     {
        Task<List<DAOFinca>> GetAllFincaByUsuario(int IdUsuario);
         Task<DAOFinca> GetFinca(int Id);

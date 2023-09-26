@@ -18,9 +18,9 @@ namespace GanadoControlAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromForm] Inseminacion inseminacion)
+        public async Task<IActionResult> Post([FromForm] Inseminacion inseminacion)
         {
-            inseminacionRepository.Insertar(inseminacion);
+            await inseminacionRepository.Insertar(inseminacion);
             return Created("Creado", true);
         }
     }

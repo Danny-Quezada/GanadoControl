@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Models.Interfaces
 {
     //public interface IUsuarioRepository
-    public interface IUsuarioRepository : IRepository<Usuario>
+    public interface IUsuarioRepository : IData<Usuario>
     {
         //void InsertarUsuario(Usuario usuario);
         Task<Usuario> VerificarUsuario(string nombreUsuario, string contraseña);

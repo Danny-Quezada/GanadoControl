@@ -18,8 +18,9 @@ namespace Data
         {
             this.CadenaConexion = CadenaConexion;
         }
-        public async Task Insertar(Grupo grupo)
+        public async Task<int> Insertar(Grupo grupo)
         {
+            int ultimoId = 0;
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarGrupo", conexion);
@@ -30,7 +31,15 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    await conexion.OpenAsync();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (await dr.ReadAsync())
+                        {
+                            ultimoId = Convert.ToInt32(dr["UltimoID"]);
+                        }
+                    }
+                    return ultimoId;
                 }
                 catch (Exception ex)
                 {

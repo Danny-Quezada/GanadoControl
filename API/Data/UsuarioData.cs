@@ -34,8 +34,9 @@ namespace Data
         }
 
         //public void InsertarUsuario(Usuario usuario)
-        public async Task Insertar(Usuario usuario)
+        public async Task<int> Insertar(Usuario usuario)
         {
+            int ultimoId=0;
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspIngresarUsuario", conexion);
@@ -47,7 +48,14 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (await dr.ReadAsync())
+                        {
+                            ultimoId = Convert.ToInt32(dr["UltimoID"]);
+                        }
+                    }
+                    return ultimoId;
                 }
                 catch(Exception ex)
                 {

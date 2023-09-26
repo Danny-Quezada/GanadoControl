@@ -67,8 +67,9 @@ namespace Data
             }
         }
 
-        public async Task Insertar(Farmaco data)
+        public async Task<int> Insertar(Farmaco data)
         {
+            int ultimoId = 0;
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarFarmaco", conexion);
@@ -86,7 +87,15 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    await conexion.OpenAsync();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (await dr.ReadAsync())
+                        {
+                            ultimoId = Convert.ToInt32(dr["UltimoID"]);
+                        }
+                    }
+                    return ultimoId;
                 }
                 catch (Exception ex)
                 {
