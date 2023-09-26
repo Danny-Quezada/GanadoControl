@@ -1,4 +1,5 @@
-﻿using Models.Entities;
+﻿using Models.DTO;
+using Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Models.Interfaces
     public interface IUsuarioRepository : IRepository<Usuario>
     {
         //void InsertarUsuario(Usuario usuario);
-        Task<Usuario> VerificarUsuario(string nombreUsuario, string contraseña);
+        Task<DAOUsuario> VerificarUsuario(string nombreUsuario, string contraseña);
         //Task ActualizarUsuario(Usuario usuario);
         Task CambiarEstado(int idUsuario, bool estado);
 

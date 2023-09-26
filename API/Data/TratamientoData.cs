@@ -44,37 +44,37 @@ namespace Data
             }
         }
 
-        public async Task<List<TratamientoDAO>> ObtenerTratamientoPorFinca(int idFinca)
+        public async Task<List<DAOTratamiento>> ObtenerTratamientoPorFinca(int idFinca)
         {
             SqlParameter parametro = new SqlParameter("@idFinca", SqlDbType.Int);
             parametro.Value = idFinca;
             return await ObtenerPor("uspObtenerTratamientoPorFinca", parametro);
         }
 
-        public async Task<List<TratamientoDAO>> ObtenerTratamientoPorGanado(string idGanado)
+        public async Task<List<DAOTratamiento>> ObtenerTratamientoPorGanado(string idGanado)
         {
             SqlParameter parametro = new SqlParameter("@idGanado", SqlDbType.VarChar, 30);
             parametro.Value = idGanado;
             return await ObtenerPor("uspObtenerTratamientoPorGanado", parametro);
         }
 
-        public async Task<List<TratamientoDAO>> ObtenerTratamientoPorGrupo(int idGrupo)
+        public async Task<List<DAOTratamiento>> ObtenerTratamientoPorGrupo(int idGrupo)
         {
             SqlParameter parametro = new SqlParameter("@idUsuario", SqlDbType.Int);
             parametro.Value = idGrupo;
             return await ObtenerPor("uspObtenerTratamientoPorGrupo", parametro);
         }
 
-        public async Task<List<TratamientoDAO>> ObtenerTratamientosPorUsuario(int idUsuario)
+        public async Task<List<DAOTratamiento>> ObtenerTratamientosPorUsuario(int idUsuario)
         {
             SqlParameter parametro = new SqlParameter("@idUsuario", SqlDbType.Int);
             parametro.Value = idUsuario;
             return await ObtenerPor("uspObtenerTratamientoPorUsuario", parametro);
         }
 
-        private async Task<List<TratamientoDAO>> ObtenerPor(string procedimientoAlmacenado, SqlParameter parametro)
+        private async Task<List<DAOTratamiento>> ObtenerPor(string procedimientoAlmacenado, SqlParameter parametro)
         {
-            List<TratamientoDAO> listaTratamiento = new List<TratamientoDAO>();
+            List<DAOTratamiento> listaTratamiento = new List<DAOTratamiento>();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand(procedimientoAlmacenado, conexion);
@@ -87,7 +87,7 @@ namespace Data
                     {
                         while (await dr.ReadAsync())
                         {
-                            listaTratamiento.Add(new TratamientoDAO()
+                            listaTratamiento.Add(new DAOTratamiento()
                             {
                                 Id = Convert.ToInt32(dr["IdTratamiento"]),
                                 IdGanado = dr["IdGanado"].ToString(),

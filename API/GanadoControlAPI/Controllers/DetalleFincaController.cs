@@ -15,7 +15,7 @@ namespace GanadoControlAPI.Controllers
         }
         IDetalleFincaRepository detalleFincaRepository;
         [HttpPost]
-        public async Task<IActionResult> InsertarDetalleFinca([FromBody] DetalleFinca detallefinca)
+        public async Task<IActionResult> InsertarDetalleFinca([FromForm] DetalleFinca detallefinca)
         {
 
             await detalleFincaRepository.Insertar(detallefinca);

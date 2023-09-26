@@ -9,6 +9,6 @@ namespace Models.Interfaces
 {
     public interface IInseminacionRepository: IRepository<Inseminacion>
     {
-        
+
     }
 }

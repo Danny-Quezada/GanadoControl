@@ -18,29 +18,29 @@ namespace GanadoControlAPI.Controllers
         }
 
         [HttpGet("Usuario/{idUsuario}")]
-        public async Task<IActionResult> GetTratamientosPorGanado(int idUsuario)
+        public async Task<IActionResult> GetTratamientosPorGanado([FromForm] int idUsuario)
         {
             return Ok(await tratamientoRepository.ObtenerTratamientosPorUsuario(idUsuario));
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Tratamiento tratamiento)
+        public IActionResult Post([FromForm] Tratamiento tratamiento)
         {
             tratamientoRepository.Insertar(tratamiento);
             return Created("Creado", true);
         }
         [HttpGet("Ganado/{idGanado}")]
-        public async Task<IActionResult> ObtenerTratamientoPorGanado(string Ganado)
+        public async Task<IActionResult> ObtenerTratamientoPorGanado([FromForm] string Ganado)
         {
             return Ok(await tratamientoRepository.ObtenerTratamientoPorGanado(Ganado));
         }
         [HttpGet("Grupo/{idGrupo}")]
-        public async Task<IActionResult> ObtenerTratamientoPorGrupo(int idGrupo)
+        public async Task<IActionResult> ObtenerTratamientoPorGrupo([FromForm] int idGrupo)
         {
             return Ok(await tratamientoRepository.ObtenerTratamientoPorGrupo(idGrupo));
         }
         [HttpGet("Finca/{idFinca}")]
-        public async Task<IActionResult> ObtenerTratamientoPorFinca(int idFinca)
+        public async Task<IActionResult> ObtenerTratamientoPorFinca([FromForm] int idFinca)
         {
             return Ok(await tratamientoRepository.ObtenerTratamientoPorFinca(idFinca));
         }

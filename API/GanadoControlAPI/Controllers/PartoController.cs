@@ -18,7 +18,7 @@ namespace GanadoControlAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult InsertarParto([FromBody] Parto parto)
+        public IActionResult InsertarParto([FromForm] Parto parto)
         {
             partoRepository.Insertar(parto);
             return Created("Creado", true);

@@ -2,6 +2,7 @@
 using Models.Interfaces;
 using System.Data.SqlClient;
 using System.Data;
+using Models.DTO;
 
 namespace Data
 {
@@ -55,9 +56,9 @@ namespace Data
             }
         }
 
-        public async Task<Usuario> VerificarUsuario(string nombreUsuario, string contraseña)
+        public async Task<DAOUsuario> VerificarUsuario(string nombreUsuario, string contraseña)
         {
-            Usuario usuario=new Usuario();
+            DAOUsuario usuario=new DAOUsuario();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspValidarIngreso", conexion);
@@ -71,7 +72,7 @@ namespace Data
                     {
                         while (await dr.ReadAsync())
                         {
-                            usuario = new Usuario()
+                            usuario = new DAOUsuario()
                             {
                                 Id = Convert.ToInt32(dr["IdUsuario"]),
                                 Cargo = dr["Cargo"].ToString(),

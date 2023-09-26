@@ -19,27 +19,27 @@ namespace GanadoControlAPI.Controllers
         }
 
         [HttpGet("finca/{idFinca}")]
-        public async Task<IActionResult> GetFarmacos(int idFinca)
+        public async Task<IActionResult> GetFarmacos([FromForm]int idFinca)
         {
             return Ok(await farmacoRepository.ObtenerFarmacosPorFinca(idFinca));
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Farmaco farmaco)
+        public IActionResult Post([FromForm] Farmaco farmaco)
         {
             farmacoRepository.Insertar(farmaco);
             return Created("Creado", true);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromBody] Farmaco farmaco, int id)
+        public async Task<IActionResult> Put([FromForm] Farmaco farmaco, [FromForm]int id)
         {
             farmaco.Id = id;
             await farmacoRepository.ActualizarFarmaco(farmaco);
             return Ok("Actualizado correctamente");
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromForm] int id)
         {
             await farmacoRepository.EliminarFarmaco(id);
             return NoContent();

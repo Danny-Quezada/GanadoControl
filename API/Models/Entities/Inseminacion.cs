@@ -8,6 +8,7 @@ namespace Models.Entities
 {
     public class Inseminacion
     {
+        public int Id { get; set; }
         public string IdGanado { get; set; }
         public DateTime FechaInseminacion { get; set; }
     }

@@ -16,7 +16,7 @@ namespace GanadoControlAPI.Controllers
         IDetalleGrupoFotoRepository detalleGrupoFotoRepository;
 
         [HttpPost]
-        public async Task<IActionResult> Insertar([FromBody] DetalleGrupoFoto detalleGrupoFoto)
+        public async Task<IActionResult> Insertar([FromForm] DetalleGrupoFoto detalleGrupoFoto)
         {
 
             await detalleGrupoFotoRepository.Insertar(detalleGrupoFoto);

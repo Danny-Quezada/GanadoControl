@@ -10,9 +10,9 @@ namespace Models.Interfaces
 {
     public interface ITratamientoRepository: IRepository<Tratamiento>
     {
-        Task<List<TratamientoDAO>> ObtenerTratamientosPorUsuario(int idUsuario);
-        Task<List<TratamientoDAO>> ObtenerTratamientoPorGanado(string idGanado);
-        Task<List<TratamientoDAO>> ObtenerTratamientoPorGrupo(int idGrupo);
-        Task<List<TratamientoDAO>> ObtenerTratamientoPorFinca(int idFinca);
+        Task<List<DAOTratamiento>> ObtenerTratamientosPorUsuario(int idUsuario);
+        Task<List<DAOTratamiento>> ObtenerTratamientoPorGanado(string idGanado);
+        Task<List<DAOTratamiento>> ObtenerTratamientoPorGrupo(int idGrupo);
+        Task<List<DAOTratamiento>> ObtenerTratamientoPorFinca(int idFinca);
     }
 }
