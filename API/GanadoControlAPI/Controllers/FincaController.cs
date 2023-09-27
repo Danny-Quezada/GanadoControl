@@ -49,16 +49,17 @@ namespace GanadoControlAPI.Controllers
             };
             DetalleFinca detalleFinca= new DetalleFinca()
             {
-                IdFinca = dtofinca.IdFinca,
                 IdUsuario = dtofinca.IdUsuario,
                 Fecha = dtofinca.Fecha,
                 RolUsuario = dtofinca.RolUsuario
             };
             await fincaRepository.Insertar(finca);
-            detalleFincaFoto.IdFinca = fincaRepository.GetLastId().Result;
+            int id = await fincaRepository.GetLastId();
+            detalleFincaFoto.IdFinca = id;
+            detalleFinca.IdFinca = id;
             await detalleFincaRepository.Insertar(detalleFinca);
             await fincaFotoRepository.Insertar(detalleFincaFoto);
-            return Ok (detalleFincaFoto.IdFinca);
+             return Ok (detalleFincaFoto.IdFinca);
         }
         [HttpGet("Usuario/{id}")]
         public async Task<IActionResult> GetAllFincaByUsuario([FromForm] int id)
