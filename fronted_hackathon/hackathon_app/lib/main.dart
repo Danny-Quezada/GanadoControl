@@ -7,6 +7,7 @@ import 'package:hackathon_app/infraestructure/repository/farm_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/user_repository.dart';
 import 'package:hackathon_app/provider/farm_provider.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
+import 'package:hackathon_app/ui/pages/web/initial_web_page.dart';
 import 'package:provider/provider.dart';
 
 import 'app_core/iservices/iuser_services.dart';
@@ -40,20 +41,20 @@ class MyApp extends StatelessWidget {
               iUserServices:
                   Provider.of<IUserServices>(context, listen: false)),
         ),
-
-
         Provider<IFarmModel>(create: (_) => FarmRepository()),
-        
         Provider<IFarmServices>(
             create: (context) => FarmServices(
                 ifarmModel: Provider.of<IFarmModel>(context, listen: false))),
-
-        ChangeNotifierProvider(create: (context) => FarmProvider(iFarmServices: Provider.of<IFarmServices>(context,listen: false)),)
+        ChangeNotifierProvider(
+          create: (context) => FarmProvider(
+              iFarmServices:
+                  Provider.of<IFarmServices>(context, listen: false)),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: "/",
-        routes: {"/": (_) => const InitialPage()},
+        routes: {"/": (_) => const InitialWebPage()},
         theme: ThemeData(
           primaryColor: ColorPalette.colorPrincipal,
           scaffoldBackgroundColor: Colors.white,

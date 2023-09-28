@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
-import 'package:hackathon_app/ui/pages/mobil/cattle_page.dart';
+import 'package:hackathon_app/ui/pages/web/cow_web_page.dart';
+import 'package:hackathon_app/ui/pages/web/group_web_page.dart';
 
-class FarmCard extends StatelessWidget {
+class FarmCardWeb extends StatelessWidget {
   int idFarm;
   String farmName;
   int groups;
   String location;
-  int hectares;
-  FarmCard(
+  double hectares;
+  FarmCardWeb(
       {super.key,
       required this.idFarm,
       required this.farmName,
@@ -21,13 +22,13 @@ class FarmCard extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     TextStyle style = TextStyle(
         fontFamily: "Karla",
-        fontSize: 15,
+        fontSize: 24,
         color: ColorPalette.colorFontTextFieldPrincipal,
         fontWeight: FontWeight.w400);
     return GestureDetector(
       onTap: () => castlePage(context, idFarm),
       child: Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             farmName,
@@ -37,7 +38,8 @@ class FarmCard extends StatelessWidget {
             height: 8,
           ),
           Container(
-            height: size.height * .1,
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            height: size.height * 0.2,
             width: size.width,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -65,10 +67,10 @@ class FarmCard extends StatelessWidget {
   }
 
   void castlePage(BuildContext context, int idFarm) {
-    //TODO: Tener una propiedad que sea una funcion para diferenciar movil o web
+    //TODO:HACER REFERENCIA A MI NUEVA PAGINA DE LA WEB
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
-        return CattlePage(farmId: idFarm);
+        return const GroupWebPage();
       },
     ));
   }

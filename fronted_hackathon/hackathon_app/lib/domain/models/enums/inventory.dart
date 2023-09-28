@@ -1,0 +1,1 @@
+enum Inventory { all, categories }

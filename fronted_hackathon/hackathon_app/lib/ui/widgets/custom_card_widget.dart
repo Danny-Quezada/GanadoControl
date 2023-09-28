@@ -36,7 +36,7 @@ class CustomCardWdiget extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 height: size.height * .12,
-                width: size.width * .2,
+                width: size.width * .1,
                 decoration: BoxDecoration(
                     color: Colors.grey.shade400,
                     borderRadius:
@@ -46,7 +46,6 @@ class CustomCardWdiget extends StatelessWidget {
                 width: size.width * .03,
               ),
               Container(
-               
                 padding: const EdgeInsets.only(
                   top: 10,
                 ),
@@ -80,9 +79,8 @@ class CustomCardWdiget extends StatelessWidget {
     List<Widget> chips = [];
     for (int i = 0; i < labelChip!.length; i++) {
       chips.add(Transform(
-        transform:  new Matrix4.identity()..scale(0.8),
+        transform: new Matrix4.identity()..scale(0.8),
         child: Chip(
-          
           label: Text(
             labelChip![i],
             style: const TextStyle(
