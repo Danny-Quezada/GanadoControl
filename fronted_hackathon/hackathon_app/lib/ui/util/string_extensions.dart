@@ -6,5 +6,5 @@ extension StringExtensions on String{
   }
   bool isWhitespace()=>this.trim().isEmpty;
 
-  bool isValidPassword()=>this.length>10;
+  bool isValidPassword()=>this.length>=10;
 }

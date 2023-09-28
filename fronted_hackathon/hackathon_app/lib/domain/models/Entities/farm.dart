@@ -1,12 +1,24 @@
-class Farm {
-  double? farmId;
+import 'package:dio/dio.dart';
+import 'package:hackathon_app/domain/models/Entities/entity_image.dart';
+
+class Farm with EntityImage{
+  String? userRole;
+  int? userId;
+  int? farmId;
   String farmName;
   String location;
-  double hectares;
+  int hectares;
   String farmOwner;
+  int? groups;
+  String? urlImage;
+  DateTime? creation;
 
   Farm(
-      {this.farmId = 0,
+      {
+        
+        this.urlImage="",
+        this.groups=0,
+        this.farmId = 0,
       required this.farmName,
       required this.location,
       required this.hectares,
@@ -14,20 +26,25 @@ class Farm {
 
   factory Farm.fromJson(Map<String, dynamic> json) {
     return Farm(
-        farmId: json['Id'] as double,
-        farmName: json['Nombre'] as String,
-        location: json['Ubicacion'] as String,
-        hectares: json['Hectareas'] as double,
-        farmOwner: json['NombreDueño'] as String);
+      groups: json["grupos"] as int,
+      urlImage: json["fotoURL"] as String,
+        farmId: json['idFinca'] as int,
+        farmName: json['nombre'] as String,
+        location: json['ubicacion'] as String,
+        hectares: json['hectareas'] as int,
+        farmOwner: json['nombreDueño'] as String);
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'Id': farmId,
+      'IdFinca': farmId,
       'Nombre': farmName,
       'Ubicacion': location,
       'Hectareas': hectares,
       'NombreDueño': farmOwner,
+      "IdUsuario": userId,
+      "RolUsuario": userRole,
+      "Fecha": creation.toString()
     };
   }
 }

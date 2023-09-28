@@ -30,7 +30,9 @@ class AddPharmaceuticalPage extends StatelessWidget {
   Widget build(BuildContext context) {
    TextStyle textstyle=TextStyle(color: ColorPalette.colorFontTextFieldPrincipal,fontWeight: FontWeight.w700);
     return SafeArea(child: Scaffold(
-      body: Form(child: SingleChildScrollView(
+      body: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
         padding: const EdgeInsets.only(left: 20, top: 20,right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,16 +46,16 @@ class AddPharmaceuticalPage extends StatelessWidget {
                     validator: ValidatorTextField.genericStringValidator,
                     nextFocusNode: providerNameNode,
                     focusNode: meditationNode,
-                    hintText: "38383-3",
-                    labelText: "Identificador",
+                    hintText: "Derri A plus",
+                    labelText: "Nombre del medicamento",
                     obscureText: false),
                 CustomFormField(
                     textEditingController: providerNameController,
                     validator: ValidatorTextField.genericStringValidator,
                     nextFocusNode: priceNode,
                     focusNode: providerNameNode,
-                    hintText: "Reyna",
-                    labelText: "Raza",
+                    hintText: "S.A. Ejemplo",
+                    labelText: "Nombre del proveedor",
                     obscureText: false),
                 CustomFormField(
                     textInput: TextInputType.number,
@@ -61,8 +63,8 @@ class AddPharmaceuticalPage extends StatelessWidget {
                     validator: ValidatorTextField.genericDecimalValidator,
                     nextFocusNode: null,
                     focusNode: priceNode,
-                    hintText: "220kg",
-                    labelText: "Kilos",
+                    hintText: r"C$500",
+                    labelText: "Precio",
                     obscureText: false),
                     SizedBox(height: 25),
                      Text(
@@ -79,7 +81,14 @@ class AddPharmaceuticalPage extends StatelessWidget {
                 ),
                 counterWidget(text: "Cantidad",),
                 const SizedBox(height: 30,),
-                Center(child: ButtonWidget(text: "Agregar", size: const Size(228, 61), color: ColorPalette.colorPrincipal, rounded: 25, function: (){}, fontSize: 16))
+                Center(child: ButtonWidget(text: "Agregar", size: const Size(228, 61), color: ColorPalette.colorPrincipal, rounded: 25, function: (){
+                   final FormState form = _formKey.currentState!;
+                        if (form.validate()) {
+                          print('Form is valid');
+                        } else {
+                          print('Form is invalid');
+                        }
+                }, fontSize: 16))
           ],
         ),
       ),),

@@ -64,7 +64,7 @@ class CowPage extends StatelessWidget {
   void cowInformationPage(BuildContext context, Cattle ganado) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
-        return CowInformationPage(cow: ganado);
+        return CowInformationPage(cattle: ganado);
       },
     ));
   }

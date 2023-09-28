@@ -1,5 +1,6 @@
 class Treatment {
     Treatment({
+      this.meditationName="",
         this.treatmentId=0,
         required this.cattleId,
         required this.meditationId,
@@ -9,7 +10,7 @@ class Treatment {
         required this.observation,
         required this.aplicationArea,
     });
-
+String? meditationName;
      int? treatmentId;
     final String cattleId;
     final int meditationId;

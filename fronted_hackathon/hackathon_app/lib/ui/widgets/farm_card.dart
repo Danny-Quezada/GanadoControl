@@ -7,7 +7,7 @@ class FarmCard extends StatelessWidget {
   String farmName;
   int groups;
   String location;
-  double hectares;
+  int hectares;
   FarmCard(
       {super.key,
       required this.idFarm,

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_app/domain/models/Entities/user.dart';
+import 'package:hackathon_app/provider/user_provider.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
+import 'package:hackathon_app/ui/pages/mobil/login_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/principal_page.dart';
 import 'package:hackathon_app/ui/util/validator_textfield.dart';
 import 'package:hackathon_app/ui/widgets/button_widget.dart';
 import 'package:hackathon_app/ui/widgets/custom_form_field.dart';
 import 'package:hackathon_app/ui/widgets/text_button_widget.dart';
+import 'package:provider/provider.dart';
 
 class SignInPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -20,6 +25,7 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context, listen: false);
     ValidatorTextField validator = ValidatorTextField();
     Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -82,15 +88,34 @@ class SignInPage extends StatelessWidget {
                   SizedBox(
                     height: size.height * 0.035,
                   ),
+                  Selector<UserProvider, String>(
+                    builder: (context, value, child) {
+                      return Text(
+                        value,
+                        style: const TextStyle(color: Colors.red),
+                      );
+                    },
+                    selector: (p0, p1) => p1.userError,
+                  ),
                   ButtonWidget(
                     text: "Registrarse",
                     size: const Size(268, 57),
                     color: ColorPalette.colorPrincipal,
                     rounded: 25,
-                    function: () {
+                    function: () async {
                       final FormState form = _formKey.currentState!;
                       if (form.validate()) {
-                        print('Form is valid');
+                        User user = User(
+                            userName: userNameController.text,
+                            email: userNameController.text,
+                            password: passwordController.text,
+                            workstation: "Técnico");
+                        await userProvider.create(user);
+
+                        if (userProvider.user != null) {
+                           userProvider.changeError();
+                          nextPrincipalPage(context);
+                        }
                       } else {
                         print('Form is invalid');
                       }
@@ -104,11 +129,27 @@ class SignInPage extends StatelessWidget {
                       text: "Iniciar sesión",
                       color: ColorPalette.colorPrincipal,
                       fontSize: 16,
-                      function: () {})
+                      function: () =>nextLoginPage(context))
                 ],
               ),
             )),
       )),
     );
+  }
+
+  nextPrincipalPage(BuildContext context) {
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+      builder: (context) {
+        return PrincipalPage();
+      },
+    ), (route) => false);
+  }
+
+  nextLoginPage(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return LoginPage();
+      },
+    ));
   }
 }

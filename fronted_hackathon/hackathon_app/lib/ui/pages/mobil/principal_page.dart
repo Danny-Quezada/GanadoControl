@@ -10,7 +10,7 @@ class PrincipalPage extends StatefulWidget {
 
 List<Widget> pages = [
   Container(),
-  FarmPage(idUser: 2),
+  FarmPage(),
   Container(),
   Container()
 ];

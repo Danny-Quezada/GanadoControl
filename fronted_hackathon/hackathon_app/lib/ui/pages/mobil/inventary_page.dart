@@ -5,6 +5,7 @@ import 'package:hackathon_app/ui/config/color_palette.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_pharmaceutical_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/cow_page.dart';
 import 'package:hackathon_app/ui/widgets/pills_widget.dart';
+import 'package:hackathon_app/ui/widgets/rich_text_widget.dart';
 import 'package:hackathon_app/ui/widgets/search_bar.dart';
 import 'package:intl/intl.dart';
 
@@ -93,12 +94,12 @@ class pharmaceuticalList extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(meditation.meditationName),
-              _richText("Fecha de caducidad: ",
-                  DateFormat('hh:mm:ss').format(meditation.expirationDate!)),
-              _richText("Fecha de entrega: ",
-                  DateFormat('hh:mm:ss').format(meditation.deliveryDate!)),
-              _richText("Precio: ", meditation.price),
-              _richText("Cantidad: ", meditation.quantity.toString()),
+              RichTextWidget(title:"Fecha de caducidad: ",
+                  content: DateFormat('hh:mm:ss').format(meditation.expirationDate!)),
+              RichTextWidget(title:"Fecha de entrega: ",
+                 content: DateFormat('hh:mm:ss').format(meditation.deliveryDate!)),
+              RichTextWidget(title:"Precio: ", content:meditation.price),
+              RichTextWidget(title:"Cantidad: ",content:meditation.quantity.toString()),
             ],
           ),
         );
@@ -106,29 +107,4 @@ class pharmaceuticalList extends StatelessWidget {
     );
   }
 
-  _richText(String title, String content) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20.0),
-      child: RichText(
-        text: TextSpan(
-          // Note: Styles for TextSpans must be explicitly defined.
-          // Child text spans will inherit styles from parent
-          style: const TextStyle(
-            fontSize: 14.0,
-            color: Colors.black,
-          ),
-          children: <TextSpan>[
-            TextSpan(
-                text: title,
-                style: const TextStyle(fontWeight: FontWeight.bold)),
-            TextSpan(
-                text: content,
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: ColorPalette.colorFontTextFieldPrincipal)),
-          ],
-        ),
-      ),
-    );
-  }
 }
