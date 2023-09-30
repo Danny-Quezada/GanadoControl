@@ -7,7 +7,9 @@ class CustomCardWdiget extends StatelessWidget {
   List<String>? labelChip;
   VoidCallback function;
   double radius;
-  CustomCardWdiget(this.labelChip,
+
+  CustomCardWdiget(
+  this.labelChip,
       {required this.function,
       required this.urlImage,
       required this.title,
@@ -36,7 +38,7 @@ class CustomCardWdiget extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 height: size.height * .12,
-                width: size.width * .1,
+                width: size.width * .20,
                 decoration: BoxDecoration(
                     color: Colors.grey.shade400,
                     borderRadius:

@@ -41,6 +41,15 @@ dependencies:
   intl: ^0.18.1
   counter: ^0.2.2
   dio: 
+  reflectable: ^4.0.5
+  flutter_provider_utilities: ^1.0.6
+  another_flushbar: ^1.12.30
+  path_provider: ^2.1.1
+  flutter_native_splash: ^2.3.2
+ 
+   
+  
+ 
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +61,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.4.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\carlo\\OneDrive\\Escritorio\\apiiii\\Hackathon-app\\API\\Models\\Models.csproj": {}
+    "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\carlo\\OneDrive\\Escritorio\\apiiii\\Hackathon-app\\API\\Models\\Models.csproj": {
+    "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Escritorio\\apiiii\\Hackathon-app\\API\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\apiiii\\Hackathon-app\\API\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\carlo\\OneDrive\\Escritorio\\apiiii\\Hackathon-app\\API\\Models\\obj\\",
+        "projectPath": "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\fjcal\\.nuget\\packages\\",
+        "outputPath": "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\fjcal\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -63,7 +59,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -72,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

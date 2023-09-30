@@ -6,4 +6,10 @@ class Constant{
 
   static const String createFarm="${route}/Finca";
   static const String getFarms="${route}/Finca/Usuario";
+
+
+
+
+  static const String createGroup="${route}/Grupo";
+  static const String getGroups="${route}/Grupo/Finca";
 }

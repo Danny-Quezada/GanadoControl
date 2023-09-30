@@ -68,7 +68,7 @@ class UserRepository implements IUserModel {
         print(response.data.toString());
         User user=User.fromJson( response.data);
         user.password= password;
-        print(user.userId);
+      
         return user; 
       }
       throw Exception("Usuario no encontrado");

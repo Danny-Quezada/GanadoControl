@@ -1,14 +1,14 @@
-import 'package:dio/dio.dart';
+
 import 'package:hackathon_app/domain/models/Entities/entity_image.dart';
 
-class Farm with EntityImage{
+class Farm  with EntityImage{
   String? userRole;
   int? userId;
   int? farmId;
-  String farmName;
-  String location;
-  int hectares;
-  String farmOwner;
+ String farmName;
+ String location;
+   int hectares;
+   String farmOwner;
   int? groups;
   String? urlImage;
   DateTime? creation;
@@ -24,6 +24,7 @@ class Farm with EntityImage{
       required this.hectares,
       required this.farmOwner});
 
+  
   factory Farm.fromJson(Map<String, dynamic> json) {
     return Farm(
       groups: json["grupos"] as int,
@@ -35,6 +36,7 @@ class Farm with EntityImage{
         farmOwner: json['nombreDueño'] as String);
   }
 
+  
   Map<String, dynamic> toJson() {
     return {
       'IdFinca': farmId,

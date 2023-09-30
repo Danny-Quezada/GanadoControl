@@ -10,8 +10,8 @@ import '../../widgets/search_bar.dart';
 import 'cow_information_page.dart';
 
 class CowPage extends StatelessWidget {
-  int farmId;
-  CowPage({super.key, required this.farmId});
+  int flockId;
+  CowPage({super.key, required this.flockId});
   TextEditingController _controller=TextEditingController();
 
   @override
@@ -20,7 +20,7 @@ class CowPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-      floatingActionButton:  floatingActionButton(farmId: farmId),
+      floatingActionButton:  floatingActionButton(farmId: flockId),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
         padding: const EdgeInsets.only(left: 15, right: 15),

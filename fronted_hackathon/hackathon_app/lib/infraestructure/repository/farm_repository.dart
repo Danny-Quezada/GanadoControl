@@ -3,13 +3,15 @@ import 'package:hackathon_app/domain/constant.dart';
 import 'package:hackathon_app/domain/interfaces/ifarm_model.dart';
 import 'package:hackathon_app/domain/models/Entities/farm.dart';
 
-class FarmRepository implements IFarmModel{
+class FarmRepository  implements IFarmModel{
+
+
   Dio dio=Dio();
   @override
   Future<int> create(Farm t)async {
+   
     try{
       FormData formData=FormData.fromMap(t.toJson()..addAll({"FotoURL": await MultipartFile.fromFile(t.imagePath,filename:t.imageName)}));
-;
       var response=await dio.post(Constant.createFarm,data: formData);
       if(response.statusCode==200){
         int value=response.data;
@@ -33,7 +35,7 @@ class FarmRepository implements IFarmModel{
   Future<List<Farm>> getAllFarmByUser(int userId) async{
     List<Farm> farms=[];
    try{
-      var response=await dio.get(Constant.getFarms+"/${userId}");
+      var response=await dio.get("${Constant.getFarms}/$userId");
       if(response.statusCode==200){
         List<dynamic> data=response.data;
         print(response.data);

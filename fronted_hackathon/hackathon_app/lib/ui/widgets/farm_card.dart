@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_app/domain/models/Entities/flock.dart';
+import 'package:hackathon_app/provider/farm_provider.dart';
+import 'package:hackathon_app/provider/flock_provider.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
 import 'package:hackathon_app/ui/pages/mobil/cattle_page.dart';
+import 'package:provider/provider.dart';
 
 class FarmCard extends StatelessWidget {
   int idFarm;
@@ -18,6 +22,7 @@ class FarmCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final flockProvider=Provider.of<FlockProvider>(context,listen: false);
     Size size = MediaQuery.of(context).size;
     TextStyle style = TextStyle(
         fontFamily: "Karla",
@@ -25,46 +30,48 @@ class FarmCard extends StatelessWidget {
         color: ColorPalette.colorFontTextFieldPrincipal,
         fontWeight: FontWeight.w400);
     return GestureDetector(
-      onTap: () => castlePage(context, idFarm),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(
-            farmName,
-            style: style,
+      onTap: (){
+        if( (flockProvider.t?.farmId)!=idFarm){
+          flockProvider.doNull();
+        }
+        flockProvider.t=Flock(flockName: "", farmId: idFarm);
+        cattlePage(context, idFarm);},
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(
+          farmName,
+          style: style,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        Container(
+          height: size.height * .1,
+          width: size.width,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.grey.shade300, width: 2)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text("Número de grupos: $groups", style: style),
+              Text(
+                "Ubicación: $location",
+                overflow: TextOverflow.clip,
+                style: style,
+              ),
+              Text(
+                "Hectareas: $hectares",
+                style: style,
+              )
+            ],
           ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            height: size.height * .1,
-            width: size.width,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.grey.shade300, width: 2)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text("Número de grupos: $groups", style: style),
-                Text(
-                  "Ubicación: $location",
-                  overflow: TextOverflow.clip,
-                  style: style,
-                ),
-                Text(
-                  "Hectareas: $hectares",
-                  style: style,
-                )
-              ],
-            ),
-          ),
-        ]),
-      ),
+        ),
+      ]),
     );
   }
 
-  void castlePage(BuildContext context, int idFarm) {
+  void cattlePage(BuildContext context, int idFarm) {
     //TODO: Tener una propiedad que sea una funcion para diferenciar movil o web
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {

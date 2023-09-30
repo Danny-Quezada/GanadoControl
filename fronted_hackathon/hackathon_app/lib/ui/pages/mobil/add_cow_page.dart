@@ -18,13 +18,14 @@ class AddCowPage extends StatelessWidget {
   TextEditingController raceController = TextEditingController();
   TextEditingController weightContoller = TextEditingController();
   TextEditingController cowCalvingController = TextEditingController();
+ TextEditingController birthDateTimeController = TextEditingController();
+ TextEditingController inseminationDateTimeController = TextEditingController();
 
   FocusNode identifierNode = FocusNode();
   FocusNode raceNode = FocusNode();
   FocusNode weightNode = FocusNode();
   FocusNode cowCalvingNode = FocusNode();
-  DateTime birthDate = DateTime.now();
-  DateTime inseminationDate = DateTime.now();
+ 
   int famrId;
   AddCowPage({required this.famrId});
 
@@ -80,17 +81,13 @@ class AddCowPage extends StatelessWidget {
                     hintText: "8",
                     labelText: "Número de parto",
                     obscureText: false),
-                Text(
-                    "fecha: ${birthDate.day}/${birthDate.month}/${birthDate.year}",style: textstyle,),
-                const SizedBox(height: 8,),
-                  DateTimePicker(text: "Fecha de nacimiento", size: const Size(275,31), date: birthDate,color: ColorPalette.colorFontTextFieldPrincipal,),
+             
+                  DateTimePicker(text: "Fecha de nacimiento", size: const Size(275,31), dateTimeController: birthDateTimeController,color: ColorPalette.colorFontTextFieldPrincipal,),
                 const SizedBox(
                   height: 20,
                 ),
-                 Text(
-                    "fecha: ${inseminationDate.day}/${inseminationDate.month}/${inseminationDate.year}",style: textstyle,),
-              const SizedBox(height: 8,),
-                  DateTimePicker(text: "Fecha de inseminación", size: const Size(275,31), date: inseminationDate,color: ColorPalette.colorFontTextFieldPrincipal,),
+               
+                  DateTimePicker(text: "Fecha de inseminación", size: const Size(275,31), dateTimeController: inseminationDateTimeController,color: ColorPalette.colorFontTextFieldPrincipal,),
                
                   
                 const SizedBox(

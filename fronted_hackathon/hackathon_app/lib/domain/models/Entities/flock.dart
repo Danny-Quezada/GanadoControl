@@ -1,19 +1,40 @@
-class Flock {
+import 'package:hackathon_app/domain/models/Entities/entity_image.dart';
+import 'package:hackathon_app/domain/models/Entities/reflection.dart';
+import 'package:reflectable/reflectable.dart';
+
+const myReflectable=MyReflectable();
+
+@myReflectable
+class Flock with EntityImage {
+
+
+
     Flock({
+      this.flockImage="",
+ 
+      this.cattleQuantity=0,
          this.flockId=0,
         required this.flockName,
         required this.farmId,
     });
 
+ 
+
+    int? cattleQuantity;
     int? flockId;
+    String? flockImage;
+    
     final String flockName;
-    final int farmId;
+     int farmId;
 
     factory Flock.fromJson(Map<String, dynamic> json){ 
         return Flock(
-            flockId: json["IdGrupo"] ?? 0,
-            flockName: json["Nombre"] ?? "",
-            farmId: json["IdFinca"] ?? 0,
+          cattleQuantity: json["cantidadGanado"] ?? 0,
+          flockImage: json["fotoURL"] ?? "",
+            flockId: json["idGrupo"] ?? 0,
+            flockName: json["nombre"] ?? "",
+            farmId: json["idFinca"] ?? 0,
+            
         );
     }
 
@@ -21,6 +42,7 @@ class Flock {
         "IdGrupo": flockId,
         "Nombre": flockName,
         "IdFinca": farmId,
+        
     };
 
 }

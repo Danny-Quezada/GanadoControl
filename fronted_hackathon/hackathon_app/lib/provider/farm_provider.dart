@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_provider_utilities/flutter_provider_utilities.dart';
 import 'package:hackathon_app/app_core/iservices/ifarm_services.dart';
 import 'package:hackathon_app/domain/models/Entities/farm.dart';
+import 'package:hackathon_app/provider/igeneric_provider.dart';
 
-class FarmProvider with ChangeNotifier {
-  String farmError = "";
-  List<Farm>? farms;
-  Farm? farm;
+class FarmProvider extends ChangeNotifier with IGenericProvider<Farm>,  MessageNotifierMixin {
+  
+ 
+
+  @override
+  void doNull() {
+    t = null;
+    list = null;
+  
+  }
   IFarmServices _iFarmServices;
 
   FarmProvider({required IFarmServices iFarmServices})
@@ -13,33 +21,32 @@ class FarmProvider with ChangeNotifier {
 
   Future<void> create(Farm farmU) async {
     try {
-      int userValue = await _iFarmServices.create(farmU);
-      if (userValue >= 0) {
-        farmU.farmId = userValue;
-        farm = farmU;
+      int farmValue = await _iFarmServices.create(farmU);
+      if (farmValue >= 0) {
+        farmU.farmId = farmValue;
+        t = farmU;
+        list!.add(t!);
+        t=null;
+        notifyInfo("finca con ${farmU.farmName} creada");
       }
     } catch (e) {
-      farmError = e.toString();
-      notifyListeners();
+      notifyError("Error en el servidor");
+
     }
+      notifyListeners();
   }
 
-  void farmNull() {
-    farms=null;
-    farm = null;
-  }
- final Stopwatch _stopwatch=Stopwatch();
-  Future<List<Farm>> getAllFarmByUserId(int userId)async{
-    if(farms!=null){
-    return farms!;
+  
+  Future<List<Farm>> getAllFarmByUserId(int userId) async {
     
-   
+    if (list!= null) {
+      return list!;
     }
-    _stopwatch.start();
-    farms=await _iFarmServices.getAllFarmByUser(userId);
-    _stopwatch.stop();
-    print("Tiempo en segundos para obtener las fincas del usuario: "+(_stopwatch.elapsedMilliseconds/1000).toString());
+   
+    list= await _iFarmServices.getAllFarmByUser(userId);
+ 
     notifyListeners();
-    return farms!;
+    return list!;
   }
+
 }

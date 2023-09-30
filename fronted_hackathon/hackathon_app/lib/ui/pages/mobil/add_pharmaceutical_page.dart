@@ -15,14 +15,13 @@ class AddPharmaceuticalPage extends StatelessWidget {
   TextEditingController meditationNameController = TextEditingController();
   TextEditingController providerNameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
-
+ TextEditingController deliveryDateTimeController = TextEditingController();
+ TextEditingController expirationDateTimeController = TextEditingController();
 
   FocusNode meditationNode = FocusNode();
   FocusNode providerNameNode = FocusNode();
   FocusNode priceNode = FocusNode();
   
-  DateTime deliveryDate = DateTime.now();
-  DateTime expirationDate = DateTime.now();
   int farmId;
    AddPharmaceuticalPage({required this.farmId});
 
@@ -66,16 +65,12 @@ class AddPharmaceuticalPage extends StatelessWidget {
                     hintText: r"C$500",
                     labelText: "Precio",
                     obscureText: false),
-                    SizedBox(height: 25),
-                     Text(
-                    "fecha: ${ DateFormat('hh:mm:ss').format(expirationDate!)}",style: textstyle,),
-                const SizedBox(height: 8,),
-                  DateTimePicker(text: "Fecha de caducidad", size: const Size(275,31), date: expirationDate,color: ColorPalette.colorFontTextFieldPrincipal,),
-                    SizedBox(height: 35,),
-                     Text(
-                    "fecha: ${ DateFormat('hh:mm:ss').format(deliveryDate!)}",style: textstyle,),
-                const SizedBox(height: 8,),
-                  DateTimePicker(text: "Fecha de entrega", size: const Size(275,31), date: expirationDate,color: ColorPalette.colorFontTextFieldPrincipal,),
+                  const  SizedBox(height: 25),
+                    
+                  DateTimePicker(text: "Fecha de caducidad", size: const Size(275,31), dateTimeController: deliveryDateTimeController,color: ColorPalette.colorFontTextFieldPrincipal,),
+                    const SizedBox(height: 35,),
+                     
+                  DateTimePicker(text: "Fecha de entrega", size: const Size(275,31), dateTimeController: expirationDateTimeController,color: ColorPalette.colorFontTextFieldPrincipal,),
                 const SizedBox(
                   height: 35,
                 ),
