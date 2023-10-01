@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Models.Interfaces
 {
-    public interface IProblemaFisicoRepository : IRepository<ProblemaFisico>
+    public interface IProblemaFisicoRepository : IData<ProblemaFisico>
     {
         Task<List<ProblemaFisico>> ObtenerProblemasFisicosPorGanado(string idGanado);
-        Task EliminarProblemaFisico(int idProblemaFisico);
-        Task ActualizarProblemaFisico(ProblemaFisico problemaFisico);
+        Task<bool> EliminarProblemaFisico(int idProblemaFisico);
+        Task<bool> ActualizarProblemaFisico(ProblemaFisico problemaFisico);
     }
 }

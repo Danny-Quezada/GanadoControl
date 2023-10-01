@@ -19,7 +19,7 @@ namespace Data.Repository
             this.cadenaConexion = cadenaConexion;
         }
 
-        public async Task ActualizarRecordatorio(Recordatorio recordatorio)
+        public async Task<bool> ActualizarRecordatorio(Recordatorio recordatorio)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -33,7 +33,7 @@ namespace Data.Repository
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    return (await cmd.ExecuteNonQueryAsync()) > 0;
                 }
                 catch (Exception ex)
                 {
@@ -42,7 +42,7 @@ namespace Data.Repository
             }
         }
 
-        public async Task EliminarRecordatorio(int idRecordatorio)
+        public async Task<bool> EliminarRecordatorio(int idRecordatorio)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -52,7 +52,7 @@ namespace Data.Repository
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    return (await cmd.ExecuteNonQueryAsync()) > 0;
                 }
                 catch (Exception ex)
                 {
@@ -61,8 +61,9 @@ namespace Data.Repository
             }
         }
 
-        public async Task Insertar(Recordatorio data)
+        public async Task<int> Insertar(Recordatorio data)
         {
+            int ultimoId = 0;
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarRecordatorio", conexion);
@@ -74,7 +75,14 @@ namespace Data.Repository
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (await dr.ReadAsync())
+                        {
+                            ultimoId = Convert.ToInt32(dr["UltimoID"]);
+                        }
+                    }
+                    return ultimoId;
                 }
                 catch (Exception ex)
                 {

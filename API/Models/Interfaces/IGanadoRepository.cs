@@ -12,6 +12,6 @@ namespace Models.Interfaces
     {
         Task<List<DAOGanado>> GetAllGanadoByGrupo(int IdGrupo);
         Task<DAOGanado> GetGanado(string id);
-        Task UpdateGanado(DAOGanado ganado);
+        Task<bool> UpdateGanado(DAOGanado ganado);
     }
 }

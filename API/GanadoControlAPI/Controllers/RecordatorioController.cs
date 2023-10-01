@@ -20,27 +20,69 @@ namespace GanadoControlAPI.Controllers
         [HttpGet("Ganado/{idGanado}")]
         public async Task<IActionResult> GetRecordatorioPorGanado([FromForm] string idGanado)
         {
-            return Ok(await recordatorioRepository.ObtenerRecordatoriosPorGanado(idGanado));
+            try
+            {
+                return Ok(await recordatorioRepository.ObtenerRecordatoriosPorGanado(idGanado));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromForm] Recordatorio recordatorio)
         {
-            await recordatorioRepository.Insertar(recordatorio);
-            return Created("Creado", true);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if(recordatorio is null)
+            {
+                return BadRequest("El objeto Recordatorio es nulo");  
+            }
+            try
+            {
+                await recordatorioRepository.Insertar(recordatorio);
+                return Created("Creado", true);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al insertar recordatorio: {ex.Message}");
+            }
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await recordatorioRepository.EliminarRecordatorio(id);
-            return NoContent();
+            try
+            {
+                return Ok(await recordatorioRepository.EliminarRecordatorio(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromBody] Recordatorio recordatorio, [FromForm] int id)
         {
-            recordatorio.Id = id;
-            await recordatorioRepository.ActualizarRecordatorio(recordatorio);
-            return Ok("Actualizado correctamente");
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if(recordatorio is null)
+            {
+                return BadRequest("El objeto Recordatorio es nulo");
+            }
+            try
+            {
+                recordatorio.Id = id;
+                return Ok(await recordatorioRepository.ActualizarRecordatorio(recordatorio));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

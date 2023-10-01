@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Data\\Data.csproj": {}
+    "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Data\\Data.csproj": {}
   },
   "projects": {
-    "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Data\\Data.csproj": {
+    "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\fjcal\\.nuget\\packages\\",
-        "outputPath": "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Data\\obj\\",
+        "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fjcal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\Models.csproj": {
-                "projectPath": "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\Models.csproj"
+              "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Models\\Models.csproj"
               }
             }
           }
@@ -69,21 +69,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\Models.csproj": {
+    "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\fjcal\\.nuget\\packages\\",
-        "outputPath": "C:\\flutterApp\\fronted\\Hackathon-app\\API\\Models\\obj\\",
+        "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app\\M3-TEAM\\API\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fjcal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -138,7 +138,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -12,7 +12,6 @@ namespace Models.Interfaces
     {
         public Task<List<DAOGrupo>> GetAllByFinca(int IdFinca);
         public Task<DAOGrupo> GetGrupo(int id);
-        public Task<int> GetLastId();
-        public Task UpdateGrupo(DAOGrupo grupo);
+        public Task<bool> UpdateGrupo(DAOGrupo grupo);
     }
 }

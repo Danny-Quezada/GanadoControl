@@ -11,9 +11,8 @@ namespace Models.Interfaces
 {
     public interface IFincaRepository : IData<Finca>
     {
-       Task<List<DAOFinca>> GetAllFincaByUsuario(int IdUsuario);
+        Task<List<DAOFinca>> GetAllFincaByUsuario(int IdUsuario);
         Task<DAOFinca> GetFinca(int Id);
-        Task<int> GetLastId();
-        Task UpdateFinca(DAOFinca DAOFinca);
+        Task<bool> UpdateFinca(DAOFinca DAOFinca);
     }
 }

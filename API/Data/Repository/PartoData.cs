@@ -19,8 +19,9 @@ namespace Data.Repository
             this.cadenaConexion = cadenaConexion;
         }
 
-        public async Task Insertar(Parto data)
+        public async Task<int> Insertar(Parto data)
         {
+            int ultimoId = 0;
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspInsertarParto", conexion);
@@ -32,7 +33,14 @@ namespace Data.Repository
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (await dr.ReadAsync())
+                        {
+                            ultimoId = Convert.ToInt32(dr["UltimoID"]);
+                        }
+                    }
+                    return ultimoId;
                 }
                 catch (Exception ex)
                 {

@@ -20,17 +20,43 @@ namespace GanadoControlAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertarUsuario([FromForm]Usuario usuario)
         {
-            return Ok(await usuarioRepository.Insertar(usuario));
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if(usuario is null)
+            {
+                return BadRequest("El objeto Usuario es nulo");
+            }
+            try
+            {
+                return Ok(await usuarioRepository.Insertar(usuario));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Ocurrió un error al insertar usuario: {ex.Message}");
+            }
         }
         [HttpGet(("verificar/{nombreUsuario}, {contraseña}"))]
         public async Task<IActionResult> VerificarUsuario(string nombreUsuario, string contraseña)
         {
-            return Ok(await usuarioRepository.VerificarUsuario(nombreUsuario, contraseña));
+            try
+            {
+                return Ok(await usuarioRepository.VerificarUsuario(nombreUsuario, contraseña));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         [HttpPut("estado/{id}, {estado}")]
         public async Task<IActionResult> CambiarEstado(int id,  bool estado)
         {
-            return Ok(await usuarioRepository.CambiarEstado(id, estado));
+            try
+            {
+                return Ok(await usuarioRepository.CambiarEstado(id, estado));
+            }
+            catch (Exception ex) { return StatusCode(500, ex.Message); }
         }
     }
 }

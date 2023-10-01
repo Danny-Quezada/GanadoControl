@@ -20,8 +20,23 @@ namespace GanadoControlAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromForm] Inseminacion inseminacion)
         {
-            await inseminacionRepository.Insertar(inseminacion);
-            return Created("Creado", true);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if(inseminacion is null)
+            {
+                return BadRequest("El objeto Inseminacion es nulo");
+            }
+            try
+            {
+                await inseminacionRepository.Insertar(inseminacion);
+                return Created("Creado", true);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al insertar inseminación: {ex.Message}");
+            }
         }
     }
 }

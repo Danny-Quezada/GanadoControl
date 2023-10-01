@@ -18,9 +18,23 @@ namespace GanadoControlAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Insertar([FromForm] DetalleGrupoFoto detalleGrupoFoto)
         {
-
-            await detalleGrupoFotoRepository.Insertar(detalleGrupoFoto);
-            return Created("Creado", true);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (detalleGrupoFoto is null)
+            {
+                return BadRequest("El objeto DetalleGrupoFoto es nulo");
+            }
+            try
+            {
+                await detalleGrupoFotoRepository.Insertar(detalleGrupoFoto);
+                return Created("Creado", true);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al insertar foto del grupo: {ex.Message}");
+            }
         }
     }
 }

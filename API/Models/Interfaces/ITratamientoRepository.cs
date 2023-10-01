@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Models.Interfaces
 {
-    public interface ITratamientoRepository: IRepository<Tratamiento>
+    public interface ITratamientoRepository: IData<Tratamiento>
     {
         Task<List<DAOTratamiento>> ObtenerTratamientosPorUsuario(int idUsuario);
         Task<List<DAOTratamiento>> ObtenerTratamientoPorGanado(string idGanado);

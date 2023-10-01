@@ -92,33 +92,6 @@ namespace Data
             }
         }
 
-        public async Task<int> GetLastId()
-        {
-            int id = 0;
-            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
-            {
-                SqlCommand cmd = new SqlCommand("uspUltimoIdFinca", conexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                try
-                {
-                    await conexion.OpenAsync();
-                    using (SqlDataReader dr = await cmd.ExecuteReaderAsync())
-                    {
-                        while (dr.Read())
-                        {
-                            id = Convert.ToInt32(dr["IdFinca"]);
-                        } 
-
-                    }
-                    return id;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
-            }
-        }
-
         public async Task<int> Insertar(Finca finca)
         {
             int ultimoId = 0;   
@@ -130,7 +103,6 @@ namespace Data
                 cmd.Parameters.Add(new SqlParameter("@Ubicacion", SqlDbType.VarChar, 100)).Value = finca.Ubicacion;
                 cmd.Parameters.Add(new SqlParameter("@Hectareas", SqlDbType.Int)).Value = finca.Hectareas;
                 cmd.Parameters.Add(new SqlParameter("@NombreDueño", SqlDbType.VarChar, 50)).Value = finca.NombreDueño;
-               // ultimoID = (int)cmd.ExecuteScalar();
                 
                 try
                 {
@@ -152,7 +124,7 @@ namespace Data
             
         }
 
-        public async Task UpdateFinca(DAOFinca DAOFinca)
+        public async Task<bool> UpdateFinca(DAOFinca DAOFinca)
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
@@ -169,7 +141,7 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    return (await cmd.ExecuteNonQueryAsync())>0;
                 }
                 catch (Exception ex)
                 {

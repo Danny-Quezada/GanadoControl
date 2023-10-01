@@ -18,10 +18,10 @@ namespace GanadoControlAPI.Controllers
         }
         IGrupoRepository grupoRepository;
         IDetalleGrupoFotoRepository detalleGrupofoto;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         [HttpPost]
         public async Task<IActionResult> InsertarGrupo([FromForm] DTOInsertGrupo dtogrupo)
         {
-          //  DTOInsertGrupo dtogrupo = new DTOInsertGrupo();
             DetalleGrupoFoto detalleGrupo = new DetalleGrupoFoto();
             if (!ModelState.IsValid)
             {
@@ -29,27 +29,29 @@ namespace GanadoControlAPI.Controllers
             }
             if (dtogrupo.FotoURL != null)
             {
-                using var stream = new MemoryStream();
-                await dtogrupo.FotoURL.CopyToAsync(stream);
-                var bytes = stream.ToArray();
-
-                detalleGrupo.FotoURL = await CrearImagen(bytes, dtogrupo.FotoURL.ContentType, Path.GetExtension(dtogrupo.FotoURL.FileName), "FotosDeGrupos", Guid.NewGuid().ToString());
+                detalleGrupo.FotoURL = await ImageUtility.CrearImagen(dtogrupo.FotoURL, "FotosDeGrupos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
             }
             Grupo grupo = new Grupo()
             {
                 IdFinca = dtogrupo.IdFinca,
                 Nombre = dtogrupo.Nombre,
-
             };
-            await grupoRepository.Insertar(grupo);
-            detalleGrupo.IdGrupo = await grupoRepository.GetLastId();
+            int id = await grupoRepository.Insertar(grupo);
+            detalleGrupo.IdGrupo = id;
             await detalleGrupofoto.Insertar(detalleGrupo);
-            return Ok(detalleGrupo.IdGrupo);
+            return Ok(id);
         }
         [HttpGet("Finca/{id}")]
         public async Task<IActionResult> GetAllByFinca([FromForm] int id)
         {
-            return Ok(await grupoRepository.GetAllByFinca(id));
+            try
+            {
+                return Ok(await grupoRepository.GetAllByFinca(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromForm] int id)
@@ -66,46 +68,12 @@ namespace GanadoControlAPI.Controllers
             }
             if (grupo.FotoURL != null)
             {
-                using var stream = new MemoryStream();
-                await grupo.FotoURL.CopyToAsync(stream);
-                var bytes = stream.ToArray();
-
-                dAOGrupo.FotoURL = await CrearImagen(bytes, grupo.FotoURL.ContentType, Path.GetExtension(grupo.FotoURL.FileName), "FotosDeFincas", Guid.NewGuid().ToString());
+                dAOGrupo.FotoURL = await ImageUtility.CrearImagen(grupo.FotoURL, "FotosDeGrupos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
             }
             dAOGrupo.IdGrupo = grupo.IdGrupo;
             dAOGrupo.IdFinca = grupo.IdFinca;
             dAOGrupo.Nombre = grupo.Nombre;
-            await grupoRepository.UpdateGrupo(dAOGrupo);
-            return Ok("Actualizado Correctamente");
-        }
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        [NoApiRoute]
-        private async Task<String> CrearImagen(byte[] file, string contentType, string extension, string container, string nombre)
-        {
-
-            string wwwrootPath = _webHostEnvironment.WebRootPath;
-
-
-            if (string.IsNullOrEmpty(wwwrootPath))
-            {
-                throw new Exception();
-            }
-
-            string carpetaArchivo = Path.Combine(wwwrootPath, container);
-            if (!Directory.Exists(carpetaArchivo))
-            {
-                Directory.CreateDirectory(carpetaArchivo
-                    );
-            }
-            string nombreFinal = $"{nombre}{extension}";
-            string rutaFinal = Path.Combine(carpetaArchivo, nombreFinal);
-
-            await System.IO.File.WriteAllBytesAsync(rutaFinal, file);
-            string urlActual = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-
-            string dbUrl = Path.Combine(urlActual, container, nombreFinal).Replace("\\", "/");
-            return dbUrl;
-
+            return Ok(await grupoRepository.UpdateGrupo(dAOGrupo));
         }
     }
 }

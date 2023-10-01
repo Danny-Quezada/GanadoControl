@@ -17,8 +17,23 @@ namespace GanadoControlAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Insertar([FromForm] DetalleGanado detalleGanado)
         {
-            await detalleGanadoRepository.Insertar(detalleGanado);
-            return Created("Creado", true);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (detalleGanado is null)
+            {
+                return BadRequest("El objeto DetalleGanado es nulo");
+            }
+            try
+            {
+                await detalleGanadoRepository.Insertar(detalleGanado);
+                return Created("Creado", true);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al insertar detalle de ganado: {ex.Message}");
+            }
         }
         
     }

@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Models.Interfaces
 {
-    public interface IRecordatorioRepository : IRepository<Recordatorio>
+    public interface IRecordatorioRepository : IData<Recordatorio>
     {
         Task<List<Recordatorio>> ObtenerRecordatoriosPorGanado(string idGanado);
-        Task ActualizarRecordatorio(Recordatorio recordatorio);
-        Task EliminarRecordatorio(int idRecordatorio);
+        Task<bool> ActualizarRecordatorio(Recordatorio recordatorio);
+        Task<bool> EliminarRecordatorio(int idRecordatorio);
     }
 }

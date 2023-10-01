@@ -5,8 +5,6 @@ using Models.DTO;
 using Models.Entities;
 using Models.Interfaces;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace GanadoControlAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -34,67 +32,86 @@ namespace GanadoControlAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            Farmaco farmaco = new Farmaco()
+            if(farmacoDTO is null)
             {
-                Id = farmacoDTO.Id,
-                FechaCaducidad = farmacoDTO.FechaCaducidad,
-                FechaEntrega = farmacoDTO.FechaEntrega,
-                IdFinca = farmacoDTO.IdFinca,
-                Cantidad = farmacoDTO.Cantidad,
-                Precio = farmacoDTO.Precio,
-                Proveedor = farmacoDTO.Proveedor,
-                Nombre = farmacoDTO.Nombre,
-                Tipo= farmacoDTO.Tipo,
-                UnidadMedida = farmacoDTO.UnidadMedida,
-            };
-            if (farmacoDTO.Foto != null)
-            {
-                using var stream = new MemoryStream();
-                await farmacoDTO.Foto.CopyToAsync(stream);
-                var bytes = stream.ToArray();
-                farmaco.FotoURL = await CrearImagen(bytes, farmacoDTO.Foto.ContentType, Path.GetExtension(farmacoDTO.Foto.FileName), "FotosDeFarmacos", Guid.NewGuid().ToString());
+                return BadRequest("El objeto Farmaco es nulo");
             }
-            return Ok(await farmacoRepository.Insertar(farmaco));
+            try
+            {
+                Farmaco farmaco = new Farmaco()
+                {
+                    Id = farmacoDTO.Id,
+                    FechaCaducidad = farmacoDTO.FechaCaducidad,
+                    FechaEntrega = farmacoDTO.FechaEntrega,
+                    IdFinca = farmacoDTO.IdFinca,
+                    Cantidad = farmacoDTO.Cantidad,
+                    Precio = farmacoDTO.Precio,
+                    Proveedor = farmacoDTO.Proveedor,
+                    Nombre = farmacoDTO.Nombre,
+                    Tipo = farmacoDTO.Tipo,
+                    UnidadMedida = farmacoDTO.UnidadMedida,
+                };
+                if (farmacoDTO.Foto != null)
+                {
+                    farmaco.FotoURL = await ImageUtility.CrearImagen(farmacoDTO.Foto, "FotosDeFarmacos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                }
+                return Ok(await farmacoRepository.Insertar(farmaco));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Ocurrió un error al insertar fármaco: {ex.Message}");
+            }
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromForm] Farmaco farmaco, [FromForm]int id)
+        public async Task<IActionResult> Put([FromForm] DTOInsertarFarmaco farmacoDTO, [FromForm]int id)
         {
-            farmaco.Id = id;
-            return Ok(await farmacoRepository.ActualizarFarmaco(farmaco));
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(farmacoDTO);
+            }
+            if(farmacoDTO is null)
+            {
+                return BadRequest("El objeto Farmaco es nulo");
+            }
+            try
+            {
+                Farmaco farmaco = new Farmaco()
+                {
+                    Id = id,
+                    FechaCaducidad = farmacoDTO.FechaCaducidad,
+                    FechaEntrega = farmacoDTO.FechaEntrega,
+                    IdFinca = farmacoDTO.IdFinca,
+                    Cantidad = farmacoDTO.Cantidad,
+                    Precio = farmacoDTO.Precio,
+                    Proveedor = farmacoDTO.Proveedor,
+                    Nombre = farmacoDTO.Nombre,
+                    Tipo = farmacoDTO.Tipo,
+                    UnidadMedida = farmacoDTO.UnidadMedida,
+                };
+                if (farmacoDTO.Foto != null)
+                {
+                    farmaco.FotoURL = await ImageUtility.CrearImagen(farmacoDTO.Foto, "FotosDeFarmacos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                }
+                farmacoDTO.Id = id;
+                return Ok(await farmacoRepository.ActualizarFarmaco(farmaco));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromForm] int id)
         {
-            return Ok(await farmacoRepository.EliminarFarmaco(id));
-        }
-        [NoApiRoute]
-        private async Task<String> CrearImagen(byte[] file, string contentType, string extension, string container, string nombre)
-        {
-
-            string wwwrootPath = _webHostEnvironment.WebRootPath;
-
-
-            if (string.IsNullOrEmpty(wwwrootPath))
+            try
             {
-                throw new Exception();
+                return Ok(await farmacoRepository.EliminarFarmaco(id));
             }
-
-            string carpetaArchivo = Path.Combine(wwwrootPath, container);
-            if (!Directory.Exists(carpetaArchivo))
+            catch (Exception ex)
             {
-                Directory.CreateDirectory(carpetaArchivo
-                    );
+                return StatusCode(500, ex.Message);
             }
-            string nombreFinal = $"{nombre}{extension}";
-            string rutaFinal = Path.Combine(carpetaArchivo, nombreFinal);
-
-            await System.IO.File.WriteAllBytesAsync(rutaFinal, file);
-            string urlActual = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-
-            string dbUrl = Path.Combine(urlActual, container, nombreFinal).Replace("\\", "/");
-            return dbUrl;
-
         }
     }
 }

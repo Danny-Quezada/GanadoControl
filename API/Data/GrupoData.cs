@@ -31,7 +31,6 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await conexion.OpenAsync();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while (await dr.ReadAsync())
@@ -117,34 +116,7 @@ namespace Data
             }
         }
 
-        public async Task<int> GetLastId()
-        {
-            int id = 0;
-            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
-            {
-                SqlCommand cmd = new SqlCommand("uspUltimoIdGrupo", conexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                try
-                {
-                    await conexion.OpenAsync();
-                    using (SqlDataReader dr = await cmd.ExecuteReaderAsync())
-                    {
-                        while (dr.Read())
-                        {
-                            id = Convert.ToInt32(dr["IdGrupo"]);
-                        }
-
-                    }
-                    return id;
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
-                }
-            }
-        }
-
-        public async Task UpdateGrupo(DAOGrupo grupo)
+        public async Task<bool> UpdateGrupo(DAOGrupo grupo)
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
@@ -157,7 +129,7 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    return (await cmd.ExecuteNonQueryAsync()) > 0;
                 }
                 catch (Exception ex)
                 {

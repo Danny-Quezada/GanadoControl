@@ -18,6 +18,7 @@ namespace GanadoControlAPI.Controllers
         }
         IGanadoRepository ganadoRepository;
         IDetalleGanadoRepository detalleGanadoRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         [HttpPost]
         public async Task<IActionResult> InsertarGanado([FromForm] DTOInsertarGanado dtoganado)
         {
@@ -28,11 +29,7 @@ namespace GanadoControlAPI.Controllers
             }
             if (dtoganado.FotoURL != null)
             {
-                using var stream = new MemoryStream();
-                await dtoganado.FotoURL.CopyToAsync(stream);
-                var bytes = stream.ToArray();
-
-                detalleGanado.FotoURL = await CrearImagen(bytes, dtoganado.FotoURL.ContentType, Path.GetExtension(dtoganado.FotoURL.FileName), "FotosDeGanados", Guid.NewGuid().ToString());
+                detalleGanado.FotoURL = await ImageUtility.CrearImagen(dtoganado.FotoURL, "FotosDeGanados", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
             }
             Ganado ganado = new Ganado()
             {
@@ -54,12 +51,20 @@ namespace GanadoControlAPI.Controllers
         [HttpGet("Grupo/{id}")]
         public async Task<IActionResult> GetAll(int id)
         {
-            return Ok(await ganadoRepository.GetAllGanadoByGrupo(id));
+            try
+            {
+                return Ok(await ganadoRepository.GetAllGanadoByGrupo(id));
+            }
+            catch (Exception ex) { return StatusCode(500, ex.Message); }
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGanado(string id)
         {
-            return Ok(await ganadoRepository.GetGanado(id));
+            try
+            {
+                return Ok(await ganadoRepository.GetGanado(id));
+            }
+            catch (Exception ex) { return StatusCode(500, ex.Message); }
         }
         [HttpPut]
         public async Task<IActionResult> Post([FromForm] DTOInsertarGanado ganado)
@@ -71,11 +76,7 @@ namespace GanadoControlAPI.Controllers
             }
             if (ganado.FotoURL != null)
             {
-                using var stream = new MemoryStream();
-                await ganado.FotoURL.CopyToAsync(stream);
-                var bytes = stream.ToArray();
-
-                ganado1.FotoURL = await CrearImagen(bytes, ganado.FotoURL.ContentType, Path.GetExtension(ganado.FotoURL.FileName), "FotosDeGanados", Guid.NewGuid().ToString());
+                ganado1.FotoURL = await ImageUtility.CrearImagen(ganado.FotoURL, "FotosDeGanados", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
             }
             ganado1.IdPadre = ganado.IdPadre;
             ganado1.IdMadre = ganado.IdMadre;
@@ -87,37 +88,7 @@ namespace GanadoControlAPI.Controllers
             ganado1.IdGrupo = ganado.IdGrupo;
             ganado1.Estado = ganado.Estado;
             ganado1.Raza = ganado.Raza;
-            await ganadoRepository.UpdateGanado(ganado1);
-            return Ok("Actualizado Correctamente");
-        }
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        [NoApiRoute]
-        private async Task<String> CrearImagen(byte[] file, string contentType, string extension, string container, string nombre)
-        {
-
-            string wwwrootPath = _webHostEnvironment.WebRootPath;
-
-
-            if (string.IsNullOrEmpty(wwwrootPath))
-            {
-                throw new Exception();
-            }
-
-            string carpetaArchivo = Path.Combine(wwwrootPath, container);
-            if (!Directory.Exists(carpetaArchivo))
-            {
-                Directory.CreateDirectory(carpetaArchivo
-                    );
-            }
-            string nombreFinal = $"{nombre}{extension}";
-            string rutaFinal = Path.Combine(carpetaArchivo, nombreFinal);
-
-            await System.IO.File.WriteAllBytesAsync(rutaFinal, file);
-            string urlActual = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-
-            string dbUrl = Path.Combine(urlActual, container, nombreFinal).Replace("\\", "/");
-            return dbUrl;
-
+            return Ok(await ganadoRepository.UpdateGanado(ganado1));
         }
     }
 }

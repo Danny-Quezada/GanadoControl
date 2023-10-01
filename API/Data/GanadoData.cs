@@ -131,7 +131,7 @@ namespace Data
             }
         }
 
-        public async Task UpdateGanado(DAOGanado ganado)
+        public async Task<bool> UpdateGanado(DAOGanado ganado)
         {
             using (SqlConnection conexion = new SqlConnection(CadenaConexion))
             {
@@ -151,7 +151,7 @@ namespace Data
                 try
                 {
                     await conexion.OpenAsync();
-                    await cmd.ExecuteNonQueryAsync();
+                    return (await cmd.ExecuteNonQueryAsync())>0;
                 }
                 catch (Exception ex)
                 {

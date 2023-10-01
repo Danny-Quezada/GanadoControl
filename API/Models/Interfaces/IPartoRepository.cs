@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Models.Interfaces
 {
-    public interface IPartoRepository : IRepository<Parto>
+    public interface IPartoRepository: IData<Parto>
     {
-        
+        //Task<int> Insertar(Parto parto);
     }
 }

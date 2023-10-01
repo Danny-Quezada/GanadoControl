@@ -22,6 +22,7 @@ namespace GanadoControlAPI.Controllers
         IFincaRepository fincaRepository;
         IDetalleFincaFotoRepository fincaFotoRepository;
         IDetalleFincaRepository detalleFincaRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         [HttpPost]
         public async Task<IActionResult> InsertarFinca([FromForm] DTOInsertFinca dtofinca)
         {
@@ -33,11 +34,7 @@ namespace GanadoControlAPI.Controllers
             }
             if (dtofinca.FotoURL != null)
             {
-                using var stream = new MemoryStream();
-                await dtofinca.FotoURL.CopyToAsync(stream);
-                var bytes = stream.ToArray();
-
-                detalleFincaFoto.FotoURL = await CrearImagen(bytes, dtofinca.FotoURL.ContentType, Path.GetExtension(dtofinca.FotoURL.FileName), "FotosDeFincas", Guid.NewGuid().ToString());
+                detalleFincaFoto.FotoURL = await ImageUtility.CrearImagen(dtofinca.FotoURL, "FotosDeFincas", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
             }
             finca = new Finca()
             {
@@ -53,23 +50,36 @@ namespace GanadoControlAPI.Controllers
                 Fecha = dtofinca.Fecha,
                 RolUsuario = dtofinca.RolUsuario
             };
-            await fincaRepository.Insertar(finca);
-            int id = await fincaRepository.GetLastId();
+            int id = await fincaRepository.Insertar(finca);
             detalleFincaFoto.IdFinca = id;
             detalleFinca.IdFinca = id;
             await detalleFincaRepository.Insertar(detalleFinca);
             await fincaFotoRepository.Insertar(detalleFincaFoto);
-             return Ok (detalleFincaFoto.IdFinca);
+            return Ok (id);
         }
         [HttpGet("Usuario/{id}")]
         public async Task<IActionResult> GetAllFincaByUsuario([FromForm] int id)
         {
-            return Ok(await fincaRepository.GetAllFincaByUsuario(id));
+            try
+            {
+                return Ok(await fincaRepository.GetAllFincaByUsuario(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromForm] int id)
         {
-            return Ok(await fincaRepository.GetFinca(id));
+            try
+            {
+                return Ok(await fincaRepository.GetFinca(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         [HttpPut]
         public async Task<IActionResult> Put([FromForm] DTOInsertFinca insertFinca)
@@ -81,53 +91,14 @@ namespace GanadoControlAPI.Controllers
             }
             if (insertFinca.FotoURL != null)
             {
-                using var stream = new MemoryStream();
-                await insertFinca.FotoURL.CopyToAsync(stream);
-                var bytes = stream.ToArray();
-
-                finca.FotoURL = await CrearImagen(bytes, insertFinca.FotoURL.ContentType, Path.GetExtension(insertFinca.FotoURL.FileName), "FotosDeFincas", Guid.NewGuid().ToString());
+                finca.FotoURL = await ImageUtility.CrearImagen(insertFinca.FotoURL, "FotosDeFincas", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
             }
             finca.IdFinca = insertFinca.IdFinca;
             finca.Nombre = insertFinca.Nombre;
             finca.Hectareas = insertFinca.Hectareas;
             finca.NombreDueño = insertFinca.NombreDueño;
             finca.Ubicacion = insertFinca.Ubicacion;
-            await fincaRepository.UpdateFinca(finca);
-           return Ok("Actualizado Correctamente");
+            return Ok(await fincaRepository.UpdateFinca(finca));
         }
-        //////////////////
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        [NoApiRoute]
-        private async Task<String> CrearImagen(byte[] file, string contentType, string extension, string container, string nombre)
-        {
-
-            string wwwrootPath = _webHostEnvironment.WebRootPath;
-
-
-            if (string.IsNullOrEmpty(wwwrootPath))
-            {
-                throw new Exception();
-            }
-
-            string carpetaArchivo = Path.Combine(wwwrootPath, container);
-            if (!Directory.Exists(carpetaArchivo))
-            {
-                Directory.CreateDirectory(carpetaArchivo
-                    );
-            }
-            string nombreFinal = $"{nombre}{extension}";
-            string rutaFinal = Path.Combine(carpetaArchivo, nombreFinal);
-
-            await System.IO.File.WriteAllBytesAsync(rutaFinal, file);
-            string urlActual = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-
-            string dbUrl = Path.Combine(urlActual, container, nombreFinal).Replace("\\", "/");
-            return dbUrl;
-
-        }
-    }
-    [AttributeUsage(AttributeTargets.Method)]
-    public class NoApiRouteAttribute : Attribute
-    {
     }
 }
