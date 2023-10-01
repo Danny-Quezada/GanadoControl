@@ -209,6 +209,7 @@ class groupList extends StatelessWidget {
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
               return CustomCardWdiget(null,
+              onLongPress: (){},
                   function: () => cowPage(context, flocks[index].flockId!),
                   urlImage: flocks[index].flockImage!,
                   title: flocks[index].flockName,

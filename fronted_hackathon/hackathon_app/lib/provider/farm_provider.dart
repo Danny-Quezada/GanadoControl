@@ -4,16 +4,8 @@ import 'package:hackathon_app/app_core/iservices/ifarm_services.dart';
 import 'package:hackathon_app/domain/models/Entities/farm.dart';
 import 'package:hackathon_app/provider/igeneric_provider.dart';
 
-class FarmProvider extends ChangeNotifier with IGenericProvider<Farm>,  MessageNotifierMixin {
-  
- 
-
-  @override
-  void doNull() {
-    t = null;
-    list = null;
-  
-  }
+class FarmProvider extends ChangeNotifier
+    with IGenericProvider<Farm>, MessageNotifierMixin {
   IFarmServices _iFarmServices;
 
   FarmProvider({required IFarmServices iFarmServices})
@@ -26,27 +18,37 @@ class FarmProvider extends ChangeNotifier with IGenericProvider<Farm>,  MessageN
         farmU.farmId = farmValue;
         t = farmU;
         list!.add(t!);
-        t=null;
+        t = null;
         notifyInfo("finca con ${farmU.farmName} creada");
       }
     } catch (e) {
       notifyError("Error en el servidor");
-
     }
-      notifyListeners();
+    notifyListeners();
   }
 
-  
   Future<List<Farm>> getAllFarmByUserId(int userId) async {
-    
-    if (list!= null) {
+
+    if (list != null) {
       return list!;
     }
-   
-    list= await _iFarmServices.getAllFarmByUser(userId);
- 
+
+    list = await _iFarmServices.getAllFarmByUser(userId);
+
     notifyListeners();
     return list!;
+
   }
 
+  changeSelect(int index) {
+    bool select = !(list![index].isSelected!);
+    list![index].isSelected = select;
+    if (select) {
+      selectedQuantity++;
+    } else {
+      selectedQuantity--;
+    }
+
+    notifyListeners();
+  }
 }

@@ -100,7 +100,7 @@ class GroupWebPage extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: CustomCardWdiget(null, function: () {
+          child: CustomCardWdiget(onLongPress: (){},null, function: () {
             cowWebPage(context, index);
           },
               urlImage: "",

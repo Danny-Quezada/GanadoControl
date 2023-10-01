@@ -10,8 +10,9 @@ class Farm  with EntityImage{
    int hectares;
    String farmOwner;
   int? groups;
-  String? urlImage;
+ String? urlImage;
   DateTime? creation;
+  bool? isSelected;
 
   Farm(
       {
@@ -22,7 +23,8 @@ class Farm  with EntityImage{
       required this.farmName,
       required this.location,
       required this.hectares,
-      required this.farmOwner});
+      required this.farmOwner,
+      this.isSelected=false});
 
   
   factory Farm.fromJson(Map<String, dynamic> json) {

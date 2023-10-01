@@ -1,4 +1,6 @@
-class Cattle {
+import 'package:hackathon_app/domain/models/Entities/entity_image.dart';
+
+class Cattle with EntityImage{
   String idCattle;
   String race;
   double weight;
@@ -7,7 +9,8 @@ class Cattle {
   String? fatherId;
   String? motherId;
   double groupId;
-
+  bool? isSelected;
+ String? urlImage;
   Cattle(
       {required this.idCattle,
       required this.race,
@@ -16,7 +19,9 @@ class Cattle {
       required this.type,
       required this.groupId,
       this.motherId = "",
-      this.fatherId = ""});
+      this.fatherId = "",
+      this.isSelected=false,
+      this.urlImage=""});
 
   factory Cattle.fromJson(Map<String, dynamic> json) {
     return Cattle(

@@ -5,7 +5,7 @@ mixin class IGenericProvider<T> {
   List<T>? list;
 
   T? t;
-
+  int selectedQuantity=0;
   void doNull(){
     this.list=null;
     t=null;

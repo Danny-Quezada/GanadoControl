@@ -1,6 +1,16 @@
 
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon_app/app_core/iservices/icattle_services.dart';
+import 'package:hackathon_app/app_core/iservices/itreatment_service.dart';
+import 'package:hackathon_app/app_core/services/cattle_services.dart';
+import 'package:hackathon_app/app_core/services/treatment_services.dart';
+import 'package:hackathon_app/domain/interfaces/icattle_model.dart';
+import 'package:hackathon_app/domain/interfaces/itreatment.dart';
+import 'package:hackathon_app/infraestructure/repository/cattle_repository.dart';
+import 'package:hackathon_app/infraestructure/repository/treatment_repository.dart';
+import 'package:hackathon_app/provider/cattle_provider.dart';
+import 'package:hackathon_app/provider/treatment_provider.dart';
 
 
 import 'package:provider/provider.dart';
@@ -74,7 +84,28 @@ class MyApp extends StatelessWidget {
           create: (context) => FlockProvider(
               iFlockServices: 
                   Provider.of<IFlockServices>(context, listen: false)),
-        )
+        ),
+
+ Provider<ICattleModel>(create: (_) => CattleRepository()),
+        Provider<ICattleServices>(
+            create: (context) => CattleServices(
+                iCattleModel: Provider.of<ICattleModel>(context, listen: false))),
+        ChangeNotifierProvider(
+          create: (context) => CattleProvider(
+              iCattleServices: 
+                  Provider.of<ICattleServices>(context, listen: false)),
+        ),
+
+         Provider<ITreatmentModel>(create: (_) => TreatmentRepository()),
+        Provider<ITreatmentServices>(
+            create: (context) => TreatmentServices(
+                iTreatmentModel: Provider.of<ITreatmentModel>(context, listen: false))),
+        ChangeNotifierProvider(
+          create: (context) => TreatmentProvider(
+              iTreatmentServices: 
+                  Provider.of<ITreatmentServices>(context, listen: false)),
+        ),
+
 
         
       ],
