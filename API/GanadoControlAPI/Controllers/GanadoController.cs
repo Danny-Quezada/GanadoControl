@@ -22,31 +22,42 @@ namespace GanadoControlAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertarGanado([FromForm] DTOInsertarGanado dtoganado)
         {
-            DetalleGanado detalleGanado = new DetalleGanado();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (dtoganado.FotoURL != null)
+            if(dtoganado is null)
             {
-                detalleGanado.FotoURL = await ImageUtility.CrearImagen(dtoganado.FotoURL, "FotosDeGanados", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                return BadRequest("El objeto ganado es nulo");
             }
-            Ganado ganado = new Ganado()
+            try
             {
-                FechaNacimiento = dtoganado.FechaNacimiento,
-                IdGrupo = dtoganado.IdGrupo,
-                IdMadre = dtoganado.IdMadre,
-                IdPadre = dtoganado.IdPadre,
-                Raza = dtoganado.Raza,
-                Peso = dtoganado.Peso,
-                Tipo = dtoganado.Tipo,
-                IdGanado = dtoganado.IdGanado,
-                Estado = dtoganado.Estado,
-            };
-            await ganadoRepository.Insertar(ganado);
-            detalleGanado.IdGanado = dtoganado.IdGanado;
-            await detalleGanadoRepository.Insertar(detalleGanado);
-            return Created("Creado", true);
+                DetalleGanado detalleGanado = new DetalleGanado();
+                if (dtoganado.FotoURL != null)
+                {
+                    detalleGanado.FotoURL = await ImageUtility.CrearImagen(dtoganado.FotoURL, "FotosDeGanados", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                }
+                Ganado ganado = new Ganado()
+                {
+                    FechaNacimiento = dtoganado.FechaNacimiento,
+                    IdGrupo = dtoganado.IdGrupo,
+                    IdMadre = dtoganado.IdMadre,
+                    IdPadre = dtoganado.IdPadre,
+                    Raza = dtoganado.Raza,
+                    Peso = dtoganado.Peso,
+                    Tipo = dtoganado.Tipo,
+                    IdGanado = dtoganado.IdGanado,
+                    Estado = dtoganado.Estado,
+                };
+                await ganadoRepository.Insertar(ganado);
+                detalleGanado.IdGanado = dtoganado.IdGanado;
+                await detalleGanadoRepository.Insertar(detalleGanado);
+                return Created("Creado", true);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al insertar ganado: {ex.Message}");
+            }
         }
         [HttpGet("Grupo/{id}")]
         public async Task<IActionResult> GetAll(int id)
@@ -67,28 +78,39 @@ namespace GanadoControlAPI.Controllers
             catch (Exception ex) { return StatusCode(500, ex.Message); }
         }
         [HttpPut]
-        public async Task<IActionResult> Post([FromForm] DTOInsertarGanado ganado)
+        public async Task<IActionResult> Put([FromForm] DTOInsertarGanado ganado)
         {
-            DAOGanado ganado1 = new DAOGanado();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (ganado.FotoURL != null)
+            if(ganado is null)
             {
-                ganado1.FotoURL = await ImageUtility.CrearImagen(ganado.FotoURL, "FotosDeGanados", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                return BadRequest("El objeto ganado es nulo");  
             }
-            ganado1.IdPadre = ganado.IdPadre;
-            ganado1.IdMadre = ganado.IdMadre;
-            ganado1.Peso = (float)ganado.Peso;
-            ganado1.Estado = ganado.Estado;
-            ganado1.IdGanado = ganado.IdGanado;
-            ganado1.Tipo = ganado.Tipo;
-            ganado1.FechaNacimiento = ganado.FechaNacimiento;
-            ganado1.IdGrupo = ganado.IdGrupo;
-            ganado1.Estado = ganado.Estado;
-            ganado1.Raza = ganado.Raza;
-            return Ok(await ganadoRepository.UpdateGanado(ganado1));
+            try
+            {
+                DAOGanado ganado1 = new DAOGanado();
+                if (ganado.FotoURL != null)
+                {
+                    ganado1.FotoURL = await ImageUtility.CrearImagen(ganado.FotoURL, "FotosDeGanados", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                }
+                ganado1.IdPadre = ganado.IdPadre;
+                ganado1.IdMadre = ganado.IdMadre;
+                ganado1.Peso = (float)ganado.Peso;
+                ganado1.Estado = ganado.Estado;
+                ganado1.IdGanado = ganado.IdGanado;
+                ganado1.Tipo = ganado.Tipo;
+                ganado1.FechaNacimiento = ganado.FechaNacimiento;
+                ganado1.IdGrupo = ganado.IdGrupo;
+                ganado1.Estado = ganado.Estado;
+                ganado1.Raza = ganado.Raza;
+                return Ok(await ganadoRepository.UpdateGanado(ganado1));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

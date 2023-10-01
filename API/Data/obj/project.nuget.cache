@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h2yl1SMf6jdRQ7LQ4XhN5saJjL7TMgmRLOuOlC16lxcpY0h7c9uLjes85yqFhBPfMwQL22BOGrboqH5D3yj/wA==",
+  "dgSpecHash": "tMNdjE9ei1bCG4e1ktQaXX8Phit02KJLZ8Y2YEhuSHSNHvwcZiGHpgd0cWmnO9FRc6yvsEnpySV/84QXZpZglQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Data\\Data.csproj",
+  "projectFilePath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Data\\Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sanro\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\sanro\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",

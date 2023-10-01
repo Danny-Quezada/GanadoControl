@@ -13,5 +13,6 @@ namespace Models.Interfaces
         public Task<List<DAOGrupo>> GetAllByFinca(int IdFinca);
         public Task<DAOGrupo> GetGrupo(int id);
         public Task<bool> UpdateGrupo(DAOGrupo grupo);
+        public Task<bool> DeleteGrupo(int id);
     }
 }

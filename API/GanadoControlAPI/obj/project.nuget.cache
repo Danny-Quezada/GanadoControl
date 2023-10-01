@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KecNT+gngjIuzgaP5DizZFUH4lf9s07A0VUSK9rWGlDjtLQ8tL2cfRPbvtr15uvKhPufN7+9RBIQw/ptNHBBYw==",
+  "dgSpecHash": "+JrVpHNaa/4x6lrQ3MN0GIjs8jxGj/6gLXoGPwCqMNndeaRJITl6pNDPIxcv7SQvN9+EOnWqRKjSWjpUwypihA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+  "projectFilePath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sanro\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\sanro\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",

@@ -14,5 +14,6 @@ namespace Models.Interfaces
         Task<List<DAOTratamiento>> ObtenerTratamientoPorGanado(string idGanado);
         Task<List<DAOTratamiento>> ObtenerTratamientoPorGrupo(int idGrupo);
         Task<List<DAOTratamiento>> ObtenerTratamientoPorFinca(int idFinca);
+        Task<bool> EliminarTratamiento(int id);
     }
 }

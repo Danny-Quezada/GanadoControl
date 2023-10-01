@@ -14,7 +14,7 @@ namespace Models.DTO
         public string NombreDueño { get; set; }
         public int Grupos { get; set; }
         public string Ubicacion { get; set; }
-        public int Hectareas { get; set; }
+        public float Hectareas { get; set; }
         public string FotoURL { get; set; }
     }
 }

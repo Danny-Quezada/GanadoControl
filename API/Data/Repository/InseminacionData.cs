@@ -19,6 +19,25 @@ namespace Data.Repository
             this.cadenaConexion = cadenaConexion;
         }
 
+        public async Task<bool> EliminarInseminacion(int id)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("uspEliminarInseminacion", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int)).Value = id;
+                try
+                {
+                    await conexion.OpenAsync();
+                    return await cmd.ExecuteNonQueryAsync() > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
         public async Task<int> Insertar(Inseminacion data)
         {
             int ultimoId = 0;
@@ -31,13 +50,7 @@ namespace Data.Repository
                 try
                 {
                     await conexion.OpenAsync();
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (await dr.ReadAsync())
-                        {
-                            ultimoId = Convert.ToInt32(dr["UltimoID"]);
-                        }
-                    }
+                    ultimoId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
                     return ultimoId;
                 }
                 catch (Exception ex)

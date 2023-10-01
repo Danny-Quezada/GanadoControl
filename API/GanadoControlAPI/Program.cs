@@ -1,5 +1,4 @@
 using Data.Repository;
-using Data;
 using Models.Interfaces;
 
 
@@ -28,7 +27,7 @@ builder.Services.AddScoped<IDetalleFincaRepository>(provider => new DetalleFinca
 
 
 //http://direccion ip:5000
-builder.WebHost.UseUrls("http://localhost:5000");
+builder.WebHost.UseUrls("http://192.168.1.14:5000");
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 

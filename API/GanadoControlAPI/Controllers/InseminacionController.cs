@@ -38,5 +38,17 @@ namespace GanadoControlAPI.Controllers
                 return StatusCode(500, $"Error al insertar inseminación: {ex.Message}");
             }
         }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                return Ok(await inseminacionRepository.EliminarInseminacion(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

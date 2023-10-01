@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Data\\Data.csproj": {}
+    "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Data\\Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Data\\Data.csproj": {
+    "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Data\\obj\\",
+        "outputPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Models\\Models.csproj"
+              "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Models\\Models.csproj"
               }
             }
           }
@@ -73,14 +73,14 @@
         }
       }
     },
-    "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Models\\Models.csproj": {
+    "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Models\\Models.csproj",
+        "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Models\\obj\\",
+        "outputPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -14,5 +14,6 @@ namespace Models.Interfaces
         Task<List<DAOFinca>> GetAllFincaByUsuario(int IdUsuario);
         Task<DAOFinca> GetFinca(int Id);
         Task<bool> UpdateFinca(DAOFinca DAOFinca);
+        Task<bool> EliminarFinca(int id);
     }
 }

@@ -22,24 +22,35 @@ namespace GanadoControlAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertarGrupo([FromForm] DTOInsertGrupo dtogrupo)
         {
-            DetalleGrupoFoto detalleGrupo = new DetalleGrupoFoto();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (dtogrupo.FotoURL != null)
+            if(dtogrupo is null)
             {
-                detalleGrupo.FotoURL = await ImageUtility.CrearImagen(dtogrupo.FotoURL, "FotosDeGrupos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                return BadRequest("El objeto grupo es nulo");
             }
-            Grupo grupo = new Grupo()
+            try
             {
-                IdFinca = dtogrupo.IdFinca,
-                Nombre = dtogrupo.Nombre,
-            };
-            int id = await grupoRepository.Insertar(grupo);
-            detalleGrupo.IdGrupo = id;
-            await detalleGrupofoto.Insertar(detalleGrupo);
-            return Ok(id);
+                DetalleGrupoFoto detalleGrupo = new DetalleGrupoFoto();
+                if (dtogrupo.FotoURL != null)
+                {
+                    detalleGrupo.FotoURL = await ImageUtility.CrearImagen(dtogrupo.FotoURL, "FotosDeGrupos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                }
+                Grupo grupo = new Grupo()
+                {
+                    IdFinca = dtogrupo.IdFinca,
+                    Nombre = dtogrupo.Nombre,
+                };
+                int id = await grupoRepository.Insertar(grupo);
+                detalleGrupo.IdGrupo = id;
+                await detalleGrupofoto.Insertar(detalleGrupo);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al insertar grupo: {ex.Message}");
+            }
         }
         [HttpGet("Finca/{id}")]
         public async Task<IActionResult> GetAllByFinca([FromForm] int id)
@@ -56,24 +67,54 @@ namespace GanadoControlAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromForm] int id)
         {
-            return Ok(await grupoRepository.GetGrupo(id));
+            try
+            {
+                return Ok(await grupoRepository.GetGrupo(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
         [HttpPut]
         public async Task<IActionResult> Put([FromForm] DTOInsertGrupo grupo)
         {
-            DAOGrupo dAOGrupo = new DAOGrupo();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (grupo.FotoURL != null)
+            if(grupo is null)
             {
-                dAOGrupo.FotoURL = await ImageUtility.CrearImagen(grupo.FotoURL, "FotosDeGrupos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                return BadRequest("El objeto grupo es nulo");
             }
-            dAOGrupo.IdGrupo = grupo.IdGrupo;
-            dAOGrupo.IdFinca = grupo.IdFinca;
-            dAOGrupo.Nombre = grupo.Nombre;
-            return Ok(await grupoRepository.UpdateGrupo(dAOGrupo));
+            try
+            {
+                DAOGrupo dAOGrupo = new DAOGrupo();
+                if (grupo.FotoURL != null)
+                {
+                    dAOGrupo.FotoURL = await ImageUtility.CrearImagen(grupo.FotoURL, "FotosDeGrupos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                }
+                dAOGrupo.IdGrupo = grupo.IdGrupo;
+                dAOGrupo.IdFinca = grupo.IdFinca;
+                dAOGrupo.Nombre = grupo.Nombre;
+                return Ok(await grupoRepository.UpdateGrupo(dAOGrupo));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                return Ok(await grupoRepository.DeleteGrupo(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

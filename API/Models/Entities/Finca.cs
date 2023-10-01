@@ -11,7 +11,7 @@ namespace Models.Entities
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Ubicacion { get; set; }
-        public int Hectareas { get; set; }
+        public float Hectareas { get; set; }
         public string NombreDueño { get;set; }
 
     }

@@ -73,13 +73,7 @@ namespace Data.Repository
                 try
                 {
                     await conexion.OpenAsync();
-                    using (SqlDataReader dr = cmd.ExecuteReader())
-                    {
-                        while (await dr.ReadAsync())
-                        {
-                            ultimoId = Convert.ToInt32(dr["UltimoID"]);
-                        }
-                    }
+                    ultimoId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
                     return ultimoId;
                 }
                 catch (Exception ex)

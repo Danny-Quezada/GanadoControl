@@ -26,36 +26,47 @@ namespace GanadoControlAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertarFinca([FromForm] DTOInsertFinca dtofinca)
         {
-            DetalleFincaFoto detalleFincaFoto = new DetalleFincaFoto();
-            Finca finca = new Finca();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (dtofinca.FotoURL != null)
+            if(dtofinca is null)
             {
-                detalleFincaFoto.FotoURL = await ImageUtility.CrearImagen(dtofinca.FotoURL, "FotosDeFincas", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                return BadRequest("El objeto Finca es nulo");
             }
-            finca = new Finca()
+            try
             {
-                Nombre = dtofinca.Nombre,
-                NombreDueño = dtofinca.NombreDueño,
-                Ubicacion = dtofinca.Ubicacion,
-                Hectareas = dtofinca.Hectareas,
+                DetalleFincaFoto detalleFincaFoto = new DetalleFincaFoto();
+                Finca finca = new Finca();
+                if (dtofinca.FotoURL != null)
+                {
+                    detalleFincaFoto.FotoURL = await ImageUtility.CrearImagen(dtofinca.FotoURL, "FotosDeFincas", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                }
+                finca = new Finca()
+                {
+                    Nombre = dtofinca.Nombre,
+                    NombreDueño = dtofinca.NombreDueño,
+                    Ubicacion = dtofinca.Ubicacion,
+                    Hectareas = dtofinca.Hectareas,
 
-            };
-            DetalleFinca detalleFinca= new DetalleFinca()
+                };
+                DetalleFinca detalleFinca = new DetalleFinca()
+                {
+                    IdUsuario = dtofinca.IdUsuario,
+                    Fecha = dtofinca.Fecha,
+                    RolUsuario = dtofinca.RolUsuario
+                };
+                int id = await fincaRepository.Insertar(finca);
+                detalleFincaFoto.IdFinca = id;
+                detalleFinca.IdFinca = id;
+                await detalleFincaRepository.Insertar(detalleFinca);
+                await fincaFotoRepository.Insertar(detalleFincaFoto);
+                return Ok(id);
+            }
+            catch (Exception ex)
             {
-                IdUsuario = dtofinca.IdUsuario,
-                Fecha = dtofinca.Fecha,
-                RolUsuario = dtofinca.RolUsuario
-            };
-            int id = await fincaRepository.Insertar(finca);
-            detalleFincaFoto.IdFinca = id;
-            detalleFinca.IdFinca = id;
-            await detalleFincaRepository.Insertar(detalleFinca);
-            await fincaFotoRepository.Insertar(detalleFincaFoto);
-            return Ok (id);
+                return StatusCode(500, $"Error al insertar finca: {ex.Message}");
+            }
         }
         [HttpGet("Usuario/{id}")]
         public async Task<IActionResult> GetAllFincaByUsuario([FromForm] int id)
@@ -84,21 +95,44 @@ namespace GanadoControlAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> Put([FromForm] DTOInsertFinca insertFinca)
         {
-            DAOFinca finca = new DAOFinca();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            if (insertFinca.FotoURL != null)
+            if(insertFinca is null)
             {
-                finca.FotoURL = await ImageUtility.CrearImagen(insertFinca.FotoURL, "FotosDeFincas", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                return BadRequest("El objeto Finca es nulo");
             }
-            finca.IdFinca = insertFinca.IdFinca;
-            finca.Nombre = insertFinca.Nombre;
-            finca.Hectareas = insertFinca.Hectareas;
-            finca.NombreDueño = insertFinca.NombreDueño;
-            finca.Ubicacion = insertFinca.Ubicacion;
-            return Ok(await fincaRepository.UpdateFinca(finca));
+            try
+            {
+                DAOFinca finca = new DAOFinca();
+                if (insertFinca.FotoURL != null)
+                {
+                    finca.FotoURL = await ImageUtility.CrearImagen(insertFinca.FotoURL, "FotosDeFincas", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
+                }
+                finca.IdFinca = insertFinca.IdFinca;
+                finca.Nombre = insertFinca.Nombre;
+                finca.Hectareas = insertFinca.Hectareas;
+                finca.NombreDueño = insertFinca.NombreDueño;
+                finca.Ubicacion = insertFinca.Ubicacion;
+                return Ok(await fincaRepository.UpdateFinca(finca));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                return Ok(await fincaRepository.EliminarFinca(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

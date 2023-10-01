@@ -9,6 +9,6 @@ namespace Models.Interfaces
 {
     public interface IPartoRepository: IData<Parto>
     {
-        //Task<int> Insertar(Parto parto);
+        Task<bool> EliminarParto(int id);
     }
 }

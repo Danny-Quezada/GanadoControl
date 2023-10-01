@@ -12,7 +12,7 @@ namespace Models.DTO
         public int IdFinca { get; set; }
         public string Nombre { get; set; }
         public string Ubicacion { get; set; }
-        public int Hectareas { get; set; }
+        public float Hectareas { get; set; }
         public string NombreDueño { get; set; }
         public IFormFile FotoURL { get; set; }
         public int IdUsuario { get; set; }

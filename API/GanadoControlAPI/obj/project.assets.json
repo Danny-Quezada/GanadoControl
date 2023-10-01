@@ -872,11 +872,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+      "projectUniqueName": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
       "projectName": "GanadoControlAPI",
-      "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+      "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
       "packagesPath": "C:\\Users\\sanro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\GanadoControlAPI\\obj\\",
+      "outputPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\GanadoControlAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sanro\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -893,11 +893,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Data\\Data.csproj": {
-              "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Data\\Data.csproj"
+            "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Data\\Data.csproj": {
+              "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Data\\Data.csproj"
             },
-            "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon repos\\M3-TEAM\\API\\Models\\Models.csproj"
+            "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\sanro\\OneDrive\\Escritorio\\hackathon app repositorio\\M3-TEAM\\API\\Models\\Models.csproj"
             }
           }
         }
