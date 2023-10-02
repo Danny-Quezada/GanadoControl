@@ -48,30 +48,30 @@ class PillWidget extends StatelessWidget {
   }
 
   Color containerColor() {
-    if (pharmaceuticals == Pharmaceuticals.medications) {
+    if (pharmaceuticals == Pharmaceuticals.Medicamentos) {
       return ColorPalette.medicationColor;
     }
-    if (pharmaceuticals == Pharmaceuticals.vaccine) {
+    if (pharmaceuticals == Pharmaceuticals.Vacunas) {
       return ColorPalette.vaccineColor;
     }
     return ColorPalette.vitaminColor;
   }
 
   icon() {
-    if (pharmaceuticals == Pharmaceuticals.medications) {
+    if (pharmaceuticals == Pharmaceuticals.Medicamentos) {
       return Image.asset(
         "assets/images/icons/medication.png",
         width: 28,
         height: 28,
       );
     }
-    if (pharmaceuticals == Pharmaceuticals.vaccine) {
+    if (pharmaceuticals == Pharmaceuticals.Vacunas) {
       return Image.asset(
         "assets/images/icons/vaccine.png",
         width: 28,
         height: 28,
       );
     }
-    return Image.asset("assets/images/icons/vitamin.png");
+    return Image.asset("assets/images/icons/vitamin.png",width: 28,height: 28,);
   }
 }

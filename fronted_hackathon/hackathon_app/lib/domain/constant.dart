@@ -15,4 +15,7 @@ class Constant {
 
   static const String creatCattle = "${route}/Ganado";
   static const String getCattle = "${route}/Ganado/Grupo";
+
+  static const String createMeditation="${route}/Farmaco";
+  static const String getMeditationbyFarm="${route}/Farmaco/finca";
 }

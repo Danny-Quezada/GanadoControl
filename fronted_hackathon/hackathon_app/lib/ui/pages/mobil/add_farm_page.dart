@@ -1,11 +1,10 @@
 import 'dart:io';
 import 'package:hackathon_app/ui/util/path_image_asset.dart';
-import 'package:path_provider/path_provider.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hackathon_app/domain/models/Entities/farm.dart';
 import 'package:hackathon_app/provider/farm_provider.dart';
-import 'package:intl/intl.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../config/color_palette.dart';

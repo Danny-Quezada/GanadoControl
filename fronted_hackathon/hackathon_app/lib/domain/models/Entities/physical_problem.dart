@@ -9,7 +9,7 @@ class PhysicalProblem {
      int? physicalProblemId;
     final String cattleId;
     final String partName;
-    final String description;
+     String description;
 
     factory PhysicalProblem.fromJson(Map<String, dynamic> json){ 
         return PhysicalProblem(

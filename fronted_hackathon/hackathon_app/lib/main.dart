@@ -2,15 +2,22 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/app_core/iservices/icattle_services.dart';
+import 'package:hackathon_app/app_core/iservices/imeditation_services.dart';
 import 'package:hackathon_app/app_core/iservices/itreatment_service.dart';
 import 'package:hackathon_app/app_core/services/cattle_services.dart';
+import 'package:hackathon_app/app_core/services/meditation_services.dart';
 import 'package:hackathon_app/app_core/services/treatment_services.dart';
 import 'package:hackathon_app/domain/interfaces/icattle_model.dart';
+import 'package:hackathon_app/domain/interfaces/imeditation_model.dart';
 import 'package:hackathon_app/domain/interfaces/itreatment.dart';
 import 'package:hackathon_app/infraestructure/repository/cattle_repository.dart';
+import 'package:hackathon_app/infraestructure/repository/meditation_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/treatment_repository.dart';
+import 'package:hackathon_app/provider/body_part_provider.dart';
 import 'package:hackathon_app/provider/cattle_provider.dart';
+import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/provider/treatment_provider.dart';
+import 'package:hackathon_app/ui/pages/mobil/add_detail_physical_page.dart';
 
 
 import 'package:provider/provider.dart';
@@ -103,8 +110,20 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => TreatmentProvider(
               iTreatmentServices: 
-                  Provider.of<ITreatmentServices>(context, listen: false)),
+                  Provider.of<ITreatmentServices>(context, listen: false)),       
         ),
+  Provider<IMeditationModel>(create: (_) => MeditationRepository()),
+        Provider<IMeditationServices>(
+            create: (context) => MeditationServices(
+                iMeditationModel: Provider.of<IMeditationModel>(context, listen: false))),
+        ChangeNotifierProvider(
+          create: (context) => MeditationProvider(
+              iFarmServices: 
+                  Provider.of<IMeditationServices>(context, listen: false)),
+        
+                  
+        ),
+        ChangeNotifierProvider(create: (_)=>BodyPartProvider())
 
 
         
@@ -129,21 +148,23 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterSplashScreen.fadeIn(
-          backgroundColor: Colors.white,
-          onInit: () {
-            debugPrint("On Init");
-          },
-          onEnd: () {
-            debugPrint("On End");
-          },
-          childWidget: SizedBox(
-            height: 200,
-            width: 200,
-            child: Image.asset("assets/images/sections/Logo.png"),
+    return SafeArea(
+      child: FlutterSplashScreen.fadeIn(
+            backgroundColor: Colors.white,
+            onInit: () {
+              debugPrint("On Init");
+            },
+            onEnd: () {
+              debugPrint("On End");
+            },
+            childWidget: SizedBox(
+              height: 200,
+              width: 200,
+              child: Image.asset("assets/images/sections/Logo.png"),
+            ),
+            onAnimationEnd: () => debugPrint("On Fade In End"),
+            defaultNextScreen: InitialPage()
           ),
-          onAnimationEnd: () => debugPrint("On Fade In End"),
-          defaultNextScreen: const InitialPage()
-        );
+    );
   }
 }

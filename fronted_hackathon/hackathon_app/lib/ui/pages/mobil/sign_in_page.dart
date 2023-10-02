@@ -33,7 +33,7 @@ class SignInPage extends StatelessWidget {
     return SafeArea(
       child: MessageListener<UserProvider>(
         showError: (error){
-           flushbarWidget(context: context, title: "Error", message: error);
+           flushbarWidget(context: context, title: "Error", message: error,error: true);
      
         },
         showInfo: (info){},

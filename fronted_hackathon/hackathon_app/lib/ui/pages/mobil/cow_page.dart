@@ -34,10 +34,9 @@ class CowPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-               searchBar(controller: _controller,height: 35,padding: 16,iconColor:const Color(0xffABA5A5),backgroundColor: const Color(0xFFf2f2f2)),
+               searchBar(controller: _controller,height: 35,padding: 16,iconColor:const Color(0xffABA5A5),backgroundColor: const Color(0xFFf2f2f2),function: (value){}),
               Expanded(
                 child: CattleList(GroupId: flockId),
-              
               ),
             ],
           ),
@@ -77,9 +76,10 @@ class CattleList extends StatelessWidget {
        itemCount: CattleProviderConsumer.list!.length,
        itemBuilder: (BuildContext context, int index) {
          return Selector<CattleProvider, Cattle>(builder: (context, cattle, child) {
-            return CustomCardWdiget([
+            return CustomCardWidget([
               cattle.race,
-              (DateTime.now().year-cattle.birthDate.year).toString()
+              
+              (DateTime.now().year-cattle.birthDate.year).toString()+"año"
             ], function: (){}, urlImage: cattle.urlImage!, title: cattle.idCattle, description: "Ultima vacuna: \n ultima desparasitacion: 00:00:00 \n Peso: 262kg", radius: 12, onLongPress: (){});
          },
          selector: (p0, p1) => p1.list![index],);

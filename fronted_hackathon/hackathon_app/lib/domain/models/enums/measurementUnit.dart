@@ -1,0 +1,4 @@
+enum measurentUnit{
+  Miligramos,
+  Kilogramos,
+}

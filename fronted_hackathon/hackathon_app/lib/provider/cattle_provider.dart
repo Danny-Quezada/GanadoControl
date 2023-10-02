@@ -43,4 +43,17 @@ class CattleProvider extends ChangeNotifier
     notifyListeners();
     return list!;
   }
+  find(String text){
+
+    if(text.isEmpty){
+      searchList=null;
+    }
+    else{
+     searchList= list!
+        .where((element) => element.idCattle.toLowerCase().contains(text.toLowerCase()))
+        .toList();
+    }
+    notifyListeners();
+
+  }
 }

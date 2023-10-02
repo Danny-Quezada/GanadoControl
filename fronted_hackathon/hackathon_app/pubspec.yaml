@@ -26,6 +26,10 @@ dependencies:
   another_flushbar: ^1.12.30
   path_provider: ^2.1.1
   another_flutter_splash_screen: ^1.1.5
+  flutter_svg: ^1.1.0
+  touchable: ^1.0.2
+  xml: ^6.3.0
+  path_drawing: ^1.0.1
  
   
  
@@ -62,6 +66,7 @@ flutter_launcher_icons:
 flutter:
 
   assets:
+    - assets/svg/
     - assets/images/sections/
     - assets/images/icons/
   uses-material-design: true

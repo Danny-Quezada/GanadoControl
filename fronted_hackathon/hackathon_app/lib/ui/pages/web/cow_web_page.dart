@@ -107,7 +107,7 @@ class CowWebPage extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: CustomCardWdiget(const [
+            child: CustomCardWidget(const [
               "Reyna",
               "4 años",
             ],

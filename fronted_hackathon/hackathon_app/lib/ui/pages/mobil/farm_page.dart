@@ -77,7 +77,7 @@ class farmList extends StatelessWidget {
             );
           }
           return ListView.builder(
-            itemCount: farmProviderConsumer.list!.length,
+            itemCount:  farmProviderConsumer.searchList==null ?  farmProviderConsumer.list!.length : farmProviderConsumer.searchList!.length,
             itemBuilder: (BuildContext context, int index) {
               return Selector<FarmProvider, Farm>(
                   builder: (context, farm, child) {
@@ -105,7 +105,7 @@ class farmList extends StatelessWidget {
                                 },),
                     );
                   },
-                  selector: (p0, p1) => p1.list![index]);
+                  selector: (p0, p1) =>p1.searchList==null ?  p1.list![index] : p1.searchList![index]);
             },
           );
         },

@@ -47,6 +47,7 @@ class CattlePage extends StatelessWidget {
                   height: 20,
                 ),
                 searchBar(
+                  function: (value){},
                     controller: _controller,
                     height: 35,
                     padding: 16,
@@ -208,8 +209,10 @@ class groupList extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
-              return CustomCardWdiget(null,
-              onLongPress: (){},
+              return CustomCardWidget(null,
+              onLongPress: (){
+                
+              },
                   function: () => cowPage(context, flocks[index].flockId!),
                   urlImage: flocks[index].flockImage!,
                   title: flocks[index].flockName,

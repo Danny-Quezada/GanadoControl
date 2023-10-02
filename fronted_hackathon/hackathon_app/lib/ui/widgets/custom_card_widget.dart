@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomCardWdiget extends StatelessWidget {
+class CustomCardWidget extends StatelessWidget {
   String urlImage;
   String title;
   String description;
@@ -10,7 +10,7 @@ class CustomCardWdiget extends StatelessWidget {
   VoidCallback function;
   double radius;
 
-  CustomCardWdiget(this.labelChip,
+  CustomCardWidget(this.labelChip,
       {required this.function,
       required this.urlImage,
       required this.title,

@@ -19,7 +19,7 @@ class FarmProvider extends ChangeNotifier
         t = farmU;
         list!.add(t!);
         t = null;
-        notifyInfo("finca con ${farmU.farmName} creada");
+        notifyInfo("finca: ${farmU.farmName} creada");
       }
     } catch (e) {
       notifyError("Error en el servidor");
@@ -50,5 +50,18 @@ class FarmProvider extends ChangeNotifier
     }
 
     notifyListeners();
+  }
+  find(String text){
+
+    if(text.isEmpty){
+      searchList=null;
+    }
+    else{
+     searchList= list!
+        .where((element) => element.farmName.toLowerCase().contains(text.toLowerCase()))
+        .toList();
+    }
+    notifyListeners();
+
   }
 }

@@ -1,10 +1,8 @@
+
+
+
 import 'package:hackathon_app/domain/models/Entities/entity_image.dart';
-import 'package:hackathon_app/domain/models/Entities/reflection.dart';
-import 'package:reflectable/reflectable.dart';
 
-const myReflectable=MyReflectable();
-
-@myReflectable
 class Flock with EntityImage {
 
 

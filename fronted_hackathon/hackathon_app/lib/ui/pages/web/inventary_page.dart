@@ -221,7 +221,7 @@ class pharmaceuticalList extends StatelessWidget {
       children: [
         PillWidget(
           2,
-          pharmaceuticals: Pharmaceuticals.vaccine,
+          pharmaceuticals: Pharmaceuticals.Vacunas,
           title: "Derri A plus",
           function: () {
             _showDetailsPharmaceutical(

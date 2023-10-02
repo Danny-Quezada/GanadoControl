@@ -1,4 +1,6 @@
-class Meditation {
+import 'package:hackathon_app/domain/models/Entities/entity_image.dart';
+
+class Meditation with EntityImage{
     Meditation({
          this.meditationId=0,
         required this.meditationName,
@@ -9,10 +11,12 @@ class Meditation {
         required this.deliveryDate,
         required this.price,
         required this.quantity,
-        required this.urlPhoto,
+        
         required this.farmId,
+        this.isSelected=false,
+        this.urlPhoto="",
     });
-
+    bool? isSelected;
      int? meditationId;
     final String meditationName;
     final String provider;
@@ -22,22 +26,22 @@ class Meditation {
     final DateTime? deliveryDate;
     final String price;
     final int quantity;
-    final String urlPhoto;
+     String? urlPhoto;
     final int farmId;
 
     factory Meditation.fromJson(Map<String, dynamic> json){ 
         return Meditation(
-            meditationId: json["Id"] ?? 0,
-            meditationName: json["Nombre"] ?? "",
-            provider: json["Proveedor"] ?? "",
-            type: json["Tipo"] ?? "",
-            measurementUnit: json["UnidadMedida"] ?? "",
-            expirationDate: DateTime.tryParse(json["FechaCaducidad"] ?? ""),
-            deliveryDate: DateTime.tryParse(json["FechaEntrega"] ?? ""),
-            price: json["Precio"] ?? "",
-            quantity: json["Cantidad"] ?? 0,
-            urlPhoto: json["FotoURL"] ?? "",
-            farmId: json["IdFinca"] ?? 0,
+            meditationId: json["id"] ?? 0,
+            meditationName: json["nombre"] ?? "",
+            provider: json["proveedor"] ?? "",
+            type: json["tipo"] ?? "",
+            measurementUnit: json["unidadMedida"] ?? "",
+            expirationDate: DateTime.tryParse(json["fechaCaducidad"] ?? ""),
+            deliveryDate: DateTime.tryParse(json["fechaEntrega"] ?? ""),
+            price: json["precio"].toString() ?? "",
+            quantity: json["cantidad"] ?? 0,
+            urlPhoto: json["fotoURL"] ?? "",
+            farmId: json["idFinca"] ?? 0,
         );
     }
 
@@ -51,7 +55,6 @@ class Meditation {
         "FechaEntrega": deliveryDate?.toIso8601String(),
         "Precio": price,
         "Cantidad": quantity,
-        "FotoURL": urlPhoto,
         "IdFinca": farmId,
     };
 

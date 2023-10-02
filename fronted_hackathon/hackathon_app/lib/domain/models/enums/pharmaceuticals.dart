@@ -1,5 +1,5 @@
 enum Pharmaceuticals{
-  medications,
-  vitamins,
-  vaccine
+  Medicamentos,
+  Vitaminas,
+  Vacunas
 }

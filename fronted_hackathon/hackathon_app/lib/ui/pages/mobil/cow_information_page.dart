@@ -110,14 +110,14 @@ class ListMedical extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: PillWidget(2,
-                pharmaceuticals: Pharmaceuticals.vaccine,
+                pharmaceuticals: Pharmaceuticals.Vacunas,
                 title: "Derri A plus",
                 function: () {}),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: PillWidget(2,
-                pharmaceuticals: Pharmaceuticals.medications,
+                pharmaceuticals: Pharmaceuticals.Medicamentos,
                 title: "Marbox",
                 function: () {
                  //_showDetailsTreatment(Treatment(cattleId: catt, meditationId: meditationId, date: date, type: type, dosis: dosis, observation: observation, aplicationArea: aplicationArea), context)
