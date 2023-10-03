@@ -5,6 +5,7 @@ import 'package:flutter_provider_utilities/flutter_provider_utilities.dart';
 import 'package:hackathon_app/domain/models/Entities/flock.dart';
 import 'package:hackathon_app/provider/farm_provider.dart';
 import 'package:hackathon_app/provider/flock_provider.dart';
+import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
 import 'package:hackathon_app/ui/pages/mobil/inventary_page.dart';
 import 'package:hackathon_app/ui/util/path_image_asset.dart';
@@ -47,7 +48,7 @@ class CattlePage extends StatelessWidget {
                   height: 20,
                 ),
                 searchBar(
-                  function: (value){},
+                    function: (value) {},
                     controller: _controller,
                     height: 35,
                     padding: 16,
@@ -155,6 +156,7 @@ class inventaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final meditationProvider = Provider.of<MeditationProvider>(context);
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.only(left: size.width * .05),
@@ -163,6 +165,11 @@ class inventaryButton extends StatelessWidget {
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(
               builder: (context) {
+                if ((meditationProvider.t?.farmId) != farmId) {
+                  meditationProvider.doNull();
+                }
+                meditationProvider.t?.farmId != farmId;
+
                 return InventaryPage(farmId: farmId);
               },
             ));
@@ -209,16 +216,17 @@ class groupList extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) {
-              return CustomCardWidget(null,
-              onLongPress: (){
-                
-              },
-                  function: () => cowPage(context, flocks[index].flockId!),
-                  urlImage: flocks[index].flockImage!,
-                  title: flocks[index].flockName,
-                  description:
-                      "Cantidad de ganado: ${flocks[index].cattleQuantity}",
-                  radius: 12);
+              return Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: CustomCardWidget(null,
+                    onLongPress: () {},
+                    function: () => cowPage(context, flocks[index].flockId!),
+                    urlImage: flocks[index].flockImage!,
+                    title: flocks[index].flockName,
+                    description:
+                        "Cantidad de ganado: ${flocks[index].cattleQuantity}",
+                    radius: 12),
+              );
             },
           );
         } else {

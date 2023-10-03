@@ -30,6 +30,9 @@ dependencies:
   touchable: ^1.0.2
   xml: ^6.3.0
   path_drawing: ^1.0.1
+  syncfusion_flutter_calendar: ^23.1.38
+  flutter_local_notifications: 
+  
  
   
  

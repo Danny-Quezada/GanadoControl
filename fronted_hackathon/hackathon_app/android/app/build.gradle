@@ -24,10 +24,16 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.hackathon_app"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 33
+   
     ndkVersion flutter.ndkVersion
 
+
+     defaultConfig {
+    multiDexEnabled true
+  }
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -64,4 +70,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+}
