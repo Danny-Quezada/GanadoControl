@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {}
+    "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {}
   },
   "projects": {
-    "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Data\\Data.csproj": {
+    "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Data\\Data.csproj",
-        "packagesPath": "C:\\Users\\fjcal\\.nuget\\packages\\",
-        "outputPath": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Data\\obj\\",
+        "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\Kevin Roa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\fjcal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kevin Roa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Models\\Models.csproj": {
-                "projectPath": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Models\\Models.csproj"
+              "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj"
               }
             }
           }
@@ -69,21 +74,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {
+    "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
         "projectName": "GanadoControlAPI",
-        "projectPath": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
-        "packagesPath": "C:\\Users\\fjcal\\.nuget\\packages\\",
-        "outputPath": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\GanadoControlAPI\\obj\\",
+        "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+        "packagesPath": "C:\\Users\\Kevin Roa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\fjcal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kevin Roa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -91,17 +100,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Data\\Data.csproj": {
-                "projectPath": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Data\\Data.csproj"
+              "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\Data.csproj"
               },
-              "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Models\\Models.csproj": {
-                "projectPath": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Models\\Models.csproj"
+              "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj"
               }
             }
           }
@@ -148,21 +158,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Models\\Models.csproj": {
+    "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Models\\Models.csproj",
-        "packagesPath": "C:\\Users\\fjcal\\.nuget\\packages\\",
-        "outputPath": "C:\\flutterApp\\Fronted_M3TEAM\\M3-TEAM\\API\\Models\\obj\\",
+        "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj",
+        "packagesPath": "C:\\Users\\Kevin Roa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\fjcal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Kevin Roa\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -170,6 +184,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -217,7 +232,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

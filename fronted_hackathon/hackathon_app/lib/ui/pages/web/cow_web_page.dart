@@ -111,8 +111,7 @@ class CowWebPage extends StatelessWidget {
               "Reyna",
               "4 años",
             ],
-            onLongPress: (){},
-             
+                onLongPress: () {},
                 function: () => cowInformationPage(
                     context,
                     Cattle(
@@ -121,7 +120,7 @@ class CowWebPage extends StatelessWidget {
                       weight: 10,
                       birthDate: DateTime.now(),
                       type: '',
-                      groupId: index.toDouble(),
+                      groupId: index,
                     )),
                 urlImage: '',
                 title: 'Vaca',

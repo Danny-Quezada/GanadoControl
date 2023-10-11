@@ -1,9 +1,10 @@
-
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hackathon_app/domain/models/Entities/cattle.dart';
+import 'package:hackathon_app/provider/cattle_provider.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
+import 'package:hackathon_app/ui/util/path_image_asset.dart';
 import 'package:hackathon_app/ui/util/validator_textfield.dart';
 import 'package:hackathon_app/ui/widgets/button_widget.dart';
 import 'package:hackathon_app/ui/widgets/custom_form_field.dart';
@@ -11,6 +12,7 @@ import 'package:hackathon_app/ui/widgets/datetime_picker_widget.dart';
 
 import 'package:hackathon_app/ui/widgets/labeled_checkbox.dart';
 import 'package:hackathon_app/ui/widgets/select_image_widget.dart';
+import 'package:provider/provider.dart';
 
 class AddCowPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -18,20 +20,25 @@ class AddCowPage extends StatelessWidget {
   TextEditingController raceController = TextEditingController();
   TextEditingController weightContoller = TextEditingController();
   TextEditingController cowCalvingController = TextEditingController();
- TextEditingController birthDateTimeController = TextEditingController();
- TextEditingController inseminationDateTimeController = TextEditingController();
+  TextEditingController birthDateTimeController = TextEditingController();
+  TextEditingController inseminationDateTimeController =
+      TextEditingController();
 
   FocusNode identifierNode = FocusNode();
   FocusNode raceNode = FocusNode();
   FocusNode weightNode = FocusNode();
   FocusNode cowCalvingNode = FocusNode();
- 
+  File? file;
+
   int famrId;
   AddCowPage({required this.famrId});
 
   @override
   Widget build(BuildContext context) {
-    TextStyle textstyle=TextStyle(color: ColorPalette.colorFontTextFieldPrincipal,fontWeight: FontWeight.w700);
+    var cattleProvider = Provider.of<CattleProvider>(context, listen: false);
+    TextStyle textstyle = TextStyle(
+        color: ColorPalette.colorFontTextFieldPrincipal,
+        fontWeight: FontWeight.w700);
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -43,7 +50,10 @@ class AddCowPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-               SelectImageWidget(diameter: 180, color: Colors.grey.shade200, onChange: (File file){}),
+                SelectImageWidget(
+                    diameter: 180,
+                    color: Colors.grey.shade200,
+                    onChange: (File file) {}),
                 const SizedBox(
                   height: 20,
                 ),
@@ -81,31 +91,55 @@ class AddCowPage extends StatelessWidget {
                     hintText: "8",
                     labelText: "Número de parto",
                     obscureText: false),
-             
-                  DateTimePicker(text: "Fecha de nacimiento", size: const Size(275,31), dateTimeController: birthDateTimeController,color: ColorPalette.colorFontTextFieldPrincipal,),
+                DateTimePicker(
+                  text: "Fecha de nacimiento",
+                  size: const Size(275, 31),
+                  dateTimeController: birthDateTimeController,
+                  color: ColorPalette.colorFontTextFieldPrincipal,
+                ),
                 const SizedBox(
                   height: 20,
                 ),
-               
-                  DateTimePicker(text: "Fecha de inseminación", size: const Size(275,31), dateTimeController: inseminationDateTimeController,color: ColorPalette.colorFontTextFieldPrincipal,),
-               
-                  
+                DateTimePicker(
+                  text: "Fecha de inseminación",
+                  size: const Size(275, 31),
+                  dateTimeController: inseminationDateTimeController,
+                  color: ColorPalette.colorFontTextFieldPrincipal,
+                ),
                 const SizedBox(
                   height: 20,
                 ),
-                 Text("Tipo de parto",style: textstyle,),
+                Text(
+                  "Tipo de parto",
+                  style: textstyle,
+                ),
                 CheckboxList(),
-              
                 Center(
                   child: ButtonWidget(
                       text: "Agregar vaca",
-                      size:const Size(282, 64),
+                      size: const Size(282, 64),
                       color: Colors.green.shade200,
                       rounded: 16,
-                      function: () {
+                      function: () async {
                         final FormState form = _formKey.currentState!;
                         if (form.validate()) {
-                          print('Form is valid');
+                          Cattle cattle = Cattle(
+                            idCattle: identifierController.text,
+                            race: raceController.text,
+                            weight: double.parse(weightContoller.text),
+                            birthDate:
+                                DateTime.parse(birthDateTimeController.text),
+                            type: "d",
+                            groupId: famrId,
+                            status: "activo",
+                          );
+
+                          File fileImage = file ??
+                              await PathImageAsset.getImageFileFromAssets(
+                                  "images/sections/image.png");
+                          cattle.imageName = fileImage!.path.split("/").last;
+                          cattle.imagePath = fileImage.path;
+                          await cattleProvider.create(cattle);
                         } else {
                           print('Form is invalid');
                         }
@@ -119,16 +153,9 @@ class AddCowPage extends StatelessWidget {
       ),
     );
   }
-
-
-
-
 }
 
-
 class CheckboxList extends StatefulWidget {
-
-
   const CheckboxList({super.key});
 
   @override
@@ -136,30 +163,35 @@ class CheckboxList extends StatefulWidget {
 }
 
 class _CheckboxListState extends State<CheckboxList> {
-
   bool isCheckedNatural = false;
-  bool isCheckedCesarea=false;
-checkBoxCallback(bool checkBoxState) {
+  bool isCheckedCesarea = false;
+  checkBoxCallback(bool checkBoxState) {
     setState(() {
       isCheckedNatural = checkBoxState;
-      isCheckedCesarea=!isCheckedNatural;
-      });
-    
- }
- checkBoxCallbackCesarea(bool checkBoxState) {
+      isCheckedCesarea = !isCheckedNatural;
+    });
+  }
+
+  checkBoxCallbackCesarea(bool checkBoxState) {
     setState(() {
-      isCheckedCesarea= checkBoxState;
-      isCheckedNatural=!isCheckedCesarea;
-      }); 
- }
+      isCheckedCesarea = checkBoxState;
+      isCheckedNatural = !isCheckedCesarea;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        LabeledCheckbox(label: "Natural",value: isCheckedNatural,onChanged: checkBoxCallback
-          ,),
-          LabeledCheckbox(label: "Cesárea", value: isCheckedCesarea, onChanged: checkBoxCallbackCesarea)
+        LabeledCheckbox(
+          label: "Natural",
+          value: isCheckedNatural,
+          onChanged: checkBoxCallback,
+        ),
+        LabeledCheckbox(
+            label: "Cesárea",
+            value: isCheckedCesarea,
+            onChanged: checkBoxCallbackCesarea)
       ],
     );
   }

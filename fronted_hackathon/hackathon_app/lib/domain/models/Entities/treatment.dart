@@ -1,47 +1,48 @@
 class Treatment {
-    Treatment({
-      this.meditationName="",
-        this.treatmentId=0,
-        required this.cattleId,
-        required this.meditationId,
-        required this.date,
-        required this.type,
-        required this.dosis,
-        required this.observation,
-        required this.aplicationArea,
-    });
-String? meditationName;
-     int? treatmentId;
-    final String cattleId;
-    final int meditationId;
-    final DateTime? date;
-    final String type;
-    final String dosis;
-    final String observation;
-    final String aplicationArea;
+  Treatment({
+    this.treatmentId = 0,
+    required this.cattleId,
+    this.meditationName = "",
+    required this.date,
+    required this.type,
+    required this.dosis,
+    required this.observation,
+    required this.aplicationArea,
+    this.meditationId,
+  });
+  String? meditationName;
+  int? treatmentId;
+  final String cattleId;
+  final String? meditationId;
+  final DateTime? date;
+  final String type;
+  final double dosis;
+  final String observation;
+  final String aplicationArea;
 
-    factory Treatment.fromJson(Map<String, dynamic> json){ 
-        return Treatment(
-            treatmentId: json["Id"] ?? 0,
-            cattleId: json["IdGanado"] ?? "",
-            meditationId: json["IdFarmaco"] ?? 0,
-            date: DateTime.tryParse(json["Fecha"] ?? ""),
-            type: json["Tipo"] ?? "",
-            dosis: json["Dosis"] ?? "",
-            observation: json["Observacion"] ?? "",
-            aplicationArea: json["AreaAplicacion"] ?? "",
-        );
-    }
+  factory Treatment.fromJson(Map<String, dynamic> json) {
+    return Treatment(
+        treatmentId: json["Id"] as int,
+        cattleId: json["IdGanado"] as String,
+        meditationName: json["NombreFarmaco"] as String,
+        date: DateTime.tryParse(json["Fecha"] ?? ""),
+        type: json["Tipo"] as String,
+        dosis: double.parse(json["Dosis"].toString()),
+        observation: json["Observacion"] as String,
+        aplicationArea: json["AreaAplicacion"] as String);
+  }
 
-    Map<String, dynamic> toJson() => {
-        "Id": treatmentId,
-        "IdGanado": cattleId,
-        "IdFarmaco": meditationId,
-        "Fecha": date?.toIso8601String(),
-        "Tipo": type,
-        "Dosis": dosis,
-        "Observacion": observation,
-        "AreaAplicacion": aplicationArea,
+  Map<String, dynamic> toJson() {
+    return {
+      "Id": treatmentId,
+      "IdGanado": cattleId,
+      "NombreFarmaco": meditationName,
+      "Fecha": date?.toIso8601String(),
+      "Tipo": type,
+      "Dosis": dosis,
+      "Observacion": observation,
+      "AreaAplicacion": aplicationArea,
+      "IdFarmaco": meditationId,
     };
-
+  }
 }

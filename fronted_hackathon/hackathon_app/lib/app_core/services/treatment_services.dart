@@ -19,11 +19,10 @@ class TreatmentServices implements ITreatmentServices {
   }
 
   @override
-  Future<List<Treatment>> getAllTreatmentByFarm(int farmId) async {
-    return await iTreatmentModel.getAllTreatmentByFarm(farmId);
+  Future<List<Treatment>> getAllTreatmentByFarm(int IdFarm) async {
+    return await iTreatmentModel.getAllTreatmentByFarm(IdFarm);
   }
 
-  @override
   Future<Treatment> getTreatment(int treatmentId) {
     // TODO: implement getTreatment
     throw UnimplementedError();
@@ -39,5 +38,20 @@ class TreatmentServices implements ITreatmentServices {
   Future<bool> update(Treatment t) {
     // TODO: implement update
     throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Treatment>> getTreatmentByCattle(int IdCattle) async {
+    return await iTreatmentModel.getTreatmentByCattle(IdCattle);
+  }
+
+  @override
+  Future<List<Treatment>> getTreatmentByGroup(int IdGroup) async {
+    return await iTreatmentModel.getTreatmentByGroup(IdGroup);
+  }
+
+  @override
+  Future<List<Treatment>> getTreatmentByUser(int IdUser) async {
+    return await iTreatmentModel.getTreatmentByUser(IdUser);
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/app_core/iservices/icattle_services.dart';
@@ -10,6 +9,7 @@ import 'package:hackathon_app/app_core/services/treatment_services.dart';
 import 'package:hackathon_app/domain/interfaces/icattle_model.dart';
 import 'package:hackathon_app/domain/interfaces/imeditation_model.dart';
 import 'package:hackathon_app/domain/interfaces/itreatment.dart';
+import 'package:hackathon_app/domain/models/Entities/cattle.dart';
 import 'package:hackathon_app/infraestructure/repository/cattle_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/meditation_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/treatment_repository.dart';
@@ -17,9 +17,11 @@ import 'package:hackathon_app/provider/body_part_provider.dart';
 import 'package:hackathon_app/provider/cattle_provider.dart';
 import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/provider/treatment_provider.dart';
+import 'package:hackathon_app/ui/pages/mobil/add_cow_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_detail_physical_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/calendar_page.dart';
-
+import 'package:hackathon_app/ui/pages/mobil/cow_information_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/farm_page.dart';
 
 import 'package:provider/provider.dart';
 
@@ -41,26 +43,21 @@ import 'provider/user_provider.dart';
 import 'ui/config/color_palette.dart';
 import 'ui/pages/mobil/initial_page.dart';
 
-
-
 void main(List<String> args) {
-
   runApp(MyApp());
 }
-  final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
+
+final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
-   MyApp({
+  MyApp({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-   
-    
     return MultiProvider(
       providers: [
-      
         Provider<IUserModel>(
           create: (_) =>
               UserRepository(), // Crea una instancia de UserRepository como IUserModel
@@ -83,57 +80,52 @@ class MyApp extends StatelessWidget {
               iFarmServices:
                   Provider.of<IFarmServices>(context, listen: false)),
         ),
-
- Provider<IFlockModel>(create: (_) => FlockRepository()),
+        Provider<IFlockModel>(create: (_) => FlockRepository()),
         Provider<IFlockServices>(
             create: (context) => FlockServices(
                 iFlockModel: Provider.of<IFlockModel>(context, listen: false))),
         ChangeNotifierProvider(
           create: (context) => FlockProvider(
-              iFlockServices: 
+              iFlockServices:
                   Provider.of<IFlockServices>(context, listen: false)),
         ),
-
- Provider<ICattleModel>(create: (_) => CattleRepository()),
+        Provider<ICattleModel>(create: (_) => CattleRepository()),
         Provider<ICattleServices>(
             create: (context) => CattleServices(
-                iCattleModel: Provider.of<ICattleModel>(context, listen: false))),
+                iCattleModel:
+                    Provider.of<ICattleModel>(context, listen: false))),
         ChangeNotifierProvider(
           create: (context) => CattleProvider(
-              iCattleServices: 
+              iCattleServices:
                   Provider.of<ICattleServices>(context, listen: false)),
         ),
-
-         Provider<ITreatmentModel>(create: (_) => TreatmentRepository()),
+        Provider<ITreatmentModel>(create: (_) => TreatmentRepository()),
         Provider<ITreatmentServices>(
             create: (context) => TreatmentServices(
-                iTreatmentModel: Provider.of<ITreatmentModel>(context, listen: false))),
+                iTreatmentModel:
+                    Provider.of<ITreatmentModel>(context, listen: false))),
         ChangeNotifierProvider(
           create: (context) => TreatmentProvider(
-              iTreatmentServices: 
-                  Provider.of<ITreatmentServices>(context, listen: false)),       
+              iTreatmentServices:
+                  Provider.of<ITreatmentServices>(context, listen: false)),
         ),
-  Provider<IMeditationModel>(create: (_) => MeditationRepository()),
+        Provider<IMeditationModel>(create: (_) => MeditationRepository()),
         Provider<IMeditationServices>(
             create: (context) => MeditationServices(
-                iMeditationModel: Provider.of<IMeditationModel>(context, listen: false))),
+                iMeditationModel:
+                    Provider.of<IMeditationModel>(context, listen: false))),
         ChangeNotifierProvider(
           create: (context) => MeditationProvider(
-              iFarmServices: 
+              iFarmServices:
                   Provider.of<IMeditationServices>(context, listen: false)),
-        
-                  
         ),
-        ChangeNotifierProvider(create: (_)=>BodyPartProvider())
-
-
-        
+        ChangeNotifierProvider(create: (_) => BodyPartProvider())
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         initialRoute: "/",
-        routes: {"/":(context)=>SplashScreen()},
+        routes: {"/": (context) => SplashScreen()},
         theme: ThemeData(
           primaryColor: ColorPalette.colorPrincipal,
           scaffoldBackgroundColor: Colors.white,
@@ -152,21 +144,29 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: FlutterSplashScreen.fadeIn(
-            backgroundColor: Colors.white,
-            onInit: () {
-              debugPrint("On Init");
-            },
-            onEnd: () {
-              debugPrint("On End");
-            },
-            childWidget: SizedBox(
-              height: 200,
-              width: 200,
-              child: Image.asset("assets/images/sections/Logo.png"),
-            ),
-            onAnimationEnd: () => debugPrint("On Fade In End"),
-            defaultNextScreen: CalendarPage(CattleId: "ddd",)
-          ),
+        backgroundColor: Colors.white,
+        onInit: () {
+          debugPrint("On Init");
+        },
+        onEnd: () {
+          debugPrint("On End");
+        },
+        childWidget: SizedBox(
+          height: 200,
+          width: 200,
+          child: Image.asset("assets/images/sections/Logo.png"),
+        ),
+        onAnimationEnd: () => debugPrint("On Fade In End"),
+        defaultNextScreen: CowInformationPage(
+            cattle: Cattle(
+                idCattle: 'tr',
+                race: 'sdad',
+                weight: 5,
+                birthDate: DateTime.now(),
+                type: 'fd',
+                groupId: 3)),
+        // defaultNextScreen: CalendarPage(CattleId: "ddd",)
+      ),
     );
   }
 }

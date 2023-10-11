@@ -9,7 +9,11 @@ class CattleRepository implements ICattleModel {
   @override
   Future<int> create(Cattle t) async {
     try {
-      FormData formData = FormData.fromMap(t.toJson());
+      FormData formData = FormData.fromMap(t.toJson()
+        ..addAll({
+          "FotoURL":
+              await MultipartFile.fromFile(t.imagePath, filename: t.imageName)
+        }));
       var response = await dio.post(Constant.creatCattle, data: formData);
       if (response.statusCode == 200) {
         int value = await response.data;
@@ -28,9 +32,22 @@ class CattleRepository implements ICattleModel {
   }
 
   @override
-  Future<List<Cattle>> getAllCattleByGroup(int groupId) {
-    // TODO: implement getAllCattleByGroup
-    throw UnimplementedError();
+  Future<List<Cattle>> getAllCattleByGroup(int groupId) async {
+    List<Cattle> cattles = [];
+
+    try {
+      var response = await dio.get("${Constant.getCattle}/$groupId");
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data;
+        data.forEach((element) {
+          cattles.add(Cattle.fromJson(element));
+        });
+        return cattles;
+      }
+      throw Exception("Hubo un error, intente nuevamente.");
+    } catch (e) {
+      throw Exception("Error en el servidor.");
+    }
   }
 
   @override

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_app/provider/treatment_provider.dart';
 
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import '../../../domain/models/Entities/cattle.dart';
 import '../../../domain/models/Entities/treatment.dart';
 import '../../../domain/models/enums/pharmaceuticals.dart';
@@ -24,7 +26,7 @@ class CowInformationPage extends StatelessWidget {
     return SafeArea(
       child: GestureDetector(
         onTap: () {
-          if(_controller!=null){
+          if (_controller != null) {
             _controller!.close();
           }
         },
@@ -93,7 +95,6 @@ class CowInformationPage extends StatelessWidget {
 }
 
 class ListMedical extends StatelessWidget {
-  
   const ListMedical({
     super.key,
   });
@@ -118,44 +119,46 @@ class ListMedical extends StatelessWidget {
             padding: const EdgeInsets.only(top: 10.0),
             child: PillWidget(2,
                 pharmaceuticals: Pharmaceuticals.Medicamentos,
-                title: "Marbox",
-                function: () {
-                 //_showDetailsTreatment(Treatment(cattleId: catt, meditationId: meditationId, date: date, type: type, dosis: dosis, observation: observation, aplicationArea: aplicationArea), context)
-                }),
+                title: "Marbox", function: () {
+              //_showDetailsTreatment(Treatment(cattleId: catt, meditationId: meditationId, date: date, type: type, dosis: dosis, observation: observation, aplicationArea: aplicationArea), context)
+            }),
           )
         ],
       ),
     );
   }
 
-  
-  _showDetailsTreatment( Treatment treatment, BuildContext context) {
+  _showDetailsTreatment(Treatment treatment, BuildContext context) {
     return showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           content: SingleChildScrollView(
-           
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-               Text(treatment.meditationName!),
-               RichTextWidget(title: "Día: ", content: DateFormat('hh:mm:ss').format(treatment.date!)),
-               RichTextWidget(title: "Dosis", content: treatment.dosis),
-               RichTextWidget(title: "Área: ",content: treatment.aplicationArea, ),
-               const Text("Observaciones",style: TextStyle(color: Colors.red)),
-               Text(treatment.observation)
+                Text(treatment.meditationName!),
+                RichTextWidget(
+                    title: "Día: ",
+                    content: DateFormat('hh:mm:ss').format(treatment.date!)),
+                RichTextWidget(
+                    title: "Dosis", content: treatment.dosis.toString()),
+                RichTextWidget(
+                  title: "Área: ",
+                  content: treatment.aplicationArea,
+                ),
+                const Text("Observaciones",
+                    style: TextStyle(color: Colors.red)),
+                Text(treatment.observation)
               ],
-           
             ),
           ),
         );
       },
     );
   }
-
 }
 
 class OptionMenu extends StatefulWidget {
@@ -219,13 +222,12 @@ class _OptionMenuState extends State<OptionMenu> {
               icon: Image.asset("assets/images/icons/cowFamily.png")),
           IconButton(
               onPressed: () {
-                _controller=
-                _scaffoldKey.currentState!.showBottomSheet(
-                  
+                _controller = _scaffoldKey.currentState!.showBottomSheet(
                     backgroundColor: Colors.white,
                     (context) => addTreatmentBottomSheet(
-                        cattleId: widget.cattle.idCattle));
-                
+                          cattleId: widget.cattle.idCattle,
+                          type: widget.cattle.type,
+                        ));
               },
               icon: Image.asset("assets/images/icons/greenPlus.png"))
         ],
@@ -245,10 +247,13 @@ class addTreatmentBottomSheet extends StatelessWidget {
   FocusNode observationNode = FocusNode();
 
   String cattleId;
-  addTreatmentBottomSheet({required this.cattleId});
+  String type;
+  addTreatmentBottomSheet({required this.cattleId, required this.type});
 
   @override
   Widget build(BuildContext context) {
+    var treatmentProvider =
+        Provider.of<TreatmentProvider>(context, listen: false);
     return Form(
       child: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -283,7 +288,20 @@ class addTreatmentBottomSheet extends StatelessWidget {
               color: const Color(0xFFCA78FF),
               fontSize: 16,
               size: const Size(261, 31),
-              function: () {},
+              function: () async {
+                // final FormState? form = _formKey.currentState;
+                // if (form!.validate()) {
+                Treatment treatment = Treatment(
+                    cattleId: 'dj',
+                    meditationId: 1.toString(),
+                    date: DateTime.now(),
+                    type: type,
+                    dosis: double.parse(dosisController.text),
+                    observation: observationController.text,
+                    aplicationArea: areaController.text);
+                await treatmentProvider.create(treatment);
+                // }
+              },
               rounded: 12,
               text: "Elegir fármaco",
             )
@@ -292,5 +310,4 @@ class addTreatmentBottomSheet extends StatelessWidget {
       ),
     );
   }
-
 }

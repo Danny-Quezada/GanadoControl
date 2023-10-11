@@ -28,12 +28,6 @@ class TreatmentRepository implements ITreatmentModel {
   }
 
   @override
-  Future<List<Treatment>> getAllTreatmentByFarm(int userId) {
-    // TODO: implement getAllTreatmentByFarm
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Treatment> getTreatment(int treatmentId) {
     // TODO: implement getTreatment
     throw UnimplementedError();
@@ -49,5 +43,82 @@ class TreatmentRepository implements ITreatmentModel {
   Future<bool> update(Treatment t) {
     // TODO: implement update
     throw UnimplementedError();
+  }
+
+  @override
+  Future<List<Treatment>> getTreatmentByCattle(int IdCattle) async {
+    List<Treatment> treatments = [];
+
+    try {
+      var response =
+          await dio.get("${Constant.getTreatmentByCattle}/$IdCattle");
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data;
+        data.forEach((element) {
+          treatments.add(Treatment.fromJson(element));
+        });
+        return treatments;
+      }
+      throw Exception("Hubo un error, intente nuevamente.");
+    } catch (e) {
+      throw Exception("Error en el servidor.");
+    }
+  }
+
+  @override
+  Future<List<Treatment>> getTreatmentByGroup(int IdGroup) async {
+    List<Treatment> treatments = [];
+
+    try {
+      var response = await dio.get("${Constant.getTreatmentByGroup}/$IdGroup");
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data;
+        data.forEach((element) {
+          treatments.add(Treatment.fromJson(element));
+        });
+        return treatments;
+      }
+      throw Exception("Hubo un error, intente nuevamente.");
+    } catch (e) {
+      throw Exception("Error en el servidor.");
+    }
+  }
+
+  @override
+  Future<List<Treatment>> getTreatmentByUser(int IdUser) async {
+    List<Treatment> treatments = [];
+
+    try {
+      var response = await dio.get("${Constant.getTreatmentByUser}/$IdUser");
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data;
+        data.forEach((element) {
+          treatments.add(Treatment.fromJson(element));
+        });
+        return treatments;
+      }
+      throw Exception("Hubo un error, intente nuevamente.");
+    } catch (e) {
+      throw Exception("Error en el servidor.");
+    }
+  }
+
+  @override
+  Future<List<Treatment>> getAllTreatmentByFarm(int IdFarm) async {
+    List<Treatment> treatments = [];
+
+    try {
+      var response = await dio.get("${Constant.getTreatmentByFarm}/$IdFarm");
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data;
+        data.forEach((element) {
+          treatments.add(Treatment.fromJson(element));
+        });
+        return treatments;
+      }
+      throw Exception("Hubo un error, intente nuevamente.");
+    } catch (e) {
+      throw Exception("Error en el servidor.");
+    }
   }
 }

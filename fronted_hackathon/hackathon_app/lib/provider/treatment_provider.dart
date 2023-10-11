@@ -34,12 +34,42 @@ class TreatmentProvider extends ChangeNotifier
     notifyListeners();
   }
 
-  Future<List<Treatment>> getAllTreatmentByFarm(int farmId) async {
+  Future<List<Treatment>> getTreatmentByUser(int IdUser) async {
     if (list != null) {
       return list!;
     }
 
-    list = await _iTreatmentServices.getAllTreatmentByFarm(farmId);
+    list = await _iTreatmentServices.getTreatmentByUser(IdUser);
+    notifyListeners();
+    return list!;
+  }
+
+  Future<List<Treatment>> getTreatmentByCattle(int IdCattle) async {
+    if (list != null) {
+      return list!;
+    }
+
+    list = await _iTreatmentServices.getTreatmentByCattle(IdCattle);
+    notifyListeners();
+    return list!;
+  }
+
+  Future<List<Treatment>> getAllTreatmentByFarm(int IdFarm) async {
+    if (list != null) {
+      return list!;
+    }
+
+    list = await _iTreatmentServices.getAllTreatmentByFarm(IdFarm);
+    notifyListeners();
+    return list!;
+  }
+
+  Future<List<Treatment>> getTreatmentByGroup(int IdGroup) async {
+    if (list != null) {
+      return list!;
+    }
+
+    list = await _iTreatmentServices.getTreatmentByGroup(IdGroup);
     notifyListeners();
     return list!;
   }
