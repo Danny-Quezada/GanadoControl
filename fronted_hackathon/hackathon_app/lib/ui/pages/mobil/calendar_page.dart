@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hackathon_app/app_core/services/notification_services.dart';
-import 'package:hackathon_app/domain/models/Entities/cattle.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
 import 'package:hackathon_app/ui/util/meeting_data_source.dart';
 import 'package:hackathon_app/ui/util/validator_textfield.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_app/ui/pages/mobil/configuration_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/farm_page.dart';
 
 class PrincipalPage extends StatefulWidget {
@@ -12,7 +13,7 @@ List<Widget> pages = [
   Container(),
   FarmPage(),
   Container(),
-  Container()
+  ConfigurationPage()
 ];
 int _index = 0;
 
@@ -30,7 +31,6 @@ class _PrincipalPageState extends State<PrincipalPage> {
             },
             currentIndex: _index,
             elevation: 0,
-            backgroundColor: Colors.white,
             iconSize: 32,
             items: [
               BottomNavigationBarItem(

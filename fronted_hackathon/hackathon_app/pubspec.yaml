@@ -32,6 +32,8 @@ dependencies:
   path_drawing: ^1.0.1
   syncfusion_flutter_calendar: ^23.1.38
   flutter_local_notifications: 
+  cached_network_image: ^3.3.0
+  shared_preferences: ^2.2.2
   
  
   

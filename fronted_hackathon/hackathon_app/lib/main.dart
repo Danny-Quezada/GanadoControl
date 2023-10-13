@@ -5,11 +5,13 @@ import 'package:hackathon_app/app_core/iservices/imeditation_services.dart';
 import 'package:hackathon_app/app_core/iservices/itreatment_service.dart';
 import 'package:hackathon_app/app_core/services/cattle_services.dart';
 import 'package:hackathon_app/app_core/services/meditation_services.dart';
+import 'package:hackathon_app/app_core/services/shared_preferences_services.dart';
 import 'package:hackathon_app/app_core/services/treatment_services.dart';
 import 'package:hackathon_app/domain/interfaces/icattle_model.dart';
 import 'package:hackathon_app/domain/interfaces/imeditation_model.dart';
 import 'package:hackathon_app/domain/interfaces/itreatment.dart';
 import 'package:hackathon_app/domain/models/Entities/cattle.dart';
+import 'package:hackathon_app/domain/models/Entities/user.dart';
 import 'package:hackathon_app/infraestructure/repository/cattle_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/meditation_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/treatment_repository.dart';
@@ -22,6 +24,7 @@ import 'package:hackathon_app/ui/pages/mobil/add_detail_physical_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/calendar_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/cow_information_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/farm_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/principal_page.dart';
 
 import 'package:provider/provider.dart';
 
@@ -126,9 +129,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: "/",
         routes: {"/": (context) => SplashScreen()},
+    
         theme: ThemeData(
           primaryColor: ColorPalette.colorPrincipal,
-          scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.white,
           colorScheme: ColorScheme.light(primary: ColorPalette.colorPrincipal),
           fontFamily: "Montserrat",
         ),
@@ -157,14 +161,15 @@ class SplashScreen extends StatelessWidget {
           child: Image.asset("assets/images/sections/Logo.png"),
         ),
         onAnimationEnd: () => debugPrint("On Fade In End"),
-        defaultNextScreen: CowInformationPage(
-            cattle: Cattle(
-                idCattle: 'tr',
-                race: 'sdad',
-                weight: 5,
-                birthDate: DateTime.now(),
-                type: 'fd',
-                groupId: 3)),
+        defaultNextScreen:null,
+        setNextScreenAsyncCallback: ()async{
+          User? user=await SharedPreferencesServices.readUser();
+          if(user!=null){
+            final userProvider=Provider.of<UserProvider>(context,listen: false).user=user;
+            return PrincipalPage();
+          }
+          return InitialPage();
+        },
         // defaultNextScreen: CalendarPage(CattleId: "ddd",)
       ),
     );

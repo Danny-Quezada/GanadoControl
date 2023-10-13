@@ -39,7 +39,9 @@ class CowPage extends StatelessWidget {
                   iconColor: const Color(0xffABA5A5),
                   backgroundColor: const Color(0xFFf2f2f2),
                   function: (value) {}),
-              Expanded(
+              SizedBox(
+                height: size.height*.8,
+                width: size.width,
                 child: CattleList(GroupId: flockId),
               ),
             ],

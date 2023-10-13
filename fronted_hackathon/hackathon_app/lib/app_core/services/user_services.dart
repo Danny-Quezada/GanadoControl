@@ -1,9 +1,11 @@
 import 'package:hackathon_app/app_core/iservices/iuser_services.dart';
+import 'package:hackathon_app/app_core/services/shared_preferences_services.dart';
 import 'package:hackathon_app/domain/interfaces/iuser_model.dart';
 import 'package:hackathon_app/domain/models/Entities/user.dart';
 
-class UserServices implements IUserServices{
-IUserModel iUserModel;
+class UserServices implements IUserServices {
+  IUserModel iUserModel;
+
   UserServices({required this.iUserModel});
   @override
   Future<String> changeState(int userId, bool estado) {
@@ -11,8 +13,10 @@ IUserModel iUserModel;
   }
 
   @override
-  Future<int> create(User t) {
-    return iUserModel.create(t);
+  Future<int> create(User t) async {
+    int value = await iUserModel.create(t);
+    await SharedPreferencesServices.saveUser(t);
+    return value;
   }
 
   @override
@@ -34,8 +38,10 @@ IUserModel iUserModel;
   }
 
   @override
-  Future<User> verifyUser(String userName, String password) {
-    return iUserModel.verifyUser(userName, password);
-  }
+  Future<User> verifyUser(String userName, String password) async {
+    User user = await iUserModel.verifyUser(userName, password);
 
+    SharedPreferencesServices.saveUser(user);
+    return user;
+  }
 }
