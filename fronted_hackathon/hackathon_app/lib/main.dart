@@ -21,6 +21,7 @@ import 'package:hackathon_app/ui/pages/mobil/add_cow_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_detail_physical_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/calendar_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/cow_information_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/cow_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/farm_page.dart';
 
 import 'package:provider/provider.dart';
@@ -157,14 +158,17 @@ class SplashScreen extends StatelessWidget {
           child: Image.asset("assets/images/sections/Logo.png"),
         ),
         onAnimationEnd: () => debugPrint("On Fade In End"),
-        defaultNextScreen: CowInformationPage(
-            cattle: Cattle(
-                idCattle: 'tr',
-                race: 'sdad',
-                weight: 5,
-                birthDate: DateTime.now(),
-                type: 'fd',
-                groupId: 3)),
+        defaultNextScreen: CowPage(
+          flockId: 6,
+        ),
+        // CowInformationPage(
+        //     cattle: Cattle(
+        //         idCattle: 'tr',
+        //         race: 'sdad',
+        //         weight: 5,
+        //         birthDate: DateTime.now(),
+        //         type: 'fd',
+        //         groupId: 3)),
         // defaultNextScreen: CalendarPage(CattleId: "ddd",)
       ),
     );

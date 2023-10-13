@@ -19,10 +19,9 @@ class CattleProvider extends ChangeNotifier
 
   Future<void> create(Cattle cattle) async {
     try {
-      int cattleValue = await _iCattleServices.create(cattle);
-
-      if (cattleValue >= 0) {
-        cattle.idCattle = cattleValue as String;
+      String cattleValue = await _iCattleServices.createCattle(cattle);
+      if (cattleValue.isNotEmpty) {
+        cattle.idCattle = cattleValue;
         t = cattle;
         list!.add(t!);
         t = null;

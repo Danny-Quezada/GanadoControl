@@ -19,7 +19,7 @@ class TreatmentServices implements ITreatmentServices {
   }
 
   @override
-  Future<List<Treatment>> getAllTreatmentByFarm(int IdFarm) async {
+  Future<List<Treatment>> getAllTreatmentByFarm(String IdFarm) async {
     return await iTreatmentModel.getAllTreatmentByFarm(IdFarm);
   }
 
@@ -41,17 +41,17 @@ class TreatmentServices implements ITreatmentServices {
   }
 
   @override
-  Future<List<Treatment>> getTreatmentByCattle(int IdCattle) async {
+  Future<List<Treatment>> getTreatmentByCattle(String IdCattle) async {
     return await iTreatmentModel.getTreatmentByCattle(IdCattle);
   }
 
   @override
-  Future<List<Treatment>> getTreatmentByGroup(int IdGroup) async {
+  Future<List<Treatment>> getTreatmentByGroup(String IdGroup) async {
     return await iTreatmentModel.getTreatmentByGroup(IdGroup);
   }
 
   @override
-  Future<List<Treatment>> getTreatmentByUser(int IdUser) async {
+  Future<List<Treatment>> getTreatmentByUser(String IdUser) async {
     return await iTreatmentModel.getTreatmentByUser(IdUser);
   }
 }

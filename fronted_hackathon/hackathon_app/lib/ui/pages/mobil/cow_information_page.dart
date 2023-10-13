@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_provider_utilities/flutter_provider_utilities.dart';
+import 'package:hackathon_app/infraestructure/repository/treatment_repository.dart';
 import 'package:hackathon_app/provider/treatment_provider.dart';
+import 'package:hackathon_app/ui/widgets/flushbar_widget.dart';
 
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -80,7 +83,9 @@ class CowInformationPage extends StatelessWidget {
                           height: 20,
                         ),
                         OptionMenu(cattle: cattle),
-                        const ListMedical()
+                        ListMedical(
+                          cattleId: cattle.idCattle,
+                        )
                       ],
                     ),
                   ),
@@ -95,36 +100,55 @@ class CowInformationPage extends StatelessWidget {
 }
 
 class ListMedical extends StatelessWidget {
-  const ListMedical({
-    super.key,
-  });
+  String cattleId;
+  ListMedical({required this.cattleId});
 
   @override
   Widget build(BuildContext context) {
+    final treatmentProvider =
+        Provider.of<TreatmentProvider>(context, listen: false);
+    treatmentProvider.getTreatmentByCattle(cattleId);
     Size size = MediaQuery.of(context).size;
-    return SizedBox(
-      width: size.width,
-      height: size.height * 0.5,
-      child: ListView(
-        padding: const EdgeInsets.all(15),
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: PillWidget(2,
-                pharmaceuticals: Pharmaceuticals.Vacunas,
-                title: "Derri A plus",
-                function: () {}),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: PillWidget(2,
-                pharmaceuticals: Pharmaceuticals.Medicamentos,
-                title: "Marbox", function: () {
-              //_showDetailsTreatment(Treatment(cattleId: catt, meditationId: meditationId, date: date, type: type, dosis: dosis, observation: observation, aplicationArea: aplicationArea), context)
-            }),
-          )
-        ],
+    return MessageListener<TreatmentProvider>(
+      child: Consumer<TreatmentProvider>(
+        builder: (context, TreatmentProviderConsumer, child) {
+          if (treatmentProvider.list == null) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return SizedBox(
+              width: size.width,
+              height: size.height * 0.5,
+              child: ListView.builder(
+                  padding: const EdgeInsets.all(15),
+                  shrinkWrap: true,
+                  physics: const ClampingScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemCount: TreatmentProviderConsumer.list!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Selector<TreatmentProvider, Treatment>(
+                      builder: (context, treatment, child) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: PillWidget(treatment.dosis.toInt(),
+                              pharmaceuticals: Pharmaceuticals.Vacunas,
+                              title: treatment.aplicationArea!,
+                              function: () {}),
+                        );
+                      },
+                      selector: (p0, p1) => p1.list![index],
+                    );
+                  }));
+        },
       ),
+      showInfo: (info) {
+        flushbarWidget(context: context, title: "Enhorabuena", message: info);
+      },
+      showError: (error) {
+        flushbarWidget(
+            context: context, title: "Error", message: error, error: false);
+      },
     );
   }
 
@@ -292,7 +316,7 @@ class addTreatmentBottomSheet extends StatelessWidget {
                 // final FormState? form = _formKey.currentState;
                 // if (form!.validate()) {
                 Treatment treatment = Treatment(
-                    cattleId: 'dj',
+                    cattleId: cattleId,
                     meditationId: 1.toString(),
                     date: DateTime.now(),
                     type: type,

@@ -15,9 +15,9 @@ class CattleRepository implements ICattleModel {
               await MultipartFile.fromFile(t.imagePath, filename: t.imageName)
         }));
       var response = await dio.post(Constant.creatCattle, data: formData);
-      if (response.statusCode == 200) {
-        int value = await response.data;
-        return value;
+      if (response.statusCode == 201) {
+        // int value = await response.data;
+        ;
       }
       throw Exception("Vaca no registrado, intente más tarde");
     } catch (e) {
@@ -66,5 +66,25 @@ class CattleRepository implements ICattleModel {
   Future<bool> update(Cattle t) {
     // TODO: implement update
     throw UnimplementedError();
+  }
+
+  @override
+  Future<String> createCattle(Cattle t) async {
+    try {
+      FormData formData = FormData.fromMap(t.toJson()
+        ..addAll({
+          "FotoURL":
+              await MultipartFile.fromFile(t.imagePath, filename: t.imageName)
+        }));
+      var response = await dio.post(Constant.creatCattle, data: formData);
+      if (response.statusCode == 201) {
+        // int value = await response.data;
+        return t.idCattle;
+        ;
+      }
+      throw Exception("Vaca no registrado, intente más tarde");
+    } catch (e) {
+      throw Exception("Hubo un problema con el servidor");
+    }
   }
 }
