@@ -11,9 +11,8 @@ class TreatmentRepository implements ITreatmentModel {
     try {
       FormData formData = FormData.fromMap(t.toJson());
       var response = await dio.post(Constant.createTreatment, data: formData);
-      if (response.statusCode == 200) {
-        int value = await response.data;
-        return value;
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return t.treatmentId!;
       }
       throw Exception("Tratamiento no registrado, intente más tarde");
     } catch (e) {
@@ -46,7 +45,7 @@ class TreatmentRepository implements ITreatmentModel {
   }
 
   @override
-  Future<List<Treatment>> getTreatmentByCattle(int IdCattle) async {
+  Future<List<Treatment>> getTreatmentByCattle(String IdCattle) async {
     List<Treatment> treatments = [];
 
     try {
@@ -66,7 +65,7 @@ class TreatmentRepository implements ITreatmentModel {
   }
 
   @override
-  Future<List<Treatment>> getTreatmentByGroup(int IdGroup) async {
+  Future<List<Treatment>> getTreatmentByGroup(String IdGroup) async {
     List<Treatment> treatments = [];
 
     try {
@@ -85,7 +84,7 @@ class TreatmentRepository implements ITreatmentModel {
   }
 
   @override
-  Future<List<Treatment>> getTreatmentByUser(int IdUser) async {
+  Future<List<Treatment>> getTreatmentByUser(String IdUser) async {
     List<Treatment> treatments = [];
 
     try {
@@ -104,7 +103,7 @@ class TreatmentRepository implements ITreatmentModel {
   }
 
   @override
-  Future<List<Treatment>> getAllTreatmentByFarm(int IdFarm) async {
+  Future<List<Treatment>> getAllTreatmentByFarm(String IdFarm) async {
     List<Treatment> treatments = [];
 
     try {

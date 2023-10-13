@@ -34,7 +34,7 @@ class TreatmentProvider extends ChangeNotifier
     notifyListeners();
   }
 
-  Future<List<Treatment>> getTreatmentByUser(int IdUser) async {
+  Future<List<Treatment>> getTreatmentByUser(String IdUser) async {
     if (list != null) {
       return list!;
     }
@@ -44,7 +44,7 @@ class TreatmentProvider extends ChangeNotifier
     return list!;
   }
 
-  Future<List<Treatment>> getTreatmentByCattle(int IdCattle) async {
+  Future<List<Treatment>> getTreatmentByCattle(String IdCattle) async {
     if (list != null) {
       return list!;
     }
@@ -54,7 +54,7 @@ class TreatmentProvider extends ChangeNotifier
     return list!;
   }
 
-  Future<List<Treatment>> getAllTreatmentByFarm(int IdFarm) async {
+  Future<List<Treatment>> getAllTreatmentByFarm(String IdFarm) async {
     if (list != null) {
       return list!;
     }
@@ -64,7 +64,7 @@ class TreatmentProvider extends ChangeNotifier
     return list!;
   }
 
-  Future<List<Treatment>> getTreatmentByGroup(int IdGroup) async {
+  Future<List<Treatment>> getTreatmentByGroup(String IdGroup) async {
     if (list != null) {
       return list!;
     }

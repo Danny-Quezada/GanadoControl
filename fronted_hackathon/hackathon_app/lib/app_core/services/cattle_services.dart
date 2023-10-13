@@ -40,4 +40,9 @@ class CattleServices implements ICattleServices {
     // TODO: implement update
     throw UnimplementedError();
   }
+
+  @override
+  Future<String> createCattle(Cattle t) async {
+    return await iCattleModel.createCattle(t);
+  }
 }

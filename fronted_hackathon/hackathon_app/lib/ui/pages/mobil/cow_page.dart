@@ -28,6 +28,7 @@ class CowPage extends StatelessWidget {
         padding: const EdgeInsets.only(left: 15, right: 15),
         child: SingleChildScrollView(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(
                 height: 20,
@@ -39,23 +40,13 @@ class CowPage extends StatelessWidget {
                   iconColor: const Color(0xffABA5A5),
                   backgroundColor: const Color(0xFFf2f2f2),
                   function: (value) {}),
-              SizedBox(
-                height: size.height*.8,
-                width: size.width,
+              Flexible(
                 child: CattleList(GroupId: flockId),
               ),
             ],
           ),
         ),
       ),
-    ));
-  }
-
-  void cowInformationPage(BuildContext context, Cattle ganado) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) {
-        return CowInformationPage(cattle: ganado);
-      },
     ));
   }
 }
@@ -77,6 +68,9 @@ class CattleList extends StatelessWidget {
           );
         }
         return ListView.builder(
+          shrinkWrap: true,
+          physics: const ClampingScrollPhysics(),
+          scrollDirection: Axis.vertical,
           itemCount: CattleProviderConsumer.list!.length,
           itemBuilder: (BuildContext context, int index) {
             return Selector<CattleProvider, Cattle>(
@@ -86,7 +80,7 @@ class CattleList extends StatelessWidget {
                   (DateTime.now().year - cattle.birthDate.year).toString() +
                       "año"
                 ],
-                    function: () {},
+                    function: () => cowInformationPage(context, cattle),
                     urlImage: cattle.urlImage!,
                     title: cattle.idCattle,
                     description:
@@ -107,6 +101,14 @@ class CattleList extends StatelessWidget {
             context: context, title: "Error", message: error, error: false);
       },
     );
+  }
+
+  void cowInformationPage(BuildContext context, Cattle ganado) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) {
+        return CowInformationPage(cattle: ganado);
+      },
+    ));
   }
 }
 

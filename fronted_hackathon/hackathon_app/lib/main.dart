@@ -23,6 +23,7 @@ import 'package:hackathon_app/ui/pages/mobil/add_cow_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_detail_physical_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/calendar_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/cow_information_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/cow_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/farm_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/principal_page.dart';
 

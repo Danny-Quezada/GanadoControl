@@ -140,6 +140,7 @@ class AddCowPage extends StatelessWidget {
                           cattle.imageName = fileImage!.path.split("/").last;
                           cattle.imagePath = fileImage.path;
                           await cattleProvider.create(cattle);
+                          Navigator.pop(context);
                         } else {
                           print('Form is invalid');
                         }
