@@ -1,12 +1,13 @@
 import 'package:hackathon_app/app_core/iservices/iuser_services.dart';
 import 'package:hackathon_app/app_core/services/shared_preferences_services.dart';
+import 'package:hackathon_app/domain/interfaces/imodel.dart';
 import 'package:hackathon_app/domain/interfaces/iuser_model.dart';
 import 'package:hackathon_app/domain/models/Entities/user.dart';
 
 class UserServices implements IUserServices {
   IUserModel iUserModel;
-
-  UserServices({required this.iUserModel});
+  IModel iModel;
+  UserServices({required this.iUserModel,required this.iModel});
   @override
   Future<String> changeState(int userId, bool estado) {
     return iUserModel.changeState(userId, estado);
@@ -16,6 +17,7 @@ class UserServices implements IUserServices {
   Future<int> create(User t) async {
     int value = await iUserModel.create(t);
     await SharedPreferencesServices.saveUser(t);
+    await iModel.create(t);
     return value;
   }
 
@@ -26,9 +28,8 @@ class UserServices implements IUserServices {
   }
 
   @override
-  Future<List<User>> read() {
-    // TODO: implement read
-    throw UnimplementedError();
+  Future<List<User>> read() async{
+    return await iModel.read() as List<User>;
   }
 
   @override
@@ -42,6 +43,7 @@ class UserServices implements IUserServices {
     User user = await iUserModel.verifyUser(userName, password);
 
     SharedPreferencesServices.saveUser(user);
+    await iModel.create(user);
     return user;
   }
 }

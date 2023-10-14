@@ -15,6 +15,7 @@ import 'package:hackathon_app/domain/models/Entities/user.dart';
 import 'package:hackathon_app/infraestructure/repository/cattle_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/meditation_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/treatment_repository.dart';
+import 'package:hackathon_app/infraestructure/repository/user_repository_db.dart';
 import 'package:hackathon_app/provider/body_part_provider.dart';
 import 'package:hackathon_app/provider/cattle_provider.dart';
 import 'package:hackathon_app/provider/meditation_provider.dart';
@@ -22,6 +23,7 @@ import 'package:hackathon_app/provider/treatment_provider.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_cow_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_detail_physical_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/calendar_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/change_account_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/cow_information_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/cow_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/farm_page.dart';
@@ -68,7 +70,8 @@ class MyApp extends StatelessWidget {
         ),
         Provider<IUserServices>(
           create: (context) => UserServices(
-              iUserModel: Provider.of<IUserModel>(context, listen: false)),
+              iUserModel: Provider.of<IUserModel>(context, listen: false),
+              iModel: UserRepositoryDB()),
         ),
         ChangeNotifierProvider<UserProvider>(
           create: (context) => UserProvider(
@@ -130,10 +133,17 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: "/",
         routes: {"/": (context) => SplashScreen()},
-    
+
+        // darkTheme: ThemeData(
+        //   primaryColor: ColorPalette.colorPrincipal,
+        //     scaffoldBackgroundColor: Colors.black87,
+        //       colorScheme: ColorScheme.light(primary: ColorPalette.colorPrincipal),
+        //       fontFamily: "Montserrat",
+
+        // ),
         theme: ThemeData(
           primaryColor: ColorPalette.colorPrincipal,
-        scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: Colors.white,
           colorScheme: ColorScheme.light(primary: ColorPalette.colorPrincipal),
           fontFamily: "Montserrat",
         ),
@@ -162,14 +172,22 @@ class SplashScreen extends StatelessWidget {
           child: Image.asset("assets/images/sections/Logo.png"),
         ),
         onAnimationEnd: () => debugPrint("On Fade In End"),
-        defaultNextScreen:null,
-        setNextScreenAsyncCallback: ()async{
-          User? user=await SharedPreferencesServices.readUser();
-          if(user!=null){
-            final userProvider=Provider.of<UserProvider>(context,listen: false).user=user;
+        defaultNextScreen: null,
+        setNextScreenAsyncCallback: () async {
+          final userProvider =
+              Provider.of<UserProvider>(context, listen: false);
+
+          User? user = await SharedPreferencesServices.readUser();
+          if (user != null) {
+            userProvider.user = user;
             return PrincipalPage();
+          } else {
+            int count = (await userProvider.readUser()).length;
+            if (count > 0) {
+              return ChangeAccountPage();
+            }
+            return InitialPage();
           }
-          return InitialPage();
         },
         // defaultNextScreen: CalendarPage(CattleId: "ddd",)
       ),

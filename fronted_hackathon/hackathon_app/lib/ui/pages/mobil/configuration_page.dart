@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/app_core/services/shared_preferences_services.dart';
+import 'package:hackathon_app/provider/igeneric_provider.dart';
 import 'package:hackathon_app/provider/user_provider.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
+import 'package:hackathon_app/ui/pages/mobil/change_account_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/initial_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/login_page.dart';
+import 'package:hackathon_app/ui/util/provider_null.dart';
 import 'package:hackathon_app/ui/widgets/configuration_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -31,37 +34,44 @@ class ConfigurationPage extends StatelessWidget {
                   color: ColorPalette.editProfilerColor,
                   text: "Editar perfil"),
               ConfigurationWidget(
-                  function: () {},
+                  function: () async {
+                    final userProvider =
+                        Provider.of<UserProvider>(context, listen: false);
+                    await SharedPreferencesServices.removeUser();
+                    ProviderNull.providerNull(context);
+
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChangeAccountPage()),
+                        (route) => false);
+                  },
                   iconData: Icons.change_circle_sharp,
                   color: ColorPalette.changeAccountColor,
                   text: "Cambiar cuenta"),
-              ConfigurationWidget(
-                  function: () {},
-                  iconData: Icons.palette,
-                  color: ColorPalette.changeThemeColor,
-                  text: "Cambiar tema"),
             ]),
             const SizedBox(
               height: 20,
             ),
             ConfigurationOption(widgets: [
               ConfigurationWidget(
-                  function: () {},
-                  iconData: Icons.privacy_tip_sharp,
-                  color: ColorPalette.privacyColor,
-                  text: "Privacidad"),
-              ConfigurationWidget(
-                  function: () {},
+                  function: () => showSecurityAlert(context),
                   iconData: Icons.security_rounded,
                   color: ColorPalette.securityColor,
                   text: "Seguridad"),
               ConfigurationWidget(
                   function: () async {
+                    final userProvider =
+                        Provider.of<UserProvider>(context, listen: false);
                     await SharedPreferencesServices.removeUser();
+                    ProviderNull.providerNull(context);
+                    int count = (await userProvider.readUser()).length;
+
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => InitialPage(),
+                          builder: (context) =>
+                              count > 0 ? ChangeAccountPage() : InitialPage(),
                         ),
                         (route) => false);
                   },
@@ -73,6 +83,56 @@ class ConfigurationPage extends StatelessWidget {
         ),
       ),
     ));
+  }
+
+  void showSecurityAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        insetPadding: EdgeInsets.symmetric(horizontal: 10),
+        title: Text(
+          "Seguridad para tí",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        content: SingleChildScrollView(
+            child: ListBody(
+          children: [
+            Text.rich(TextSpan(
+                text: "🔏 Use contraseñas fuertes:",
+                style: TextStyle(fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                      text: " Combine letras, números y símbolos",
+                      style: TextStyle(fontWeight: FontWeight.normal))
+                ])),
+            const SizedBox(
+              height: 25,
+            ),
+            Text.rich(TextSpan(
+                text: "🔄️ Actualice regularmente: ",
+                style: TextStyle(fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                      text:
+                          "Asegúrese de tener la versión más reciente de nuestra aplicación",
+                      style: TextStyle(fontWeight: FontWeight.normal))
+                ])),
+            const SizedBox(
+              height: 25,
+            ),
+            Text.rich(TextSpan(
+                text: "🚫 Informe actividades sospechosas: ",
+                style: TextStyle(fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                      text:
+                          "Si nota algo inusual, ¡déjenos saber inmediatamente!",
+                      style: TextStyle(fontWeight: FontWeight.normal))
+                ]))
+          ],
+        )),
+      ),
+    );
   }
 
   AppBar _appBar() {

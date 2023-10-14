@@ -64,7 +64,7 @@ class CustomCardWidget extends StatelessWidget {
                       children: [
                         Text(title,
                             style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
+                                const TextStyle(fontWeight: FontWeight.bold,)),
                         Text(description, style: const TextStyle(fontSize: 12)),
                         chips()
                       ],

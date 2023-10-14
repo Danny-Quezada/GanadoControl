@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_utilities/flutter_provider_utilities.dart';
 import 'package:hackathon_app/app_core/iservices/iuser_services.dart';
+import 'package:hackathon_app/domain/db/user_db.dart';
 import 'package:hackathon_app/domain/models/Entities/user.dart';
 
 class UserProvider extends ChangeNotifier with MessageNotifierMixin {
@@ -26,8 +27,9 @@ class UserProvider extends ChangeNotifier with MessageNotifierMixin {
   Future<void> verifyUser(String userName, password) async {
     try {
       user = await _iUserServices.verifyUser(userName, password);
+      var db = await UserDB.instance.database;
     } catch (e) {
-       notifyError(e);
+      notifyError(e);
       notifyListeners();
     }
   }
@@ -38,5 +40,14 @@ class UserProvider extends ChangeNotifier with MessageNotifierMixin {
 
   void changeError() {
     notifyListeners();
+  }
+
+  Future<List<User>> readUser() async {
+    try {
+      return await _iUserServices.read();
+    } catch (e) {
+      notifyError(e);
+      return [];
+    }
   }
 }

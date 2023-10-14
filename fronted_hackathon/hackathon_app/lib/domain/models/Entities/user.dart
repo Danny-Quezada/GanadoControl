@@ -13,7 +13,7 @@ class User {
      String password;
     String workstation;
 
-    factory User.fromJson(Map<String, dynamic> json){ 
+    factory User.fromJson(Map<dynamic, dynamic> json){ 
         return User(
             userId: json["id"] ?? 0,
             userName: json["nombreUsuario"] ?? "",
