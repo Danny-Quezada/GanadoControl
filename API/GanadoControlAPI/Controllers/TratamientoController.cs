@@ -51,8 +51,8 @@ namespace GanadoControlAPI.Controllers
                 return StatusCode(500, $"Error al insertar tratamiento: {ex.Message}");
             }
         }
-        [HttpGet("Ganado/{idGanado}")]
-        public async Task<IActionResult> ObtenerTratamientoPorGanado([FromForm] string Ganado)
+        [HttpGet("Ganado")]
+        public async Task<IActionResult> ObtenerTratamientoPorGanado(string Ganado)
         {
             try
             {

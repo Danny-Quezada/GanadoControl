@@ -38,8 +38,8 @@ namespace GanadoControlAPI.Controllers
                 return StatusCode(500, $"Error al insertar problema físico: {ex.Message}");
             }
         }
-        [HttpGet("ganado/{idGanado}")]
-        public async Task<IActionResult> ObtenerProbFisicoXGanado([FromForm] string idGanado)
+        [HttpGet("ganado")]
+        public async Task<IActionResult> ObtenerProbFisicoXGanado(string idGanado)
         {
             try
             {

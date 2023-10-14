@@ -113,9 +113,7 @@ class ListMedical extends StatelessWidget {
       child: Consumer<TreatmentProvider>(
         builder: (context, TreatmentProviderConsumer, child) {
           if (treatmentProvider.list == null) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+            return Container();
           }
           return SizedBox(
               width: size.width,

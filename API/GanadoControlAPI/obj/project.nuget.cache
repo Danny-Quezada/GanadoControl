@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NOa+sF+CfR1MFX52nN3uAtBfYnpOWE39kssOKYUtjy8nmc5DqghuxuizFd8jQMEK+Y7DUmQ4uYsRJ4OmndmmEw==",
+  "dgSpecHash": "mWIGPi8lqGtJC4EM4OG29eJmq79Fe2VnArwtflAnl0I2kCcG+LTrJJjLgFLX42IcNjAIrl5sF0wS1WDSZfc/iw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+  "projectFilePath": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Kevin Roa\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\Kevin Roa\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",

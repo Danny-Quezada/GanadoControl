@@ -53,7 +53,7 @@ namespace GanadoControlAPI.Controllers
             }
         }
         [HttpGet("Finca/{id}")]
-        public async Task<IActionResult> GetAllByFinca([FromForm] int id)
+        public async Task<IActionResult> GetAllByFinca(int id)
         {
             try
             {

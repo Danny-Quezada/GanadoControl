@@ -69,7 +69,7 @@ namespace GanadoControlAPI.Controllers
             }
         }
         [HttpGet("Usuario/{id}")]
-        public async Task<IActionResult> GetAllFincaByUsuario([FromForm] int id)
+        public async Task<IActionResult> GetAllFincaByUsuario(int id)
         {
             try
             {

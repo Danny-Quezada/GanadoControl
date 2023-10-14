@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {}
+    "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\Data.csproj": {
+    "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\Kevin Roa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\obj\\",
+        "outputPath": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -33,8 +33,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj"
+              "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Models\\Models.csproj"
               }
             }
           }
@@ -78,14 +78,14 @@
         }
       }
     },
-    "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {
+    "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
         "projectName": "GanadoControlAPI",
-        "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
+        "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\GanadoControlAPI\\GanadoControlAPI.csproj",
         "packagesPath": "C:\\Users\\Kevin Roa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\GanadoControlAPI\\obj\\",
+        "outputPath": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\GanadoControlAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -107,11 +107,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\Data.csproj": {
-                "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Data\\Data.csproj"
+              "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Data\\Data.csproj"
               },
-              "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj"
+              "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Models\\Models.csproj"
               }
             }
           }
@@ -162,14 +162,14 @@
         }
       }
     },
-    "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj": {
+    "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\Models.csproj",
+        "projectPath": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\Kevin Roa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kevin Roa\\Desktop\\Repositorio\\M3-TEAM\\API\\Models\\obj\\",
+        "outputPath": "C:\\Users\\Kevin Roa\\Desktop\\M3-TEAM\\API\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

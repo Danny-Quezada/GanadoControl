@@ -22,14 +22,14 @@ class Treatment {
 
   factory Treatment.fromJson(Map<String, dynamic> json) {
     return Treatment(
-        treatmentId: json["Id"] as int,
-        cattleId: json["IdGanado"] as String,
-        meditationName: json["NombreFarmaco"] as String,
-        date: DateTime.tryParse(json["Fecha"] ?? ""),
-        type: json["Tipo"] as String,
-        dosis: double.parse(json["Dosis"].toString()),
-        observation: json["Observacion"] as String,
-        aplicationArea: json["AreaAplicacion"] as String);
+        treatmentId: json["id"] as int ?? 0,
+        cattleId: json["idGanado"] as String,
+        meditationName: json["nombreFarmaco"] as String,
+        date: DateTime.tryParse(json["fecha"] ?? ""),
+        type: json["tipo"] as String,
+        dosis: double.parse(json["dosis"].toString()),
+        observation: json["observacion"] as String,
+        aplicationArea: json["areaAplicacion"] as String);
   }
 
   Map<String, dynamic> toJson() {

@@ -17,8 +17,8 @@ namespace GanadoControlAPI.Controllers
             this.recordatorioRepository = recordatorioRepository;
         }
 
-        [HttpGet("Ganado/{idGanado}")]
-        public async Task<IActionResult> GetRecordatorioPorGanado([FromForm] string idGanado)
+        [HttpGet("Ganado")]
+        public async Task<IActionResult> GetRecordatorioPorGanado(string idGanado)
         {
             try
             {

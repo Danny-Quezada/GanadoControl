@@ -11,8 +11,8 @@ class TreatmentRepository implements ITreatmentModel {
     try {
       FormData formData = FormData.fromMap(t.toJson());
       var response = await dio.post(Constant.createTreatment, data: formData);
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return t.treatmentId!;
+      if (response.statusCode == 201) {
+        return 0;
       }
       throw Exception("Tratamiento no registrado, intente más tarde");
     } catch (e) {
@@ -49,10 +49,13 @@ class TreatmentRepository implements ITreatmentModel {
     List<Treatment> treatments = [];
 
     try {
-      var response =
-          await dio.get("${Constant.getTreatmentByCattle}/$IdCattle");
+      var response = await dio.get("${Constant.getTreatmentByCattle}",
+          queryParameters: {'Ganado': IdCattle});
       if (response.statusCode == 200) {
         List<dynamic> data = response.data;
+        if (data.length == 0) {
+          return [];
+        }
         data.forEach((element) {
           treatments.add(Treatment.fromJson(element));
         });

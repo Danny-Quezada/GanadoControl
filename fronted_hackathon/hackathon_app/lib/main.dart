@@ -1,24 +1,34 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon_app/app_core/iservices/ianimal_healt_calendar_services.dart';
 import 'package:hackathon_app/app_core/iservices/icattle_services.dart';
 import 'package:hackathon_app/app_core/iservices/imeditation_services.dart';
+import 'package:hackathon_app/app_core/iservices/iphysical_problem_services.dart';
 import 'package:hackathon_app/app_core/iservices/itreatment_service.dart';
+import 'package:hackathon_app/app_core/services/animal_healt_calendar_services.dart';
 import 'package:hackathon_app/app_core/services/cattle_services.dart';
 import 'package:hackathon_app/app_core/services/meditation_services.dart';
+import 'package:hackathon_app/app_core/services/physical_problems_services.dart';
 import 'package:hackathon_app/app_core/services/shared_preferences_services.dart';
 import 'package:hackathon_app/app_core/services/treatment_services.dart';
+import 'package:hackathon_app/domain/interfaces/ianimal_health_calendar_model.dart';
 import 'package:hackathon_app/domain/interfaces/icattle_model.dart';
 import 'package:hackathon_app/domain/interfaces/imeditation_model.dart';
+import 'package:hackathon_app/domain/interfaces/iphysical_problem_model.dart';
 import 'package:hackathon_app/domain/interfaces/itreatment.dart';
 import 'package:hackathon_app/domain/models/Entities/cattle.dart';
 import 'package:hackathon_app/domain/models/Entities/user.dart';
+import 'package:hackathon_app/infraestructure/repository/animal_healt_calendar_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/cattle_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/meditation_repository.dart';
+import 'package:hackathon_app/infraestructure/repository/physical_problem_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/treatment_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/user_repository_db.dart';
+import 'package:hackathon_app/provider/animal_healt_calendar_provider.dart';
 import 'package:hackathon_app/provider/body_part_provider.dart';
 import 'package:hackathon_app/provider/cattle_provider.dart';
 import 'package:hackathon_app/provider/meditation_provider.dart';
+import 'package:hackathon_app/provider/physical_problem_provider.dart';
 import 'package:hackathon_app/provider/treatment_provider.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_cow_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_detail_physical_page.dart';
@@ -126,7 +136,33 @@ class MyApp extends StatelessWidget {
               iFarmServices:
                   Provider.of<IMeditationServices>(context, listen: false)),
         ),
-        ChangeNotifierProvider(create: (_) => BodyPartProvider())
+        ChangeNotifierProvider(create: (_) => BodyPartProvider()),
+        Provider<IPhysicalProblemModel>(
+            create: (_) => PhysicalProblemRepository()),
+        Provider<IPhysicalProblemServices>(
+            create: (context) => PhysicalProblemsServices(
+                iPhysicalProblemModel: Provider.of<IPhysicalProblemModel>(
+                    context,
+                    listen: false))),
+        ChangeNotifierProvider(
+          create: (context) => PhysicalProblemProvider(
+              iPhysicalProblemServices: Provider.of<IPhysicalProblemServices>(
+                  context,
+                  listen: false)),
+        ),
+        Provider<IAnimalHealtCalendarModel>(
+            create: (_) => AnimalHealtCalendarRepository()),
+        Provider<IAnimalHealtCalendarServices>(
+            create: (context) => AnimalHeartCalendarServices(
+                iAnimalHealtCalendarModel:
+                    Provider.of<IAnimalHealtCalendarModel>(context,
+                        listen: false))),
+        ChangeNotifierProvider(
+          create: (context) => AnimalHealtCalendarProvider(
+              iAnimalHealtCalendarServices:
+                  Provider.of<IAnimalHealtCalendarServices>(context,
+                      listen: false)),
+        ),
       ],
       child: MaterialApp(
         navigatorKey: navigatorKey,

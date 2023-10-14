@@ -1,5 +1,5 @@
 class Constant {
-  static const String route = "http://192.168.1.14:5000/api";
+  static const String route = "http://192.168.1.4:5000/api";
   static const String createUser = "${route}/Usuario/";
   static const String getUser = "${route}/Usuario/verificar";
   static const String userChangeState = "${route}/Usuario/estado";
@@ -22,4 +22,16 @@ class Constant {
 
   static const String createMeditation = "${route}/Farmaco";
   static const String getMeditationbyFarm = "${route}/Farmaco/finca";
+
+  static const String createPhysicalProblem = "${route}/ProblemaFisico";
+  static const String getPhysicalProblemByCattle =
+      "${route}/ProblemaFisico/ganado";
+  static const String updatePhysicalProblem = "${route}/ProblemaFisico";
+  static const String deletePhysicalProblem = "${route}/ProblemaFisico";
+
+  static const String createAnimalHeartCalendar = "${route}/Recordatorio";
+  static const String getAnimalHeartCalendarByCattle =
+      "${route}/Recordatorio/Ganado";
+  static const String updateAnimalHeartCalendar = "${route}/Recordatorio";
+  static const String deleteAnimalHeartCalendar = "${route}/Recordatorio";
 }

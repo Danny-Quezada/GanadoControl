@@ -72,40 +72,45 @@ class farmList extends StatelessWidget {
       child: Consumer<FarmProvider>(
         builder: (context, farmProviderConsumer, child) {
           if (farmProviderConsumer.list == null) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+            return Container();
           }
           return ListView.builder(
-            itemCount:  farmProviderConsumer.searchList==null ?  farmProviderConsumer.list!.length : farmProviderConsumer.searchList!.length,
+            itemCount: farmProviderConsumer.searchList == null
+                ? farmProviderConsumer.list!.length
+                : farmProviderConsumer.searchList!.length,
             itemBuilder: (BuildContext context, int index) {
               return Selector<FarmProvider, Farm>(
                   builder: (context, farm, child) {
                     return Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: FarmCard(
-                          idFarm: farm.farmId!,
-                          farmName: farm.farmName,
-                          groups: farm.groups!,
-                          location: farm.location,
-                          hectares: farm.hectares,
-                           isSelected: farm.isSelected!,
-                                onTap: farmProviderConsumer.selectedQuantity==0?  () {
-                                  if ((flockProvider.t?.farmId) != farm.farmId) {
-                                    flockProvider.doNull();
-                                  }
-                                  flockProvider.t =
-                                      Flock(flockName: "", farmId: farm.farmId!);
-                                  cattlePage(context, farm.farmId!);
-                                } : (){
-                                  farmProvider.changeSelect(index);
-                                },
-                                onLongPress: () {
-                                  farmProvider.changeSelect(index);
-                                },),
+                        idFarm: farm.farmId!,
+                        farmName: farm.farmName,
+                        groups: farm.groups!,
+                        location: farm.location,
+                        hectares: farm.hectares,
+                        isSelected: farm.isSelected!,
+                        onTap: farmProviderConsumer.selectedQuantity == 0
+                            ? () {
+                                if ((flockProvider.t?.farmId) != farm.farmId) {
+                                  flockProvider.doNull();
+                                }
+                                flockProvider.t =
+                                    Flock(flockName: "", farmId: farm.farmId!);
+                                cattlePage(context, farm.farmId!);
+                              }
+                            : () {
+                                farmProvider.changeSelect(index);
+                              },
+                        onLongPress: () {
+                          farmProvider.changeSelect(index);
+                        },
+                      ),
                     );
                   },
-                  selector: (p0, p1) =>p1.searchList==null ?  p1.list![index] : p1.searchList![index]);
+                  selector: (p0, p1) => p1.searchList == null
+                      ? p1.list![index]
+                      : p1.searchList![index]);
             },
           );
         },
