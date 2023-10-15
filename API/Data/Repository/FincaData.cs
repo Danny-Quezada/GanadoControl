@@ -135,7 +135,29 @@ namespace Data.Repository
                     throw new Exception(ex.Message);
                 }
             }
+        }
 
+        public async Task<string> InvitarAFinca(int idFinca, int idUsuario, string rol)
+        {
+            string token;
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("uspInvitarAFinca", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@idFinca", SqlDbType.Int)).Value = idFinca;
+                cmd.Parameters.Add(new SqlParameter("@idUsuarioCreador", SqlDbType.Int)).Value = idUsuario;
+                cmd.Parameters.Add(new SqlParameter("@rolAsignado", SqlDbType.VarChar, 50)).Value = rol;
+                try
+                {
+                    await conexion.OpenAsync();
+                    token = (await cmd.ExecuteScalarAsync()).ToString();
+                    return token;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
         }
 
         public async Task<bool> UpdateFinca(DAOFinca DAOFinca)
@@ -155,6 +177,28 @@ namespace Data.Repository
                 {
                     await conexion.OpenAsync();
                     return await cmd.ExecuteNonQueryAsync() > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
+        public async Task<int> VerificarInvitacion(string token, int idUsuario)
+        {
+            int idFinca;
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("uspVerificarInvitacion", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@token", SqlDbType.VarChar, 255)).Value = token;
+                cmd.Parameters.Add(new SqlParameter("@idUsuarioInvitado", SqlDbType.Int)).Value = idUsuario;
+                try
+                {
+                    await conexion.OpenAsync();
+                    idFinca = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                    return idFinca;
                 }
                 catch (Exception ex)
                 {

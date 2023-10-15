@@ -13,6 +13,29 @@ namespace Data.Repository
         {
             this.cadenaConexion = cadenaConexion;
         }
+
+        public async Task<bool> ActualizarUsuario(int idUsuario, string nombreUsuario, string contraseñaActual, string? nuevaContraseña)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("uspActualizarUsuario", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@idUsuario", SqlDbType.Int)).Value = idUsuario;
+                cmd.Parameters.Add(new SqlParameter("@contraseñaNueva", SqlDbType.VarChar, 255)).Value = nuevaContraseña == null ? DBNull.Value : nuevaContraseña;
+                cmd.Parameters.Add(new SqlParameter("@contraseñaVieja", SqlDbType.VarChar, 255)).Value = contraseñaActual;
+                cmd.Parameters.Add(new SqlParameter("@nombreUsuario", SqlDbType.VarChar, 50)).Value = nombreUsuario;
+                try
+                {
+                    await conexion.OpenAsync();
+                    return await cmd.ExecuteNonQueryAsync() > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
         public async Task<bool> CambiarEstado(int idUsuario, bool estado)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))

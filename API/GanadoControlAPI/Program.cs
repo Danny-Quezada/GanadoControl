@@ -24,7 +24,7 @@ builder.Services.AddScoped<IDetalleFincaFotoRepository>(provider => new DetalleF
 builder.Services.AddScoped<IGrupoRepository>(provider => new GrupoData(builder.Configuration["ConnectionString"]));
 builder.Services.AddScoped<IDetalleGrupoFotoRepository>(provider => new DetalleGrupoFotoData(builder.Configuration["ConnectionString"]));
 builder.Services.AddScoped<IDetalleFincaRepository>(provider => new DetalleFincaData(builder.Configuration["ConnectionString"]));
-
+builder.Services.AddScoped<IDocumentoRepository>(provider => new DocumentoData(builder.Configuration["ConnectionString"]));
 
 //http://direccion ip:5000
 builder.WebHost.UseUrls("http://192.168.1.4:5000");

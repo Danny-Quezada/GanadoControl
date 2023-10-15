@@ -134,5 +134,29 @@ namespace GanadoControlAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        [HttpGet("invitacion/{usuarioCreadorId}, {fincaId}, {rol}")]
+        public async Task<IActionResult> Invitar(int usuarioCreadorId, int fincaId, string rol)
+        {
+            try
+            {
+                return Ok(await fincaRepository.InvitarAFinca(fincaId, usuarioCreadorId, rol));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        [HttpPost("invitacion/{token}, {idUsuario}")]
+        public async Task<IActionResult> IngresarPorInvitacion(string token, int idUsuario)
+        {
+            try
+            {
+                return Ok(await fincaRepository.VerificarInvitacion(token, idUsuario));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

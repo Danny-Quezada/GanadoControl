@@ -22,7 +22,14 @@ namespace GanadoControlAPI.Controllers
         [HttpGet("finca/{idFinca}")]
         public async Task<IActionResult> GetFarmacos([FromForm]int idFinca)
         {
-            return Ok(await farmacoRepository.ObtenerFarmacosPorFinca(idFinca));
+            try
+            {
+                return Ok(await farmacoRepository.ObtenerFarmacosPorFinca(idFinca));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost]

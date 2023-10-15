@@ -12,6 +12,7 @@ namespace Models.Interfaces
     {
         Task<DAOUsuario> VerificarUsuario(string nombreUsuario, string contraseña);
         Task<bool> CambiarEstado(int idUsuario, bool estado);
+        Task<bool> ActualizarUsuario(int idUsuario, string nombreUsuario ,string contraseñaActual, string? nuevaContraseña);
 
     }
 }

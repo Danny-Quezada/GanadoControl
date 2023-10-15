@@ -15,5 +15,7 @@ namespace Models.Interfaces
         Task<DAOFinca> GetFinca(int Id);
         Task<bool> UpdateFinca(DAOFinca DAOFinca);
         Task<bool> EliminarFinca(int id);
+        Task<string> InvitarAFinca(int idFinca, int idUsuarioCreador, string rolnuevoUsuario);
+        Task<int> VerificarInvitacion(string token, int idUsuario);
     }
 }

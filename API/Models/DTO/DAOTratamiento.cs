@@ -16,5 +16,6 @@ namespace Models.DTO
         public float Dosis { get; set; }
         public string Observacion { get; set; }
         public string AreaAplicacion { get; set; }
+        public int IdFarmaco { get; set; }
     }
 }

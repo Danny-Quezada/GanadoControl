@@ -119,6 +119,7 @@ namespace Data.Repository
                                 Observacion = dr["Observacion"].ToString(),
                                 AreaAplicacion = dr["AreaAplicacion"].ToString(),
                                 NombreFarmaco = dr["NombreFarmaco"].ToString(),
+                                IdFarmaco = Convert.ToInt32(dr["IdFarmaco"])
                             });
                         }
                     }

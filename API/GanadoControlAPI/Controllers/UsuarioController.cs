@@ -58,5 +58,17 @@ namespace GanadoControlAPI.Controllers
             }
             catch (Exception ex) { return StatusCode(500, ex.Message); }
         }
+        [HttpPut("{id}, {nombreUsuario}, {contraseñaActual}")]
+        public async Task<IActionResult> Actualizar(int id, string nombreUsuario, string contraseñaActual, [FromQuery]string? contraseñaNueva)
+        {
+            try
+            {
+                return Ok(await usuarioRepository.ActualizarUsuario(id, nombreUsuario, contraseñaActual, contraseñaNueva));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message); 
+            }
+        }
     }
 }
