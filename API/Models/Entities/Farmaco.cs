@@ -19,5 +19,6 @@ namespace Models.Entities
         public int Cantidad { get; set; }
         public string? FotoURL { get; set; }
         public int IdFinca { get; set; }
+        public bool Disponible { get; set; }
     }
 }

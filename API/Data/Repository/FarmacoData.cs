@@ -124,7 +124,8 @@ namespace Data.Repository
                                 Precio = (float)dr["Precio"],
                                 Cantidad = Convert.ToInt32(dr["Cantidad"]),
                                 IdFinca = Convert.ToInt32(dr["IdFinca"]),
-                                FotoURL = dr["FotoURL"].ToString()
+                                FotoURL = dr["FotoURL"].ToString(),
+                                Disponible = Convert.ToBoolean(dr["Disponible"])
                             });
                         }
                     }
