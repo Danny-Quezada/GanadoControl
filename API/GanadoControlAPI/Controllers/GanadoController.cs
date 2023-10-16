@@ -37,6 +37,10 @@ namespace GanadoControlAPI.Controllers
                 {
                     detalleGanado.FotoURL = await ImageUtility.CrearImagen(dtoganado.FotoURL, "FotosDeGanados", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
                 }
+                else
+                {
+                    detalleGanado.FotoURL = await ImageUtility.InsertImagen("FotosDeGanados", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString(),dtoganado.Tipo=="Vaca"?"VACA.png":"TORO.png");
+                }
                 Ganado ganado = new Ganado()
                 {
                     FechaNacimiento = dtoganado.FechaNacimiento,
@@ -57,6 +61,17 @@ namespace GanadoControlAPI.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, $"Error al insertar ganado: {ex.Message}");
+            }
+        }
+        [HttpGet("Grupo/Grafico/{Id}")]
+        public async Task<IActionResult> GrafVacunas(int Id)
+        {
+            try
+            {
+                return Ok(await ganadoRepository.GrafVacunas(Id));
+            }catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
         }
         [HttpGet("Grupo/{id}")]

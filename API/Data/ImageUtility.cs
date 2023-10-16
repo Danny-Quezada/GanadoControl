@@ -32,5 +32,15 @@ namespace Data
             string dbUrl = Path.Combine(urlActual, container, nombreFinal).Replace("\\", "/");
             return dbUrl;
         }
+        public static async Task<string> InsertImagen(string container, string wwwrootPath, string scheme, string host,string Name)
+        {
+            if (string.IsNullOrEmpty(wwwrootPath))
+            {
+                throw new Exception("La ruta es nula o está vacía");
+            }
+            string urlActual = $"{scheme}://{host}";
+            string dbUrl = Path.Combine(urlActual, container, Name).Replace("\\", "/");
+            return dbUrl;
+        }
     }
 }

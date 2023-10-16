@@ -13,5 +13,6 @@ namespace Models.Entities
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         public string IdGanado { get; set; }
+        public int Idfarmaco { get; set; }
     }
 }

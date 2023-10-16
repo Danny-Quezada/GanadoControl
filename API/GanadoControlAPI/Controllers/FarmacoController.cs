@@ -62,6 +62,10 @@ namespace GanadoControlAPI.Controllers
                 {
                     farmaco.FotoURL = await ImageUtility.CrearImagen(farmacoDTO.Foto, "FotosDeFarmacos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
                 }
+                else
+                {
+                    farmaco.FotoURL = await ImageUtility.InsertImagen("FotosDeFarmacos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString(),"FARMACO.png");
+                }
                 return Ok(await farmacoRepository.Insertar(farmaco));
             }
             catch (Exception ex)
@@ -100,6 +104,10 @@ namespace GanadoControlAPI.Controllers
                 {
                     farmaco.FotoURL = await ImageUtility.CrearImagen(farmacoDTO.Foto, "FotosDeFarmacos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
                 }
+                else
+                {
+                    farmaco.FotoURL = await ImageUtility.InsertImagen("FotosDeFarmacos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString(), "FARMACO.png");
+                }
                 farmacoDTO.Id = id;
                 return Ok(await farmacoRepository.ActualizarFarmaco(farmaco));
             }
@@ -114,6 +122,7 @@ namespace GanadoControlAPI.Controllers
             try
             {
                 return Ok(await farmacoRepository.EliminarFarmaco(id));
+
             }
             catch (Exception ex)
             {

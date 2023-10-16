@@ -14,7 +14,7 @@ namespace Models.DTO
         public string Ubicacion { get; set; }
         public float Hectareas { get; set; }
         public string NombreDueño { get; set; }
-        public IFormFile FotoURL { get; set; }
+        public IFormFile? FotoURL { get; set; }
         public int IdUsuario { get; set; }
         public DateTime Fecha { get; set; }
         public string RolUsuario { get; set; }

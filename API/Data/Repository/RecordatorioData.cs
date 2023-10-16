@@ -30,6 +30,7 @@ namespace Data.Repository
                 cmd.Parameters.Add(new SqlParameter("@titulo", SqlDbType.VarChar, 50)).Value = recordatorio.Titulo;
                 cmd.Parameters.Add(new SqlParameter("@descripcion", SqlDbType.VarChar, 100)).Value = recordatorio.Descripcion;
                 cmd.Parameters.Add(new SqlParameter("@idGanado", SqlDbType.VarChar, 30)).Value = recordatorio.IdGanado;
+                cmd.Parameters.Add(new SqlParameter("@idFarmaco", SqlDbType.Int)).Value = recordatorio.Idfarmaco;
                 try
                 {
                     await conexion.OpenAsync();
@@ -72,6 +73,7 @@ namespace Data.Repository
                 cmd.Parameters.Add(new SqlParameter("@titulo", SqlDbType.VarChar, 50)).Value = data.Titulo;
                 cmd.Parameters.Add(new SqlParameter("@descripcion", SqlDbType.VarChar, 100)).Value = data.Descripcion;
                 cmd.Parameters.Add(new SqlParameter("@idGanado", SqlDbType.VarChar, 30)).Value = data.IdGanado;
+                cmd.Parameters.Add(new SqlParameter("@idFarmaco", SqlDbType.Int)).Value = data.Idfarmaco;
                 try
                 {
                     await conexion.OpenAsync();
@@ -104,6 +106,7 @@ namespace Data.Repository
                             {
                                 Id = Convert.ToInt32(dr["IdRecordatorio"]),
                                 IdGanado = dr["IdGanado"].ToString(),
+                                Idfarmaco = Convert.ToInt32(dr["IdFarmaco"]),
                                 Fecha = Convert.ToDateTime(dr["Fecha"]),
                                 Descripcion = dr["Descripcion"].ToString(),
                                 Titulo = dr["Titulo"].ToString()

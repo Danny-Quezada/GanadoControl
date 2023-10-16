@@ -58,7 +58,7 @@ namespace Data.Repository
                             IdFinca = Convert.ToInt32(dr["IdFinca"]),
                             Grupos = Convert.ToInt32(dr["Grupos"]),
                             Ubicacion = dr["Ubicacion"].ToString(),
-                            Hectareas = (float)dr["Hectareas"],
+                            Hectareas =  dr.GetFieldType("Hectareas") == typeof(int)? (float)Convert.ToInt32(dr["IdFinca"]) : dr.GetFloat("Hectareas"),
                             FotoURL = dr["FotoURL"].ToString(),
                             Nombre = dr["Nombre"].ToString(),
                             NombreDueño = dr["NombreDueño"].ToString(),
@@ -123,11 +123,12 @@ namespace Data.Repository
                 cmd.Parameters.Add(new SqlParameter("@Ubicacion", SqlDbType.VarChar, 100)).Value = finca.Ubicacion;
                 cmd.Parameters.Add(new SqlParameter("@Hectareas", SqlDbType.Float, 2)).Value = finca.Hectareas;
                 cmd.Parameters.Add(new SqlParameter("@NombreDueño", SqlDbType.VarChar, 50)).Value = finca.NombreDueño;
-
+                SqlCommand cmd1 = new SqlCommand("uspUltimoIdFinca", conexion);
                 try
                 {
                     await conexion.OpenAsync();
-                    ultimoId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+                    await cmd.ExecuteScalarAsync();
+                    ultimoId = Convert.ToInt32(await cmd1.ExecuteScalarAsync());
                     return ultimoId;
                 }
                 catch (Exception ex)

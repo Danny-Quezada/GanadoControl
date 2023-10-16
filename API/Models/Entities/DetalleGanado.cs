@@ -9,6 +9,6 @@ namespace Models.Entities
     public class DetalleGanado
     {
         public string IdGanado { get; set; }
-        public string FotoURL { get; set; }
+        public string? FotoURL { get; set; }
     }
 }

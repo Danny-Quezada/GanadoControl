@@ -18,7 +18,7 @@ namespace Models.DTO
         public DateTime FechaEntrega { get; set; }
         public float Precio { get; set; }
         public int Cantidad { get; set; }
-        public IFormFile Foto { get; set; }
+        public IFormFile? Foto { get; set; }
         public int IdFinca { get; set; }
     }
 }

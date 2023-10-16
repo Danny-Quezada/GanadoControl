@@ -103,6 +103,32 @@ namespace Data.Repository
                 }
             }
         }
+        public async Task<DTOGrafVacunas> GrafVacunas(int IdGrupo)
+        {
+            DTOGrafVacunas dTO = new DTOGrafVacunas();
+            using (SqlConnection conexion = new SqlConnection(CadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("uspGrafVacunacion", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@IdGrupo", SqlDbType.Int)).Value = IdGrupo;
+                try
+                {
+                    await conexion.OpenAsync();
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read())
+                    {
+                        dTO.NoVacunadosT = dr["Tipo"].ToString() == "Toro" ? Convert.ToInt32(dr["NoVacunados"]) : dTO.NoVacunadosT;
+                        dTO.NoVacunadosV = dr["Tipo"].ToString() == "Vaca" ? Convert.ToInt32(dr["NoVacunados"]) : dTO.NoVacunadosV;
+                    }
+
+                    return dTO;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
 
         public async Task Insertar(Ganado ganado)
         {

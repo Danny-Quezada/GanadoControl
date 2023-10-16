@@ -18,6 +18,6 @@ namespace Models.DTO
         public string? IdMadre { get; set; }
         public int IdGrupo { get; set; }
         public string Estado { get; set; }
-        public IFormFile FotoURL { get; set; }
+        public IFormFile? FotoURL { get; set; }
     }
 }

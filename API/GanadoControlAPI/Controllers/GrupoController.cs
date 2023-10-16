@@ -37,6 +37,10 @@ namespace GanadoControlAPI.Controllers
                 {
                     detalleGrupo.FotoURL = await ImageUtility.CrearImagen(dtogrupo.FotoURL, "FotosDeGrupos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
                 }
+                else
+                {
+                    detalleGrupo.FotoURL = await ImageUtility.InsertImagen("FotosDeGrupos", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString(), "GRUPO.png");
+                }
                 Grupo grupo = new Grupo()
                 {
                     IdFinca = dtogrupo.IdFinca,

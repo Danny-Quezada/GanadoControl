@@ -9,6 +9,6 @@ namespace Models.Entities
     public class DetalleGrupoFoto
     {
         public int IdGrupo { get; set; }
-        public string FotoURL { get; set; }
+        public string? FotoURL { get; set; }
     }
 }

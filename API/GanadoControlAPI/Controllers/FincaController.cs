@@ -42,6 +42,10 @@ namespace GanadoControlAPI.Controllers
                 {
                     detalleFincaFoto.FotoURL = await ImageUtility.CrearImagen(dtofinca.FotoURL, "FotosDeFincas", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString());
                 }
+                else
+                {
+                    detalleFincaFoto.FotoURL = await ImageUtility.InsertImagen("FotosDeFincas", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString(),"FINCA.png");
+                }
                 finca = new Finca()
                 {
                     Nombre = dtofinca.Nombre,
