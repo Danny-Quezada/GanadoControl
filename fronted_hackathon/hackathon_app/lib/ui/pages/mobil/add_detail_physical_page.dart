@@ -16,7 +16,7 @@ class AddDetailCowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var physicalProblemsProvider =
+    final physicalProblemsProvider =
         Provider.of<PhysicalProblemProvider>(context, listen: false);
     final bodyPartProvider =
         Provider.of<BodyPartProvider>(context, listen: false);
@@ -31,13 +31,8 @@ class AddDetailCowPage extends StatelessWidget {
           } else {
             return FloatingActionButton.extended(
               elevation: 1,
-              onPressed: () async {
-                for (int i = 0;
-                    i < bodyPartProvider.physicalProblems.length;
-                    i++) {
-                  await physicalProblemsProvider
-                      .create(bodyPartProvider.physicalProblems[i]);
-                }
+              onPressed: () {
+                Navigator.pop(context);
               },
               label: Text(
                 "Agregar",

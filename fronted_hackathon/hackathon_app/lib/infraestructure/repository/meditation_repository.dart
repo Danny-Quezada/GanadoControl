@@ -3,20 +3,23 @@ import 'package:hackathon_app/domain/constant.dart';
 import 'package:hackathon_app/domain/interfaces/imeditation_model.dart';
 import 'package:hackathon_app/domain/models/Entities/meditation.dart';
 
-class MeditationRepository implements IMeditationModel{
-  Dio dio=Dio();
+class MeditationRepository implements IMeditationModel {
+  Dio dio = Dio();
   @override
-  Future<int> create(Meditation t) async{
-       try{
-      FormData formData=FormData.fromMap(t.toJson()..addAll({"Foto": await MultipartFile.fromFile(t.imagePath,filename:t.imageName)}));
-      var response=await dio.post(Constant.createMeditation,data: formData);
-      if(response.statusCode==200){
-        int value=response.data;
+  Future<int> create(Meditation t) async {
+    try {
+      FormData formData = FormData.fromMap(t.toJson()
+        ..addAll({
+          "Foto":
+              await MultipartFile.fromFile(t.imagePath, filename: t.imageName)
+        }));
+      var response = await dio.post(Constant.createMeditation, data: formData);
+      if (response.statusCode == 200) {
+        int value = response.data;
         return value;
       }
       throw Exception("No se ha podido agregar el medicamento");
-    }
-    catch(e){
+    } catch (e) {
       throw Exception("El servidor dió error");
     }
   }
@@ -28,24 +31,24 @@ class MeditationRepository implements IMeditationModel{
   }
 
   @override
-  Future<List<Meditation>> getMeditationByFarm(int FarmId) async{
-    List<Meditation> meditations=[];
-   try{
-      var response=await dio.get("${Constant.getMeditationbyFarm}/$FarmId");
-      if(response.statusCode==200){
-        List<dynamic> data=await response.data;
+  Future<List<Meditation>> getMeditationByFarm(int FarmId) async {
+    List<Meditation> meditations = [];
+    try {
+      var response = await dio.get("${Constant.getMeditationbyFarm}",
+          queryParameters: {'idFinca': FarmId});
+      if (response.statusCode == 200) {
+        List<dynamic> data = await response.data;
         print(response.data);
-        data.forEach((element) { 
+        data.forEach((element) {
           meditations.add(Meditation.fromJson(element));
         });
         return meditations;
       }
       throw Exception("Hubo un error, intente nuevamente.");
-   }
-   catch(e){
-    print(e);
-    throw Exception("Error en el servidor.");
-   }
+    } catch (e) {
+      print(e);
+      throw Exception("Error en el servidor.");
+    }
   }
 
   @override
@@ -59,5 +62,4 @@ class MeditationRepository implements IMeditationModel{
     // TODO: implement update
     throw UnimplementedError();
   }
-
 }

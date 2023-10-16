@@ -2,8 +2,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/domain/models/Entities/cattle.dart';
+import 'package:hackathon_app/provider/body_part_provider.dart';
 import 'package:hackathon_app/provider/cattle_provider.dart';
+import 'package:hackathon_app/provider/physical_problem_provider.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
+import 'package:hackathon_app/ui/pages/mobil/add_detail_physical_page.dart';
 import 'package:hackathon_app/ui/util/path_image_asset.dart';
 import 'package:hackathon_app/ui/util/validator_textfield.dart';
 import 'package:hackathon_app/ui/widgets/button_widget.dart';
@@ -36,6 +39,10 @@ class AddCowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cattleProvider = Provider.of<CattleProvider>(context, listen: false);
+    final physicalProblemsProvider =
+        Provider.of<PhysicalProblemProvider>(context, listen: false);
+    final bodyPartProvider =
+        Provider.of<BodyPartProvider>(context, listen: false);
     TextStyle textstyle = TextStyle(
         color: ColorPalette.colorFontTextFieldPrincipal,
         fontWeight: FontWeight.w700);
@@ -114,6 +121,19 @@ class AddCowPage extends StatelessWidget {
                   style: textstyle,
                 ),
                 CheckboxList(),
+                ButtonWidget(
+                    text: "Agregar problemas físicos",
+                    size: const Size(280, 31),
+                    color: ColorPalette.colorFontTextFieldPrincipal,
+                    rounded: 16,
+                    function: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return AddDetailCowPage(cattleId: '');
+                        },
+                      ));
+                    },
+                    fontSize: 16),
                 Center(
                   child: ButtonWidget(
                       text: "Agregar vaca",
@@ -140,12 +160,26 @@ class AddCowPage extends StatelessWidget {
                           cattle.imageName = fileImage!.path.split("/").last;
                           cattle.imagePath = fileImage.path;
                           await cattleProvider.create(cattle);
+
+                          for (int i = 0;
+                              i < bodyPartProvider.physicalProblems.length;
+                              i++) {
+                            bodyPartProvider.physicalProblems[i].cattleId =
+                                identifierController.text;
+                            await physicalProblemsProvider
+                                .create(bodyPartProvider.physicalProblems[i]);
+                          }
+                          bodyPartProvider.physicalProblems = [];
+
                           Navigator.pop(context);
                         } else {
                           print('Form is invalid');
                         }
                       },
                       fontSize: 16),
+                ),
+                SizedBox(
+                  height: 15,
                 ),
               ],
             ),

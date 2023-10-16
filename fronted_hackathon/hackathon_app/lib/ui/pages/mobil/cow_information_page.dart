@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_utilities/flutter_provider_utilities.dart';
 import 'package:hackathon_app/infraestructure/repository/treatment_repository.dart';
+import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/provider/treatment_provider.dart';
 import 'package:hackathon_app/ui/widgets/flushbar_widget.dart';
 
@@ -21,7 +24,8 @@ PersistentBottomSheetController? _controller;
 
 class CowInformationPage extends StatelessWidget {
   Cattle cattle;
-  CowInformationPage({super.key, required this.cattle});
+  int IdFarm;
+  CowInformationPage({super.key, required this.cattle, required this.IdFarm});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +86,10 @@ class CowInformationPage extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        OptionMenu(cattle: cattle),
+                        OptionMenu(
+                          cattle: cattle,
+                          IdFarm: IdFarm,
+                        ),
                         ListMedical(
                           cattleId: cattle.idCattle,
                         )
@@ -185,7 +192,8 @@ class ListMedical extends StatelessWidget {
 
 class OptionMenu extends StatefulWidget {
   Cattle cattle;
-  OptionMenu({required this.cattle});
+  int IdFarm;
+  OptionMenu({required this.cattle, required this.IdFarm});
 
   @override
   State<OptionMenu> createState() => _OptionMenuState();
@@ -249,6 +257,7 @@ class _OptionMenuState extends State<OptionMenu> {
                     (context) => addTreatmentBottomSheet(
                           cattleId: widget.cattle.idCattle,
                           type: widget.cattle.type,
+                          IdFarm: widget.IdFarm,
                         ));
               },
               icon: Image.asset("assets/images/icons/greenPlus.png"))
@@ -268,12 +277,21 @@ class addTreatmentBottomSheet extends StatelessWidget {
   FocusNode areaNode = FocusNode();
   FocusNode observationNode = FocusNode();
 
+  final List<String> medicamentos = [
+    'Ibuprofeno',
+    'Paracetamol',
+    'Amoxicilina'
+  ];
+
   String cattleId;
   String type;
-  addTreatmentBottomSheet({required this.cattleId, required this.type});
+  int IdFarm;
+  addTreatmentBottomSheet(
+      {required this.cattleId, required this.type, required this.IdFarm});
 
   @override
   Widget build(BuildContext context) {
+    int? IdMedicamento;
     var treatmentProvider =
         Provider.of<TreatmentProvider>(context, listen: false);
     return Form(
@@ -309,27 +327,98 @@ class addTreatmentBottomSheet extends StatelessWidget {
             ButtonWidget(
               color: const Color(0xFFCA78FF),
               fontSize: 16,
-              size: const Size(261, 31),
+              size: const Size(170, 31),
               function: () async {
-                // final FormState? form = _formKey.currentState;
-                // if (form!.validate()) {
-                Treatment treatment = Treatment(
-                    cattleId: cattleId,
-                    meditationId: 1.toString(),
-                    date: DateTime.now(),
-                    type: type,
-                    dosis: double.parse(dosisController.text),
-                    observation: observationController.text,
-                    aplicationArea: areaController.text);
-                await treatmentProvider.create(treatment);
-                // }
+                IdMedicamento = await _mostrarMedicamentos(context);
               },
               rounded: 12,
               text: "Elegir fármaco",
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+              child: ButtonWidget(
+                  text: "Agregar tratamiento",
+                  size: const Size(250, 55),
+                  color: Colors.green.shade200,
+                  rounded: 16,
+                  function: () async {
+                    Treatment treatment = Treatment(
+                        cattleId: cattleId,
+                        meditationId: IdMedicamento.toString(),
+                        date: DateTime.now(),
+                        type: type,
+                        dosis: double.parse(dosisController.text),
+                        observation: observationController.text,
+                        aplicationArea: areaController.text);
+                    await treatmentProvider.create(treatment);
+                  },
+                  fontSize: 16),
             )
           ],
         ),
       ),
     );
+  }
+
+  Future<int?> _mostrarMedicamentos(BuildContext context) async {
+    final completer = Completer<int?>();
+    final meditationProvider =
+        Provider.of<MeditationProvider>(context, listen: false);
+    meditationProvider.getAllFarmByUserId(IdFarm);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Center(
+            child: Text(
+              'Medicamentos',
+              style: TextStyle(
+                fontFamily: "Karla",
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          content: Container(
+            width: double.maxFinite,
+            child: Consumer<MeditationProvider>(
+              builder: (context, MeditationProviderConsumer, child) {
+                if (meditationProvider.list == null) {
+                  return Container();
+                }
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: meditationProvider.list?.length ?? 0,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (meditationProvider.list != null &&
+                        meditationProvider.list!.length > 0) {
+                      return ListTile(
+                        title: Text(
+                          meditationProvider.list?[index].meditationName
+                              as String,
+                          style: TextStyle(
+                            color: Colors.grey.shade400,
+                            fontFamily: "Karla",
+                          ),
+                        ),
+                        onTap: () {
+                          completer.complete(index);
+                          Navigator.pop(context);
+                        },
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
+                );
+              },
+            ),
+          ),
+        );
+      },
+    );
+
+    return completer.future;
   }
 }

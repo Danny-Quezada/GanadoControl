@@ -13,8 +13,7 @@ class AnimalHealtCalendarRepository implements IAnimalHealtCalendarModel {
       var response =
           await dio.post(Constant.createAnimalHeartCalendar, data: formData);
       if (response.statusCode == 201) {
-        // int value = await response.data;
-        return 0;
+        return await response.data;
       }
       throw Exception("Problema fisico no registrado, intente más tarde");
     } catch (e) {

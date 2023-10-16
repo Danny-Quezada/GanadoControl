@@ -14,7 +14,8 @@ import 'cow_information_page.dart';
 
 class CowPage extends StatelessWidget {
   int flockId;
-  CowPage({super.key, required this.flockId});
+  int IdFarm;
+  CowPage({super.key, required this.flockId, required this.IdFarm});
   TextEditingController _controller = TextEditingController();
 
   @override
@@ -41,7 +42,10 @@ class CowPage extends StatelessWidget {
                   backgroundColor: const Color(0xFFf2f2f2),
                   function: (value) {}),
               Flexible(
-                child: CattleList(GroupId: flockId),
+                child: CattleList(
+                  GroupId: flockId,
+                  IdFarm: IdFarm,
+                ),
               ),
             ],
           ),
@@ -53,7 +57,8 @@ class CowPage extends StatelessWidget {
 
 class CattleList extends StatelessWidget {
   int GroupId;
-  CattleList({required this.GroupId});
+  int IdFarm;
+  CattleList({required this.GroupId, required this.IdFarm});
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +68,7 @@ class CattleList extends StatelessWidget {
       child: Consumer<CattleProvider>(
           builder: (context, CattleProviderConsumer, child) {
         if (cattleProvider.list == null) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return Container();
         }
         return ListView.builder(
           shrinkWrap: true,
@@ -106,7 +109,10 @@ class CattleList extends StatelessWidget {
   void cowInformationPage(BuildContext context, Cattle ganado) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
-        return CowInformationPage(cattle: ganado);
+        return CowInformationPage(
+          cattle: ganado,
+          IdFarm: IdFarm,
+        );
       },
     ));
   }

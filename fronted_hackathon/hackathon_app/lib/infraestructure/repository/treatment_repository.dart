@@ -12,7 +12,7 @@ class TreatmentRepository implements ITreatmentModel {
       FormData formData = FormData.fromMap(t.toJson());
       var response = await dio.post(Constant.createTreatment, data: formData);
       if (response.statusCode == 201) {
-        return 0;
+        return await response.data;
       }
       throw Exception("Tratamiento no registrado, intente más tarde");
     } catch (e) {

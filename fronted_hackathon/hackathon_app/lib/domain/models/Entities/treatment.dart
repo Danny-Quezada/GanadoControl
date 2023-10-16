@@ -29,7 +29,8 @@ class Treatment {
         type: json["tipo"] as String,
         dosis: double.parse(json["dosis"].toString()),
         observation: json["observacion"] as String,
-        aplicationArea: json["areaAplicacion"] as String);
+        aplicationArea: json["areaAplicacion"] as String,
+        meditationId: json["idFarmaco"].toString());
   }
 
   Map<String, dynamic> toJson() {

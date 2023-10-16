@@ -17,6 +17,7 @@ class CattleRepository implements ICattleModel {
       var response = await dio.post(Constant.creatCattle, data: formData);
       if (response.statusCode == 201) {
         // int value = await response.data;
+        return 0;
         ;
       }
       throw Exception("Vaca no registrado, intente más tarde");
@@ -78,9 +79,7 @@ class CattleRepository implements ICattleModel {
         }));
       var response = await dio.post(Constant.creatCattle, data: formData);
       if (response.statusCode == 201) {
-        // int value = await response.data;
         return t.idCattle;
-        ;
       }
       throw Exception("Vaca no registrado, intente más tarde");
     } catch (e) {

@@ -19,8 +19,8 @@ namespace GanadoControlAPI.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        [HttpGet("finca/{idFinca}")]
-        public async Task<IActionResult> GetFarmacos([FromForm]int idFinca)
+        [HttpGet("finca")]
+        public async Task<IActionResult> GetFarmacos(int idFinca)
         {
             try
             {

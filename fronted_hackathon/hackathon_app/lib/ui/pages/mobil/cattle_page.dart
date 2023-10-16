@@ -241,7 +241,10 @@ class groupList extends StatelessWidget {
   void cowPage(BuildContext context, int idCastle) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
-        return CowPage(flockId: idCastle);
+        return CowPage(
+          flockId: idCastle,
+          IdFarm: farmId,
+        );
       },
     ));
   }

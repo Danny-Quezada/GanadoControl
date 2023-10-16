@@ -7,7 +7,7 @@ class PhysicalProblem {
   });
 
   int? physicalProblemId;
-  final String cattleId;
+  String cattleId;
   final String partName;
   String description;
 

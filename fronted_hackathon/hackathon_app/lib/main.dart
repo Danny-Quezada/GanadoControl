@@ -33,6 +33,7 @@ import 'package:hackathon_app/provider/treatment_provider.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_cow_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_detail_physical_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/calendar_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/cattle_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/change_account_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/cow_information_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/cow_page.dart';
@@ -208,23 +209,25 @@ class SplashScreen extends StatelessWidget {
           child: Image.asset("assets/images/sections/Logo.png"),
         ),
         onAnimationEnd: () => debugPrint("On Fade In End"),
-        defaultNextScreen: null,
-        setNextScreenAsyncCallback: () async {
-          final userProvider =
-              Provider.of<UserProvider>(context, listen: false);
+        defaultNextScreen: CattlePage(
+          farmId: 12,
+        ),
+        // setNextScreenAsyncCallback: () async {
+        //   final userProvider =
+        //       Provider.of<UserProvider>(context, listen: false);
 
-          User? user = await SharedPreferencesServices.readUser();
-          if (user != null) {
-            userProvider.user = user;
-            return PrincipalPage();
-          } else {
-            int count = (await userProvider.readUser()).length;
-            if (count > 0) {
-              return ChangeAccountPage();
-            }
-            return InitialPage();
-          }
-        },
+        //   User? user = await SharedPreferencesServices.readUser();
+        //   if (user != null) {
+        //     userProvider.user = user;
+        //     return PrincipalPage();
+        //   } else {
+        //     int count = (await userProvider.readUser()).length;
+        //     if (count > 0) {
+        //       return ChangeAccountPage();
+        //     }
+        //     return InitialPage();
+        //   }
+        // },
         // defaultNextScreen: CalendarPage(CattleId: "ddd",)
       ),
     );
