@@ -12,10 +12,10 @@ class AnimalHealtCalendarRepository implements IAnimalHealtCalendarModel {
       FormData formData = FormData.fromMap(t.toJson());
       var response =
           await dio.post(Constant.createAnimalHeartCalendar, data: formData);
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         return await response.data;
       }
-      throw Exception("Problema fisico no registrado, intente más tarde");
+      throw Exception("Recordatorio no registrado, intente más tarde");
     } catch (e) {
       throw Exception("Hubo un problema con el servidor");
     }

@@ -117,11 +117,11 @@ class NotificationService {
   }
 }
 
-Future<void> onSelectNotification(String? payload, int? idFarm) async {
+Future<void> onSelectNotification(String? payload) async {
   final data = jsonDecode(payload!);
   await navigatorKey.currentState?.push(MaterialPageRoute(
       builder: (_) => CalendarPage(
             CattleId: data["CattleId"],
-            IdFarm: null,
+            IdFarm: data["IdFarm"],
           )));
 }

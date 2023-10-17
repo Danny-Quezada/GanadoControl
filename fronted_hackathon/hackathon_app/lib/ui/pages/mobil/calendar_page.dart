@@ -117,7 +117,8 @@ class AddReminder extends StatelessWidget {
           "title": titleController.text + " Vaca: ${CattleId}",
           "eventDate": DateFormat("EEEE, d MMM y").format(dateTime!),
           "eventTime": timeOfDay!.format(context),
-          "CattleId": CattleId
+          "CattleId": CattleId,
+          "IdFarm": IdFarm
         }),
         DateTimeComponents.dayOfWeekAndTime);
 

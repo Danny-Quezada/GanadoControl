@@ -2,17 +2,23 @@ import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/app_core/iservices/ianimal_healt_calendar_services.dart';
 import 'package:hackathon_app/app_core/iservices/icattle_services.dart';
+import 'package:hackathon_app/app_core/iservices/icow_calving_services.dart';
+import 'package:hackathon_app/app_core/iservices/iinsemination_services.dart';
 import 'package:hackathon_app/app_core/iservices/imeditation_services.dart';
 import 'package:hackathon_app/app_core/iservices/iphysical_problem_services.dart';
 import 'package:hackathon_app/app_core/iservices/itreatment_service.dart';
 import 'package:hackathon_app/app_core/services/animal_healt_calendar_services.dart';
 import 'package:hackathon_app/app_core/services/cattle_services.dart';
+import 'package:hackathon_app/app_core/services/cow_calving_services.dart';
+import 'package:hackathon_app/app_core/services/insemination_services.dart';
 import 'package:hackathon_app/app_core/services/meditation_services.dart';
 import 'package:hackathon_app/app_core/services/physical_problems_services.dart';
 import 'package:hackathon_app/app_core/services/shared_preferences_services.dart';
 import 'package:hackathon_app/app_core/services/treatment_services.dart';
 import 'package:hackathon_app/domain/interfaces/ianimal_health_calendar_model.dart';
 import 'package:hackathon_app/domain/interfaces/icattle_model.dart';
+import 'package:hackathon_app/domain/interfaces/icow_calving_model.dart';
+import 'package:hackathon_app/domain/interfaces/iinsermination_model.dart';
 import 'package:hackathon_app/domain/interfaces/imeditation_model.dart';
 import 'package:hackathon_app/domain/interfaces/iphysical_problem_model.dart';
 import 'package:hackathon_app/domain/interfaces/itreatment.dart';
@@ -20,6 +26,8 @@ import 'package:hackathon_app/domain/models/Entities/cattle.dart';
 import 'package:hackathon_app/domain/models/Entities/user.dart';
 import 'package:hackathon_app/infraestructure/repository/animal_healt_calendar_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/cattle_repository.dart';
+import 'package:hackathon_app/infraestructure/repository/cow_calving_repository.dart';
+import 'package:hackathon_app/infraestructure/repository/insemination_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/meditation_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/physical_problem_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/treatment_repository.dart';
@@ -27,6 +35,8 @@ import 'package:hackathon_app/infraestructure/repository/user_repository_db.dart
 import 'package:hackathon_app/provider/animal_healt_calendar_provider.dart';
 import 'package:hackathon_app/provider/body_part_provider.dart';
 import 'package:hackathon_app/provider/cattle_provider.dart';
+import 'package:hackathon_app/provider/cow_calving_provider.dart';
+import 'package:hackathon_app/provider/insemination_provider.dart';
 import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/provider/physical_problem_provider.dart';
 import 'package:hackathon_app/provider/treatment_provider.dart';
@@ -163,6 +173,26 @@ class MyApp extends StatelessWidget {
               iAnimalHealtCalendarServices:
                   Provider.of<IAnimalHealtCalendarServices>(context,
                       listen: false)),
+        ),
+        Provider<IInseminationModel>(create: (_) => InseminationRepository()),
+        Provider<IInseminationServices>(
+            create: (context) => InseminationServices(
+                iInseminationModel:
+                    Provider.of<IInseminationModel>(context, listen: false))),
+        ChangeNotifierProvider(
+          create: (context) => InseminationProvider(
+              inseminationServices:
+                  Provider.of<IInseminationServices>(context, listen: false)),
+        ),
+        Provider<ICowCalvingModel>(create: (_) => CowCalvingRepository()),
+        Provider<ICowCalvingServices>(
+            create: (context) => CowCalvingServices(
+                iCowCalvingModel:
+                    Provider.of<ICowCalvingModel>(context, listen: false))),
+        ChangeNotifierProvider(
+          create: (context) => CowCalvingProvider(
+              iCowCalvingServices:
+                  Provider.of<ICowCalvingServices>(context, listen: false)),
         ),
       ],
       child: MaterialApp(

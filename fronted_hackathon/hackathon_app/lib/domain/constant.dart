@@ -34,4 +34,8 @@ class Constant {
       "${route}/Recordatorio/Ganado";
   static const String updateAnimalHeartCalendar = "${route}/Recordatorio";
   static const String deleteAnimalHeartCalendar = "${route}/Recordatorio";
+
+  static const String createInsemination = "${route}/Inseminacion";
+
+  static const String createCowCalving = "${route}/Parto";
 }

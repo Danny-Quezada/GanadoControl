@@ -2,8 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/domain/models/Entities/cattle.dart';
+import 'package:hackathon_app/domain/models/Entities/cow_calving.dart';
+import 'package:hackathon_app/domain/models/Entities/insemination.dart';
 import 'package:hackathon_app/provider/body_part_provider.dart';
 import 'package:hackathon_app/provider/cattle_provider.dart';
+import 'package:hackathon_app/provider/cow_calving_provider.dart';
+import 'package:hackathon_app/provider/insemination_provider.dart';
 import 'package:hackathon_app/provider/physical_problem_provider.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_detail_physical_page.dart';
@@ -16,6 +20,8 @@ import 'package:hackathon_app/ui/widgets/datetime_picker_widget.dart';
 import 'package:hackathon_app/ui/widgets/labeled_checkbox.dart';
 import 'package:hackathon_app/ui/widgets/select_image_widget.dart';
 import 'package:provider/provider.dart';
+
+String? type;
 
 class AddCowPage extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -34,7 +40,8 @@ class AddCowPage extends StatelessWidget {
   File? file;
 
   int famrId;
-  AddCowPage({required this.famrId});
+  bool status;
+  AddCowPage({required this.famrId, required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +50,10 @@ class AddCowPage extends StatelessWidget {
         Provider.of<PhysicalProblemProvider>(context, listen: false);
     final bodyPartProvider =
         Provider.of<BodyPartProvider>(context, listen: false);
+    final inseminationProvider =
+        Provider.of<InseminationProvider>(context, listen: false);
+    final cowCalvingProvider =
+        Provider.of<CowCalvingProvider>(context, listen: false);
     TextStyle textstyle = TextStyle(
         color: ColorPalette.colorFontTextFieldPrincipal,
         fontWeight: FontWeight.w700);
@@ -89,15 +100,18 @@ class AddCowPage extends StatelessWidget {
                     hintText: "220kg",
                     labelText: "Kilos",
                     obscureText: false),
-                CustomFormField(
-                    textInput: TextInputType.number,
-                    textEditingController: cowCalvingController,
-                    validator: ValidatorTextField.genericNumberValidator,
-                    nextFocusNode: null,
-                    focusNode: cowCalvingNode,
-                    hintText: "8",
-                    labelText: "Número de parto",
-                    obscureText: false),
+                Visibility(
+                  visible: status,
+                  child: CustomFormField(
+                      textInput: TextInputType.number,
+                      textEditingController: cowCalvingController,
+                      validator: ValidatorTextField.genericNumberValidator,
+                      nextFocusNode: null,
+                      focusNode: cowCalvingNode,
+                      hintText: "8",
+                      labelText: "Número de parto",
+                      obscureText: false),
+                ),
                 DateTimePicker(
                   text: "Fecha de nacimiento",
                   size: const Size(275, 31),
@@ -107,11 +121,14 @@ class AddCowPage extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                DateTimePicker(
-                  text: "Fecha de inseminación",
-                  size: const Size(275, 31),
-                  dateTimeController: inseminationDateTimeController,
-                  color: ColorPalette.colorFontTextFieldPrincipal,
+                Visibility(
+                  visible: status,
+                  child: DateTimePicker(
+                    text: "Fecha de inseminación",
+                    size: const Size(275, 31),
+                    dateTimeController: inseminationDateTimeController,
+                    color: ColorPalette.colorFontTextFieldPrincipal,
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -136,7 +153,7 @@ class AddCowPage extends StatelessWidget {
                     fontSize: 16),
                 Center(
                   child: ButtonWidget(
-                      text: "Agregar vaca",
+                      text: status == true ? "Agregar vaca" : "AGregar toro",
                       size: const Size(282, 64),
                       color: Colors.green.shade200,
                       rounded: 16,
@@ -149,10 +166,16 @@ class AddCowPage extends StatelessWidget {
                             weight: double.parse(weightContoller.text),
                             birthDate:
                                 DateTime.parse(birthDateTimeController.text),
-                            type: "d",
+                            type: "",
                             groupId: famrId,
                             status: "activo",
                           );
+
+                          if (status == true) {
+                            cattle.type = "Vaca";
+                          } else if (status == false) {
+                            cattle.type = "Toro";
+                          }
 
                           File fileImage = file ??
                               await PathImageAsset.getImageFileFromAssets(
@@ -160,6 +183,16 @@ class AddCowPage extends StatelessWidget {
                           cattle.imageName = fileImage!.path.split("/").last;
                           cattle.imagePath = fileImage.path;
                           await cattleProvider.create(cattle);
+
+                          if (status == true) {
+                            CowCalving cowCalving = CowCalving(
+                                cattleId: identifierController.text,
+                                type: type!,
+                                successful: true,
+                                date: DateTime.parse(
+                                    inseminationDateTimeController.text));
+                            cowCalvingProvider.create(cowCalving);
+                          }
 
                           for (int i = 0;
                               i < bodyPartProvider.physicalProblems.length;
@@ -170,6 +203,15 @@ class AddCowPage extends StatelessWidget {
                                 .create(bodyPartProvider.physicalProblems[i]);
                           }
                           bodyPartProvider.physicalProblems = [];
+
+                          if (status == true) {
+                            Insemination insemination = Insemination(
+                                IdInsemination: 1,
+                                cattleId: identifierController.text,
+                                inseminationDate: DateTime.parse(
+                                    inseminationDateTimeController.text));
+                            await inseminationProvider.create(insemination);
+                          }
 
                           Navigator.pop(context);
                         } else {
@@ -204,6 +246,7 @@ class _CheckboxListState extends State<CheckboxList> {
     setState(() {
       isCheckedNatural = checkBoxState;
       isCheckedCesarea = !isCheckedNatural;
+      type = "Natural";
     });
   }
 
@@ -211,6 +254,7 @@ class _CheckboxListState extends State<CheckboxList> {
     setState(() {
       isCheckedCesarea = checkBoxState;
       isCheckedNatural = !isCheckedCesarea;
+      type = "Cesárea";
     });
   }
 

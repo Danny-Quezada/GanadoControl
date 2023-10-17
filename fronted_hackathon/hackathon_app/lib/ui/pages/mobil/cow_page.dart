@@ -87,7 +87,7 @@ class CattleList extends StatelessWidget {
                     urlImage: cattle.urlImage!,
                     title: cattle.idCattle,
                     description:
-                        "Ultima vacuna: \n ultima desparasitacion: 00:00:00 \n Peso: 262kg",
+                        "Ultima vacuna: 00:00:00 \n ultima desparasitacion: 00:00:00 \n Peso: ${cattle.weight}",
                     radius: 12,
                     onLongPress: () {});
               },
@@ -148,6 +148,7 @@ class floatingActionButton extends StatelessWidget {
                   builder: (context) {
                     return AddCowPage(
                       famrId: farmId,
+                      status: true,
                     );
                   },
                 ));
@@ -158,7 +159,16 @@ class floatingActionButton extends StatelessWidget {
               size: Size(size.width / 3.2, 20),
               color: ColorPalette.colorPrincipal,
               rounded: 20,
-              function: () {},
+              function: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return AddCowPage(
+                      famrId: farmId,
+                      status: false,
+                    );
+                  },
+                ));
+              },
               fontSize: 14)
         ],
       ),
