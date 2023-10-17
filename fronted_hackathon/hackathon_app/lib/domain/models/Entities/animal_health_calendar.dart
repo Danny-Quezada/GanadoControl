@@ -1,17 +1,18 @@
 class AnimalHealthCalendar {
-  AnimalHealthCalendar({
-    this.animalHealthCalendarId = 0,
-    required this.date,
-    required this.title,
-    required this.description,
-    required this.cattleId,
-  });
+  AnimalHealthCalendar(
+      {this.animalHealthCalendarId = 0,
+      required this.date,
+      required this.title,
+      required this.description,
+      required this.cattleId,
+      this.meditationId});
 
   int? animalHealthCalendarId;
   final DateTime? date;
   final String title;
   final String description;
   final String cattleId;
+  final int? meditationId;
 
   factory AnimalHealthCalendar.fromJson(Map<String, dynamic> json) {
     return AnimalHealthCalendar(
@@ -20,6 +21,7 @@ class AnimalHealthCalendar {
       title: json["titulo"] ?? "",
       description: json["descripcion"] ?? "",
       cattleId: json["idGanado"] ?? "",
+      meditationId: int.parse(json["idFarmaco"]),
     );
   }
 
@@ -29,5 +31,6 @@ class AnimalHealthCalendar {
         "Titulo": title,
         "Descripcion": description,
         "IdGanado": cattleId,
+        "IdFarmaco": meditationId,
       };
 }

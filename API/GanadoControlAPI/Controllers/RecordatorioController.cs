@@ -43,8 +43,7 @@ namespace GanadoControlAPI.Controllers
             }
             try
             {
-                await recordatorioRepository.Insertar(recordatorio);
-                return Created("Creado", true);
+                return Ok(await recordatorioRepository.Insertar(recordatorio));
             }
             catch (Exception ex)
             {

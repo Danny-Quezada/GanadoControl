@@ -30,8 +30,7 @@ namespace GanadoControlAPI.Controllers
             }
             try
             {
-                await problemaFisicoRepository.Insertar(problemaFisico);
-                return Created("Creado", true);
+                return Ok(await problemaFisicoRepository.Insertar(problemaFisico));
             }
             catch (Exception ex)
             {

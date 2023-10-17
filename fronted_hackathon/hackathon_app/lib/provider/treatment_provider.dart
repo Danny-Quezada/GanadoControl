@@ -34,6 +34,13 @@ class TreatmentProvider extends ChangeNotifier
     notifyListeners();
   }
 
+  List<Treatment>? getTreatmentByType(String type) {
+    if (type == "Todo") {
+      return list;
+    }
+    return list?.where((element) => element.type.contains(type)).toList();
+  }
+
   Future<List<Treatment>> getTreatmentByUser(String IdUser) async {
     if (list != null) {
       return list!;

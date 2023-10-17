@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hackathon_app/app_core/services/notification_services.dart';
+import 'package:hackathon_app/domain/models/Entities/animal_health_calendar.dart';
+import 'package:hackathon_app/provider/animal_healt_calendar_provider.dart';
+import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
 import 'package:hackathon_app/ui/util/meeting_data_source.dart';
 import 'package:hackathon_app/ui/util/validator_textfield.dart';
@@ -10,6 +13,7 @@ import 'package:hackathon_app/ui/widgets/button_widget.dart';
 import 'package:hackathon_app/ui/widgets/custom_form_field.dart';
 import 'package:hackathon_app/ui/widgets/time_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import "dart:math" as math;
 
@@ -19,7 +23,8 @@ final globalKey = GlobalKey<ScaffoldState>();
 
 class CalendarPage extends StatelessWidget {
   String CattleId;
-  CalendarPage({required this.CattleId});
+  int? IdFarm;
+  CalendarPage({required this.CattleId, required this.IdFarm});
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +50,10 @@ class CalendarPage extends StatelessWidget {
                     context: context,
                     builder: (context) => AlertDialog.adaptive(
                       content: AddReminder(
-                          CattleId: CattleId,
-                          dateTime: calendarLongPressDetails.date!),
+                        CattleId: CattleId,
+                        dateTime: calendarLongPressDetails.date!,
+                        IdFarm: IdFarm!,
+                      ),
                     ),
                   );
                   //}
@@ -81,10 +88,14 @@ class AddReminder extends StatelessWidget {
   FocusNode descriptionNode = FocusNode();
   String CattleId;
   DateTime dateTime;
+  int? IdMedicamento;
+  int IdFarm;
   TimeOfDay? timeOfDay = TimeOfDay.now();
-  AddReminder({required this.CattleId, required this.dateTime});
+  AddReminder(
+      {required this.CattleId, required this.dateTime, required this.IdFarm});
 
-  Future<void> createNotification(context) async {
+  Future<void> createNotification(
+      context, AnimalHealtCalendarProvider animalHealtCalendarProvider) async {
     await notificationService.showNotification(
       0,
       titleController.text,
@@ -109,10 +120,19 @@ class AddReminder extends StatelessWidget {
           "CattleId": CattleId
         }),
         DateTimeComponents.dayOfWeekAndTime);
+
+    animalHealtCalendarProvider.create(AnimalHealthCalendar(
+        date: dateTime,
+        title: titleController.text,
+        description: descriptionController.text,
+        cattleId: CattleId,
+        meditationId: IdMedicamento));
   }
 
   @override
   Widget build(BuildContext context) {
+    final animalHeartCalendar =
+        Provider.of<AnimalHealtCalendarProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return Form(
       key: _formKey,
@@ -145,6 +165,16 @@ class AddReminder extends StatelessWidget {
                   border: false,
                 ),
               ),
+              ButtonWidget(
+                color: const Color(0xFFCA78FF),
+                fontSize: 16,
+                size: const Size(170, 31),
+                function: () async {
+                  IdMedicamento = await _mostrarMedicamentos(context);
+                },
+                rounded: 12,
+                text: "Elegir fármaco",
+              ),
               TimePicker(
                   color: Colors.grey.shade400,
                   size: const Size(269, 36),
@@ -161,7 +191,9 @@ class AddReminder extends StatelessWidget {
                       function: () async {
                         final FormState form = _formKey.currentState!;
                         if (form.validate()) {
-                          timeOfDay =timeController.text.isEmpty?  TimeOfDay.fromDateTime(DateTime.now())  : fromString(timeController.text);
+                          timeOfDay = timeController.text.isEmpty
+                              ? TimeOfDay.fromDateTime(DateTime.now())
+                              : fromString(timeController.text);
                           final app = Meeting(
                               titleController.text,
                               dateTime,
@@ -172,7 +204,7 @@ class AddReminder extends StatelessWidget {
                           meetingDataSource!.appointments!.add(app);
                           meetingDataSource!.notifyListeners(
                               CalendarDataSourceAction.add, <Meeting>[app]);
-                          createNotification(context);
+                          createNotification(context, animalHeartCalendar);
                           Navigator.pop(context);
                         }
                       },
@@ -183,13 +215,73 @@ class AddReminder extends StatelessWidget {
       ),
     );
   }
+
+  Future<int?> _mostrarMedicamentos(BuildContext context) async {
+    final meditationProvider =
+        Provider.of<MeditationProvider>(context, listen: false);
+    meditationProvider.getAllFarmByUserId(IdFarm);
+    return showDialog<int?>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Center(
+            child: Text(
+              'Medicamentos',
+              style: TextStyle(
+                fontFamily: "Karla",
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          content: Container(
+            width: double.maxFinite,
+            child: Consumer<MeditationProvider>(
+              builder: (context, MeditationProviderConsumer, child) {
+                if (meditationProvider.list == null) {
+                  return Container();
+                }
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: meditationProvider.list?.length ?? 0,
+                  itemBuilder: (BuildContext context, index) {
+                    if (meditationProvider.list != null &&
+                        meditationProvider.list!.length > 0) {
+                      return ListTile(
+                        title: Text(
+                          meditationProvider.list?[index].meditationName
+                              as String,
+                          style: TextStyle(
+                            color: Colors.grey.shade400,
+                            fontFamily: "Karla",
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).pop(
+                              meditationProvider.list?[index].meditationId);
+                        },
+                      );
+                    } else {
+                      return Container();
+                    }
+                  },
+                );
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   TimeOfDay fromString(String time) {
-  int hh = 0;
-  if (time.endsWith('PM')) hh = 12;
-  time = time.split(' ')[0];
-  return TimeOfDay(
-    hour: hh + int.parse(time.split(":")[0]) % 24, // in case of a bad time format entered manually by the user
-    minute: int.parse(time.split(":")[1]) % 60,
-  );
-}
+    int hh = 0;
+    if (time.endsWith('PM')) hh = 12;
+    time = time.split(' ')[0];
+    return TimeOfDay(
+      hour: hh +
+          int.parse(time.split(":")[0]) %
+              24, // in case of a bad time format entered manually by the user
+      minute: int.parse(time.split(":")[1]) % 60,
+    );
+  }
 }

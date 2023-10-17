@@ -210,7 +210,7 @@ class SplashScreen extends StatelessWidget {
         ),
         onAnimationEnd: () => debugPrint("On Fade In End"),
         defaultNextScreen: CattlePage(
-          farmId: 12,
+          farmId: 8,
         ),
         // setNextScreenAsyncCallback: () async {
         //   final userProvider =

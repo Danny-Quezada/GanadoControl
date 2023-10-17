@@ -5,6 +5,7 @@ import 'package:flutter_provider_utilities/flutter_provider_utilities.dart';
 import 'package:hackathon_app/infraestructure/repository/treatment_repository.dart';
 import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/provider/treatment_provider.dart';
+import 'package:hackathon_app/ui/pages/mobil/calendar_page.dart';
 import 'package:hackathon_app/ui/widgets/flushbar_widget.dart';
 
 import 'package:intl/intl.dart';
@@ -18,6 +19,8 @@ import '../../widgets/button_widget.dart';
 import '../../widgets/custom_form_field.dart';
 import '../../widgets/pills_widget.dart';
 import '../../widgets/rich_text_widget.dart';
+
+String value = "Todo";
 
 final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 PersistentBottomSheetController? _controller;
@@ -115,6 +118,7 @@ class ListMedical extends StatelessWidget {
     final treatmentProvider =
         Provider.of<TreatmentProvider>(context, listen: false);
     treatmentProvider.getTreatmentByCattle(cattleId);
+    List<Treatment>? listaItems = treatmentProvider.getTreatmentByType(value);
     Size size = MediaQuery.of(context).size;
     return MessageListener<TreatmentProvider>(
       child: Consumer<TreatmentProvider>(
@@ -130,19 +134,21 @@ class ListMedical extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
                   scrollDirection: Axis.vertical,
-                  itemCount: TreatmentProviderConsumer.list!.length,
+                  itemCount:
+                      listaItems?.length == null ? 0 : listaItems?.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Selector<TreatmentProvider, Treatment>(
                       builder: (context, treatment, child) {
                         return Padding(
                           padding: const EdgeInsets.only(top: 10.0),
                           child: PillWidget(treatment.dosis.toInt(),
-                              pharmaceuticals: Pharmaceuticals.Vacunas,
+                              pharmaceuticals:
+                                  stringToPharmaceuticals(treatment.type),
                               title: treatment.aplicationArea!,
                               function: () {}),
                         );
                       },
-                      selector: (p0, p1) => p1.list![index],
+                      selector: (p0, p1) => listaItems![index],
                     );
                   }));
         },
@@ -155,6 +161,19 @@ class ListMedical extends StatelessWidget {
             context: context, title: "Error", message: error, error: false);
       },
     );
+  }
+
+  Pharmaceuticals stringToPharmaceuticals(String cadena) {
+    switch (cadena) {
+      case 'Medicamentos':
+        return Pharmaceuticals.Medicamentos;
+      case 'Vitaminas':
+        return Pharmaceuticals.Vitaminas;
+      case 'Vacunas':
+        return Pharmaceuticals.Vacunas;
+      default:
+        throw ArgumentError('Unknown Pharmaceuticals value: $value');
+    }
   }
 
   _showDetailsTreatment(Treatment treatment, BuildContext context) {
@@ -200,7 +219,6 @@ class OptionMenu extends StatefulWidget {
 }
 
 class _OptionMenuState extends State<OptionMenu> {
-  String value = "Todo";
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -245,7 +263,9 @@ class _OptionMenuState extends State<OptionMenu> {
             ),
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                calendarPage(context, widget.cattle.idCattle, widget.IdFarm);
+              },
               icon: Image.asset("assets/images/icons/calendar.png")),
           IconButton(
               onPressed: () {},
@@ -256,7 +276,6 @@ class _OptionMenuState extends State<OptionMenu> {
                     backgroundColor: Colors.white,
                     (context) => addTreatmentBottomSheet(
                           cattleId: widget.cattle.idCattle,
-                          type: widget.cattle.type,
                           IdFarm: widget.IdFarm,
                         ));
               },
@@ -265,29 +284,45 @@ class _OptionMenuState extends State<OptionMenu> {
       ),
     );
   }
+
+  void calendarPage(BuildContext context, String cattleId, int IdFarm) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) {
+        return CalendarPage(
+          CattleId: cattleId,
+          IdFarm: IdFarm,
+        );
+      },
+    ));
+  }
 }
 
-class addTreatmentBottomSheet extends StatelessWidget {
+class addTreatmentBottomSheet extends StatefulWidget {
+  String cattleId;
+  String type = "Vacunas";
+  int IdFarm;
+  addTreatmentBottomSheet({required this.cattleId, required this.IdFarm});
+
+  @override
+  State<addTreatmentBottomSheet> createState() =>
+      _addTreatmentBottomSheetState();
+}
+
+class _addTreatmentBottomSheetState extends State<addTreatmentBottomSheet> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController dosisController = TextEditingController();
+
   TextEditingController areaController = TextEditingController();
+
   TextEditingController observationController = TextEditingController();
 
   FocusNode dosisNode = FocusNode();
+
   FocusNode areaNode = FocusNode();
+
   FocusNode observationNode = FocusNode();
-
-  final List<String> medicamentos = [
-    'Ibuprofeno',
-    'Paracetamol',
-    'Amoxicilina'
-  ];
-
-  String cattleId;
-  String type;
-  int IdFarm;
-  addTreatmentBottomSheet(
-      {required this.cattleId, required this.type, required this.IdFarm});
+  String value = "Vacunas";
 
   @override
   Widget build(BuildContext context) {
@@ -324,6 +359,30 @@ class addTreatmentBottomSheet extends StatelessWidget {
                 hintText: "Molestias en la parte de la aplicación",
                 labelText: "Observación",
                 obscureText: false),
+            DropdownButton(
+              items: const [
+                DropdownMenuItem(
+                  child: Text("Medicamentos"),
+                  value: "Medicamentos",
+                ),
+                DropdownMenuItem(
+                  child: Text("Vitaminas"),
+                  value: "Vitaminas",
+                ),
+                DropdownMenuItem(child: Text("Vacunas"), value: "Vacunas"),
+              ],
+              style:
+                  TextStyle(color: Colors.grey.shade400, fontFamily: "Karla"),
+              underline: Container(),
+              value: value,
+              elevation: 5,
+              onChanged: (valuee) {
+                setState(() {
+                  value = valuee!;
+                  widget.type = valuee!;
+                });
+              },
+            ),
             ButtonWidget(
               color: const Color(0xFFCA78FF),
               fontSize: 16,
@@ -345,10 +404,10 @@ class addTreatmentBottomSheet extends StatelessWidget {
                   rounded: 16,
                   function: () async {
                     Treatment treatment = Treatment(
-                        cattleId: cattleId,
+                        cattleId: widget.cattleId,
                         meditationId: IdMedicamento.toString(),
                         date: DateTime.now(),
-                        type: type,
+                        type: widget.type,
                         dosis: double.parse(dosisController.text),
                         observation: observationController.text,
                         aplicationArea: areaController.text);
@@ -363,11 +422,10 @@ class addTreatmentBottomSheet extends StatelessWidget {
   }
 
   Future<int?> _mostrarMedicamentos(BuildContext context) async {
-    final completer = Completer<int?>();
     final meditationProvider =
         Provider.of<MeditationProvider>(context, listen: false);
-    meditationProvider.getAllFarmByUserId(IdFarm);
-    showDialog(
+    meditationProvider.getAllFarmByUserId(widget.IdFarm);
+    return showDialog<int?>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -390,7 +448,7 @@ class addTreatmentBottomSheet extends StatelessWidget {
                 return ListView.builder(
                   shrinkWrap: true,
                   itemCount: meditationProvider.list?.length ?? 0,
-                  itemBuilder: (BuildContext context, int index) {
+                  itemBuilder: (BuildContext context, index) {
                     if (meditationProvider.list != null &&
                         meditationProvider.list!.length > 0) {
                       return ListTile(
@@ -403,8 +461,8 @@ class addTreatmentBottomSheet extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          completer.complete(index);
-                          Navigator.pop(context);
+                          Navigator.of(context).pop(
+                              meditationProvider.list?[index].meditationId);
                         },
                       );
                     } else {
@@ -418,7 +476,5 @@ class addTreatmentBottomSheet extends StatelessWidget {
         );
       },
     );
-
-    return completer.future;
   }
 }

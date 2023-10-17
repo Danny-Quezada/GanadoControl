@@ -8,7 +8,6 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-
 class NotificationService {
   // Singleton pattern
   static final NotificationService _notificationService =
@@ -36,16 +35,14 @@ class NotificationService {
     importance: Importance.high,
   );
 
- 
   final NotificationDetails notificationDetails = NotificationDetails(
     android: _androidNotificationDetails,
-  
   );
 
   Future<void> init() async {
     final AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings("mipmap/ic_launcher");
-  
+
     // final IOSInitializationSettings iOSInitializationSettings =
     //     IOSInitializationSettings(
     //   defaultPresentAlert: false,
@@ -63,12 +60,8 @@ class NotificationService {
     tz.initializeTimeZones();
 
     await flutterLocalNotificationsPlugin.initialize(
-
       initializationSettings,
-      onDidReceiveBackgroundNotificationResponse: (details)async{
-       
-      },
-      
+      onDidReceiveBackgroundNotificationResponse: (details) async {},
     );
   }
 
@@ -86,7 +79,6 @@ class NotificationService {
   Future<void> showNotification(
       int id, String title, String body, String payload) async {
     await flutterLocalNotificationsPlugin.show(
-
       id,
       title,
       body,
@@ -110,7 +102,6 @@ class NotificationService {
       notificationDetails,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
-   
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       payload: payload,
       matchDateTimeComponents: dateTimeComponents,
@@ -126,8 +117,11 @@ class NotificationService {
   }
 }
 
-Future<void> onSelectNotification(String? payload) async {
-   final data = jsonDecode(payload!);
-  await navigatorKey.currentState
-      ?.push(MaterialPageRoute(builder: (_) => CalendarPage(CattleId: data["CattleId"] )));
+Future<void> onSelectNotification(String? payload, int? idFarm) async {
+  final data = jsonDecode(payload!);
+  await navigatorKey.currentState?.push(MaterialPageRoute(
+      builder: (_) => CalendarPage(
+            CattleId: data["CattleId"],
+            IdFarm: null,
+          )));
 }
