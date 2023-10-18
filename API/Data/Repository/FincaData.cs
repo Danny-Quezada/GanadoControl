@@ -58,10 +58,11 @@ namespace Data.Repository
                             IdFinca = Convert.ToInt32(dr["IdFinca"]),
                             Grupos = Convert.ToInt32(dr["Grupos"]),
                             Ubicacion = dr["Ubicacion"].ToString(),
-                            Hectareas =  dr.GetFieldType("Hectareas") == typeof(int)? (float)Convert.ToInt32(dr["IdFinca"]) : dr.GetFloat("Hectareas"),
+                            Hectareas = dr.GetFieldType("Hectareas") == typeof(int) ? (float)Convert.ToInt32(dr["IdFinca"]) : dr.GetFloat("Hectareas"),
                             FotoURL = dr["FotoURL"].ToString(),
                             Nombre = dr["Nombre"].ToString(),
                             NombreDueño = dr["NombreDueño"].ToString(),
+                            RolUsuario = dr["RolUsuario"].ToString()
                         };
 
                         fincas.Add(gando);

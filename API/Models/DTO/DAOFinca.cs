@@ -16,5 +16,7 @@ namespace Models.DTO
         public string Ubicacion { get; set; }
         public float Hectareas { get; set; }
         public string FotoURL { get; set; }
+
+        public string RolUsuario { get; set; }
     }
 }

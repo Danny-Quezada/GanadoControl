@@ -1,4 +1,4 @@
-﻿ using Data;
+﻿using Data;
 using Microsoft.AspNetCore.Mvc;
 using Models.DTO;
 using Models.Entities;
@@ -30,7 +30,7 @@ namespace GanadoControlAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            if(dtofinca is null)
+            if (dtofinca is null)
             {
                 return BadRequest("El objeto Finca es nulo");
             }
@@ -44,7 +44,7 @@ namespace GanadoControlAPI.Controllers
                 }
                 else
                 {
-                    detalleFincaFoto.FotoURL = await ImageUtility.InsertImagen("FotosDeFincas", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString(),"FINCA.png");
+                    detalleFincaFoto.FotoURL = await ImageUtility.InsertImagen("FotosDeFincas", _webHostEnvironment.WebRootPath, HttpContext.Request.Scheme, HttpContext.Request.Host.ToString(), "FINCA.png");
                 }
                 finca = new Finca()
                 {
@@ -103,7 +103,7 @@ namespace GanadoControlAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            if(insertFinca is null)
+            if (insertFinca is null)
             {
                 return BadRequest("El objeto Finca es nulo");
             }
