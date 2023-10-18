@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Models.DTO;
 
 namespace Data.Repository
 {
@@ -37,7 +38,38 @@ namespace Data.Repository
                 }
             }
         }
+        public async Task<DTOGrafParto> GrafParto(DateTime fechainicial, DateTime fechafinal)
+        {
+            DTOGrafParto dTOGraf = new DTOGrafParto();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("uspGrafPartos", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@fechainicial", SqlDbType.Date)).Value = fechainicial;
+                cmd.Parameters.Add(new SqlParameter("@fechafinal", SqlDbType.Date)).Value = fechafinal;
+                try
+                {
+                    await conexion.OpenAsync();
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
+                    while (dr.Read())
+                    {
 
+                        dTOGraf = new DTOGrafParto()
+                        {
+                            Exitoso = Convert.ToInt32(dr["Exitoso"]) == 1 ? Convert.ToInt32(dr["cantidad"]) : dTOGraf.Exitoso,
+                            NoExitoso = Convert.ToInt32(dr["Exitoso"]) == 0 ? Convert.ToInt32(dr["cantidad"]) : dTOGraf.NoExitoso,
+                        };
+
+                    }
+
+                    return dTOGraf;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
         public async Task<int> Insertar(Parto data)
         {
             int ultimoId = 0;
