@@ -79,6 +79,14 @@ namespace GanadoControlAPI.Controllers
             }
             catch (Exception ex) { return StatusCode(500, ex.Message); }
         }
-
+        [HttpGet("Grafico")]
+        public async Task<IActionResult> GrafPartesDañadas()
+        {
+            try
+            {
+                return Ok(await problemaFisicoRepository.GrafPartesDañadas());
+            }
+            catch (Exception ex) { return StatusCode(500, ex.Message); }
+        }
     }
 }

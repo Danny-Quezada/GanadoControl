@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Models.DTO;
 
 namespace Data.Repository
 {
@@ -52,6 +53,36 @@ namespace Data.Repository
                 {
                     await conexion.OpenAsync();
                     return (await cmd.ExecuteNonQueryAsync()) > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
+        public async Task<List<DTOGrafDaños>> GrafPartesDañadas()
+        {
+            List<DTOGrafDaños> listaProblemaFisico = new List<DTOGrafDaños>();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("uspGrafPartesDañadas", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    await conexion.OpenAsync();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (await dr.ReadAsync())
+                        {
+                            listaProblemaFisico.Add(new DTOGrafDaños()
+                            {
+                               NombreParte = dr["NombreParte"].ToString(),
+                               Cantidad = Convert.ToInt32(dr["cantidad"]),
+                            });
+                        }
+                    }
+                    return listaProblemaFisico;
                 }
                 catch (Exception ex)
                 {

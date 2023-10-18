@@ -49,5 +49,21 @@ namespace GanadoControlAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        [HttpGet("Grafico")]
+        public async Task<IActionResult> GrafParto(DateTime fechainicial, DateTime fechafinal)
+        {
+            try
+            {
+                if (fechainicial>fechafinal)
+                {
+                    throw new ArgumentException("La fecha iniciaL no puede ser mayor a la fecha final.");
+                }
+                return Ok(await partoRepository.GrafParto(fechainicial,fechafinal));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
