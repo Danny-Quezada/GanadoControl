@@ -54,4 +54,14 @@ class CattleProvider extends ChangeNotifier
     }
     notifyListeners();
   }
+
+  Future<Cattle?> getCattleById(String cattleId) async {
+    try {
+      return await _iCattleServices.getCattle(cattleId);
+    } catch (e) {
+      
+      notifyError(error);
+      return null;
+    }
+  }
 }

@@ -35,6 +35,9 @@ dependencies:
   cached_network_image: ^3.3.0
   shared_preferences: ^2.2.2
   sqflite: ^2.3.0
+  share_plus: ^7.2.1
+  qr_flutter: ^4.1.0
+  qr_code_scanner: ^1.0.1
   
  
   

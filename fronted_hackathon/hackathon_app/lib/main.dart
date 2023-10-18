@@ -239,25 +239,23 @@ class SplashScreen extends StatelessWidget {
           child: Image.asset("assets/images/sections/Logo.png"),
         ),
         onAnimationEnd: () => debugPrint("On Fade In End"),
-        defaultNextScreen: CattlePage(
-          farmId: 8,
-        ),
-        // setNextScreenAsyncCallback: () async {
-        //   final userProvider =
-        //       Provider.of<UserProvider>(context, listen: false);
+        defaultNextScreen: null,
+        setNextScreenAsyncCallback: () async {
+          final userProvider =
+              Provider.of<UserProvider>(context, listen: false);
 
-        //   User? user = await SharedPreferencesServices.readUser();
-        //   if (user != null) {
-        //     userProvider.user = user;
-        //     return PrincipalPage();
-        //   } else {
-        //     int count = (await userProvider.readUser()).length;
-        //     if (count > 0) {
-        //       return ChangeAccountPage();
-        //     }
-        //     return InitialPage();
-        //   }
-        // },
+          User? user = await SharedPreferencesServices.readUser();
+          if (user != null) {
+            userProvider.user = user;
+            return PrincipalPage();
+          } else {
+            int count = (await userProvider.readUser()).length;
+            if (count > 0) {
+              return ChangeAccountPage();
+            }
+            return InitialPage();
+          }
+        },
         // defaultNextScreen: CalendarPage(CattleId: "ddd",)
       ),
     );

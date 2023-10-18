@@ -24,9 +24,8 @@ class CattleServices implements ICattleServices {
   }
 
   @override
-  Future<Cattle> getCattle(int cattleId) {
-    // TODO: implement getCattle
-    throw UnimplementedError();
+  Future<Cattle> getCattle(String cattleId) async{
+    return await iCattleModel.getCattle(cattleId);
   }
 
   @override

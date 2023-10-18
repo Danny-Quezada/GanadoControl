@@ -14,7 +14,7 @@ class CattleRepository implements ICattleModel {
           "FotoURL":
               await MultipartFile.fromFile(t.imagePath, filename: t.imageName)
         }));
-      var response = await dio.post(Constant.creatCattle, data: formData);
+      var response = await dio.post(Constant.createCattle, data: formData);
       if (response.statusCode == 201) {
         // int value = await response.data;
         return 0;
@@ -37,7 +37,7 @@ class CattleRepository implements ICattleModel {
     List<Cattle> cattles = [];
 
     try {
-      var response = await dio.get("${Constant.getCattle}/$groupId");
+      var response = await dio.get("${Constant.getCattleByGroup}/$groupId");
       if (response.statusCode == 200) {
         List<dynamic> data = response.data;
         data.forEach((element) {
@@ -52,9 +52,17 @@ class CattleRepository implements ICattleModel {
   }
 
   @override
-  Future<Cattle> getCattle(int cattleId) {
-    // TODO: implement getCattle
-    throw UnimplementedError();
+  Future<Cattle> getCattle(String cattleId) async{
+    try{
+      var response=await dio.get("${Constant.getCattle}/$cattleId");
+      if(response.statusCode==200){
+        return Cattle.fromJson(response.data);
+      }
+      throw Exception("Hubo un error, intente nuevamente");
+    }
+    catch(e){
+ throw Exception("Error en el servidor.");
+    }
   }
 
   @override
@@ -77,7 +85,7 @@ class CattleRepository implements ICattleModel {
           "FotoURL":
               await MultipartFile.fromFile(t.imagePath, filename: t.imageName)
         }));
-      var response = await dio.post(Constant.creatCattle, data: formData);
+      var response = await dio.post(Constant.createCattle, data: formData);
       if (response.statusCode == 201) {
         return t.idCattle;
       }

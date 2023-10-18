@@ -6,6 +6,7 @@ import 'package:hackathon_app/infraestructure/repository/treatment_repository.da
 import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/provider/treatment_provider.dart';
 import 'package:hackathon_app/ui/pages/mobil/calendar_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/qr_generate_page.dart';
 import 'package:hackathon_app/ui/widgets/flushbar_widget.dart';
 
 import 'package:intl/intl.dart';
@@ -27,8 +28,8 @@ PersistentBottomSheetController? _controller;
 
 class CowInformationPage extends StatelessWidget {
   Cattle cattle;
-  int IdFarm;
-  CowInformationPage({super.key, required this.cattle, required this.IdFarm});
+  int? IdFarm;
+  CowInformationPage({super.key, required this.cattle,  this.IdFarm});
 
   @override
   Widget build(BuildContext context) {
@@ -211,8 +212,8 @@ class ListMedical extends StatelessWidget {
 
 class OptionMenu extends StatefulWidget {
   Cattle cattle;
-  int IdFarm;
-  OptionMenu({required this.cattle, required this.IdFarm});
+  int? IdFarm;
+  OptionMenu({required this.cattle,  this.IdFarm});
 
   @override
   State<OptionMenu> createState() => _OptionMenuState();
@@ -262,24 +263,42 @@ class _OptionMenuState extends State<OptionMenu> {
               },
             ),
           ),
-          IconButton(
-              onPressed: () {
-                calendarPage(context, widget.cattle.idCattle, widget.IdFarm);
-              },
-              icon: Image.asset("assets/images/icons/calendar.png")),
+          Visibility(
+            visible: widget.IdFarm!=null ? true : false,
+            child: IconButton(
+                onPressed: () {
+                  calendarPage(context, widget.cattle.idCattle, widget.IdFarm!);
+                },
+                icon: Image.asset("assets/images/icons/calendar.png")),
+          ),
           IconButton(
               onPressed: () {},
               icon: Image.asset("assets/images/icons/cowFamily.png")),
+Visibility(
+  visible: widget.IdFarm!=null ? true : false,
+            child: IconButton(
+                onPressed: () {
+                  _controller = _scaffoldKey.currentState!.showBottomSheet(
+                      backgroundColor: Colors.white,
+                      (context) => addTreatmentBottomSheet(
+                            cattleId: widget.cattle.idCattle,
+                            IdFarm: widget.IdFarm!,
+                          ));
+                },
+                icon: Image.asset("assets/images/icons/greenPlus.png")),
+          ),
           IconButton(
               onPressed: () {
-                _controller = _scaffoldKey.currentState!.showBottomSheet(
-                    backgroundColor: Colors.white,
-                    (context) => addTreatmentBottomSheet(
-                          cattleId: widget.cattle.idCattle,
-                          IdFarm: widget.IdFarm,
-                        ));
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return QRGeneratePage(cattleId: widget.cattle.idCattle);
+                  },
+                ));
               },
-              icon: Image.asset("assets/images/icons/greenPlus.png"))
+              icon: Icon(
+                Icons.qr_code_2,
+                size: 35,
+              ))
         ],
       ),
     );
