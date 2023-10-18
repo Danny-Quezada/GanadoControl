@@ -108,6 +108,7 @@ class AddFarmPage extends StatelessWidget {
                         final FormState form = _formKey.currentState!;
                         if (form.validate()) {
                           Farm farm = Farm(
+                            userRole: "Creador",
                             farmName: farmNameController.text,
                             location: locationController.text,
                             hectares: int.parse(hectaresController.text),
@@ -122,7 +123,7 @@ class AddFarmPage extends StatelessWidget {
                               dateTimeController.text == ""
                                   ? DateTime.now().toString()
                                   : dateTimeController.text);
-                          farm.userRole = "Creador";
+                          
                           farm.userId = userId;
                           await farmProvider.create(farm);
                           Navigator.pop(context);

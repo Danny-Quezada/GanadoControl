@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_provider_utilities/flutter_provider_utilities.dart';
 import 'package:hackathon_app/provider/cattle_provider.dart';
 import 'package:hackathon_app/ui/pages/mobil/add_cow_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/share_farm_page.dart';
 import 'package:hackathon_app/ui/widgets/flushbar_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,8 @@ import 'cow_information_page.dart';
 class CowPage extends StatelessWidget {
   int flockId;
   int IdFarm;
-  CowPage({super.key, required this.flockId, required this.IdFarm});
+  String role;
+  CowPage({super.key, required this.flockId, required this.IdFarm,required this.role});
   TextEditingController _controller = TextEditingController();
 
   @override
@@ -23,7 +25,8 @@ class CowPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
-      floatingActionButton: floatingActionButton(farmId: flockId),
+      
+      floatingActionButton: floatingActionButton(farmId: flockId,role: role),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
         padding: const EdgeInsets.only(left: 15, right: 15),
@@ -68,8 +71,9 @@ class CattleList extends StatelessWidget {
       child: Consumer<CattleProvider>(
           builder: (context, CattleProviderConsumer, child) {
         if (cattleProvider.list == null) {
-          return Container();
+          return CircularProgressIndicator();
         }
+
         return ListView.builder(
           shrinkWrap: true,
           physics: const ClampingScrollPhysics(),
@@ -78,18 +82,21 @@ class CattleList extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Selector<CattleProvider, Cattle>(
               builder: (context, cattle, child) {
-                return CustomCardWidget([
-                  cattle.race,
-                  (DateTime.now().year - cattle.birthDate.year).toString() +
-                      "año"
-                ],
-                    function: () => cowInformationPage(context, cattle),
-                    urlImage: cattle.urlImage!,
-                    title: cattle.idCattle,
-                    description:
-                        "Ultima vacuna: 00:00:00 \n ultima desparasitacion: 00:00:00 \n Peso: ${cattle.weight}",
-                    radius: 12,
-                    onLongPress: () {});
+                return Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: CustomCardWidget([
+                    cattle.race,
+                    (DateTime.now().year - cattle.birthDate.year).toString() +
+                        "año"
+                  ],
+                      function: () => cowInformationPage(context, cattle),
+                      urlImage: cattle.urlImage!,
+                      title: cattle.idCattle,
+                      description:
+                          "Ultima vacuna: 00:00:00 \n ultima desparasitacion: 00:00:00 \n Peso: ${cattle.weight}",
+                      radius: 12,
+                      onLongPress: () {}),
+                );
               },
               selector: (p0, p1) => p1.list![index],
             );
@@ -119,8 +126,9 @@ class CattleList extends StatelessWidget {
 }
 
 class floatingActionButton extends StatelessWidget {
+  String role;
   int farmId;
-  floatingActionButton({required this.farmId});
+  floatingActionButton({required this.farmId, required this.role});
 
   @override
   Widget build(BuildContext context) {
@@ -138,38 +146,48 @@ class floatingActionButton extends StatelessWidget {
               rounded: 20,
               function: () {},
               fontSize: 14),
-          ButtonWidget(
-              text: "Crear vaca",
-              size: Size(size.width / 3.2, 20),
-              color: ColorPalette.colorPrincipal,
-              rounded: 20,
-              function: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return AddCowPage(
-                      famrId: farmId,
-                      status: true,
-                    );
+          Visibility(
+            visible: (role=="Visitante" || role=="Propietario") ? false : true,
+            child: Badge(
+
+              child: ButtonWidget(
+                  text: "Crear vaca",
+                  size: Size(size.width / 3.2, 20),
+                  color: ColorPalette.colorPrincipal,
+                  rounded: 20,
+                  function: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return AddCowPage(
+                          famrId: farmId,
+                          status: true,
+                        );
+                      },
+                    ));
                   },
-                ));
-              },
-              fontSize: 14),
-          ButtonWidget(
-              text: "Crear toro",
-              size: Size(size.width / 3.2, 20),
-              color: ColorPalette.colorPrincipal,
-              rounded: 20,
-              function: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return AddCowPage(
-                      famrId: farmId,
-                      status: false,
-                    );
-                  },
-                ));
-              },
-              fontSize: 14)
+                  fontSize: 14),
+            ),
+          ),
+          Visibility(
+            visible: (role=="Visitante" || role=="Propietario") ? false : true,
+            child: ButtonWidget(
+              
+                text: "Crear toro",
+                size: Size(size.width / 3.2, 20),
+                color: ColorPalette.colorPrincipal,
+                rounded: 20,
+                function: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return AddCowPage(
+                        famrId: farmId,
+                        status: false,
+                      );
+                    },
+                  ));
+                },
+                fontSize: 14),
+          )
         ],
       ),
     );

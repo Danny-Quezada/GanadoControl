@@ -12,6 +12,7 @@ class Farm with EntityImage {
   String? urlImage;
   DateTime? creation;
   bool? isSelected;
+ 
 
   Farm(
       {this.urlImage = "",
@@ -21,6 +22,7 @@ class Farm with EntityImage {
       required this.location,
       required this.hectares,
       required this.farmOwner,
+      required this.userRole,
       this.isSelected = false});
 
   factory Farm.fromJson(Map<String, dynamic> json) {
@@ -31,7 +33,8 @@ class Farm with EntityImage {
         farmName: json['nombre'] as String,
         location: json['ubicacion'] as String,
         hectares: json['hectareas'] as int,
-        farmOwner: json['nombreDueño'] as String);
+        farmOwner: json['nombreDueño'] as String,
+        userRole: json["rolUsuario"] as String);
   }
 
   Map<String, dynamic> toJson() {
@@ -43,7 +46,7 @@ class Farm with EntityImage {
       'NombreDueño': farmOwner,
       "IdUsuario": userId,
       "RolUsuario": userRole,
-      "Fecha": creation.toString()
+      "Fecha": creation.toString(),
     };
   }
 }

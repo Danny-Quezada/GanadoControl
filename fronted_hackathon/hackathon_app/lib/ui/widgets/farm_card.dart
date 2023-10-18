@@ -14,6 +14,7 @@ class FarmCard extends StatelessWidget {
   bool? isSelected;
   VoidCallback onTap;
   VoidCallback onLongPress;
+  String role;
   FarmCard(
       {super.key,
       required this.idFarm,
@@ -23,7 +24,8 @@ class FarmCard extends StatelessWidget {
       required this.hectares,
       this.isSelected=false,
       required this.onTap,
-      required this.onLongPress
+      required this.onLongPress,
+      required this.role
  });
 
   @override

@@ -6,8 +6,17 @@ import 'package:hackathon_app/provider/igeneric_provider.dart';
 
 class FarmProvider extends ChangeNotifier
     with IGenericProvider<Farm>, MessageNotifierMixin {
-  IFarmServices _iFarmServices;
+  @override
+  void doNull() {
+    // TODO: implement doNull
+    token = null;
+    role = "Visitante";
+    super.doNull();
+  }
 
+  IFarmServices _iFarmServices;
+  String? token;
+  bool refresh = false;
   FarmProvider({required IFarmServices iFarmServices})
       : _iFarmServices = iFarmServices;
 
@@ -28,16 +37,15 @@ class FarmProvider extends ChangeNotifier
   }
 
   Future<List<Farm>> getAllFarmByUserId(int userId) async {
-
-    if (list != null) {
-      return list!;
+    if (!refresh) {
+      if (list != null) {
+        return list!;
+      }
     }
-
     list = await _iFarmServices.getAllFarmByUser(userId);
 
     notifyListeners();
     return list!;
-
   }
 
   changeSelect(int index) {
@@ -51,17 +59,35 @@ class FarmProvider extends ChangeNotifier
 
     notifyListeners();
   }
-  find(String text){
 
-    if(text.isEmpty){
-      searchList=null;
-    }
-    else{
-     searchList= list!
-        .where((element) => element.farmName.toLowerCase().contains(text.toLowerCase()))
-        .toList();
+  find(String text) {
+    if (text.isEmpty) {
+      searchList = null;
+    } else {
+      searchList = list!
+          .where((element) =>
+              element.farmName.toLowerCase().contains(text.toLowerCase()))
+          .toList();
     }
     notifyListeners();
+  }
 
+  String role = "Visitante";
+  Future<void> inviteToFarm(int farmId, String role, int userId) async {
+    try {
+      token = await _iFarmServices.inviteToFarm(farmId, role, userId);
+      notifyListeners();
+    } catch (e) {
+      notifyError(e);
+    }
+  }
+  Future<int> joinFarm(String token, int userId)async{
+    try{
+      return await _iFarmServices.joinFarm(token, userId);
+    }
+    catch(e){
+      notifyError("Error en el servidor");
+      return -1;
+    }
   }
 }

@@ -1,11 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_provider_utilities/flutter_provider_utilities.dart';
 import 'package:hackathon_app/domain/models/Entities/flock.dart';
+import 'package:hackathon_app/provider/cattle_provider.dart';
 import 'package:hackathon_app/provider/farm_provider.dart';
 import 'package:hackathon_app/provider/flock_provider.dart';
 import 'package:hackathon_app/provider/meditation_provider.dart';
+import 'package:hackathon_app/provider/user_provider.dart';
 import 'package:hackathon_app/ui/config/color_palette.dart';
 import 'package:hackathon_app/ui/pages/mobil/inventary_page.dart';
 import 'package:hackathon_app/ui/util/path_image_asset.dart';
@@ -21,11 +24,15 @@ import '../../widgets/select_image_widget.dart';
 import 'cow_page.dart';
 
 class CattlePage extends StatelessWidget {
+  String roleFarm = "Visitante";
   int farmId;
-  CattlePage({super.key, required this.farmId});
+  String role;
+  CattlePage({super.key, required this.farmId, required this.role});
   TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final farmProvider = Provider.of<FarmProvider>(context, listen: false);
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: MessageListener<FlockProvider>(
@@ -37,6 +44,88 @@ class CattlePage extends StatelessWidget {
           flushbarWidget(context: context, title: "Enhorabuena", message: info);
         },
         child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            elevation: 0,
+            title: Text(
+              "Ganado",
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+            foregroundColor: Colors.black,
+            actions: [
+              Visibility(
+                visible: role == "Visitante" ? false : true,
+                child: IconButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog.adaptive(
+                            content: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  "🐮 Compartir finca",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                Text(
+                                  "Seleccione el rol que va a desempeñar",
+                                  style: TextStyle(fontSize: 15),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                roleDropDown(),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Selector<FarmProvider, String?>(
+                                  builder: (context, value, child) {
+                                    if (value != null) {
+                                      return Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                        Text("Toca el link:",style: TextStyle(color: Colors.red)),
+                                        const SizedBox(height: 5,),
+                                        CustomToolTip(text: value,)
+                                      ]);
+                                    }
+                                    return Container();
+                                  },
+                                  selector: (p0, p1) => p1.token,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                ButtonWidget(
+                                    text: "Crear",
+                                    size: const Size(100, 50),
+                                    color: Colors.blue,
+                                    rounded: 12,
+                                    function: () async {
+                                      await farmProvider.inviteToFarm(farmId,
+                                          role, userProvider.user!.userId!);
+                                    },
+                                    fontSize: 12)
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    icon: Icon(
+                      Icons.share,
+                      color: Colors.blue,
+                    )),
+              )
+            ],
+          ),
           floatingActionButton: addGroupWidget(
             farmId: farmId,
           ),
@@ -58,13 +147,71 @@ class CattlePage extends StatelessWidget {
                 SizedBox(
                   width: size.width,
                   height: size.height * 0.8,
-                  child: groupList(farmId: farmId),
+                  child: groupList(farmId: farmId, role: role),
                 )
               ]),
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class CustomToolTip extends StatelessWidget {
+  String text;
+
+  CustomToolTip({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return new GestureDetector(
+      child: new Tooltip(
+          preferBelow: false, message: "Copy", child: new Text(text,style: TextStyle(color: Colors.blue),)),
+      onTap: () {
+        Clipboard.setData(new ClipboardData(text: text));
+      },
+    );
+  }
+}
+
+class roleDropDown extends StatefulWidget {
+  roleDropDown({
+    super.key,
+  });
+
+  @override
+  State<roleDropDown> createState() => _roleDropDownState();
+}
+
+class _roleDropDownState extends State<roleDropDown> {
+  String role = "Visitante";
+
+  @override
+  Widget build(BuildContext context) {
+    final farmProvider = Provider.of<FarmProvider>(context, listen: false);
+    return DropdownButton<String>(
+      items: [
+        DropdownMenuItem<String>(
+          child: Text("Técnico"),
+          value: "Técnico",
+        ),
+        DropdownMenuItem<String>(
+          child: Text("Visitante"),
+          value: "Visitante",
+        ),
+        DropdownMenuItem<String>(
+          child: Text("Propietario"),
+          value: "Propietario",
+        ),
+      ],
+      onChanged: (value) {
+        setState(() {
+          role = value!;
+          farmProvider.role = value;
+        });
+      },
+      value: role,
     );
   }
 }
@@ -196,11 +343,13 @@ class inventaryButton extends StatelessWidget {
 }
 
 class groupList extends StatelessWidget {
+  String role;
   int farmId;
-  groupList({required this.farmId});
+  groupList({required this.farmId, required this.role});
 
   @override
   Widget build(BuildContext context) {
+    final cattleProvider = Provider.of<CattleProvider>(context, listen: false);
     final flockProvider = Provider.of<FlockProvider>(context, listen: true);
     return FutureBuilder(
       future: flockProvider.getAllFlockByFarmId(farmId),
@@ -218,9 +367,10 @@ class groupList extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.only(top: 10.0),
-                child: CustomCardWidget(null,
-                    onLongPress: () {},
-                    function: () => cowPage(context, flocks[index].flockId!),
+                child: CustomCardWidget(null, onLongPress: () {}, function: () {
+                  cattleProvider.doNull();
+                  cowPage(context, flocks[index].flockId!, role);
+                },
                     urlImage: flocks[index].flockImage!,
                     title: flocks[index].flockName,
                     description:
@@ -238,10 +388,11 @@ class groupList extends StatelessWidget {
     );
   }
 
-  void cowPage(BuildContext context, int idCastle) {
+  void cowPage(BuildContext context, int idCastle, String role) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) {
         return CowPage(
+          role: role,
           flockId: idCastle,
           IdFarm: farmId,
         );

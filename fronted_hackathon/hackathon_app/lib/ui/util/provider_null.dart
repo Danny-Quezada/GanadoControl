@@ -22,6 +22,7 @@ class ProviderNull{
       Provider.of<MeditationProvider>(context,listen: false).doNull();
        Provider.of<TreatmentProvider>(context,listen: false).doNull();
         Provider.of<FlockProvider>(context,listen: false).doNull();
+        Provider.of<FarmProvider>(context,listen: false).doNull();
   }
   
   

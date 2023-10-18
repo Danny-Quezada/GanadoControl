@@ -41,5 +41,20 @@ class FarmServices implements IFarmServices{
     // TODO: implement update
     throw UnimplementedError();
   }
+  
+  @override
+  Future<String> inviteToFarm(int farmId, String role, int userId) async{
+   return await ifarmModel.inviteToFarm(farmId, role, userId);
+  }
+  
+  @override
+  Future<int> joinFarm(String token, int userId) async{
+    try{
+      return await ifarmModel.joinFarm(token, userId);
+    }
+    catch(e){
+      return await -1;
+    }
+  }
 
 }

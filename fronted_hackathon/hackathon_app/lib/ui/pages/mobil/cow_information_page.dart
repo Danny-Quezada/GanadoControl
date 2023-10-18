@@ -159,7 +159,7 @@ class ListMedical extends StatelessWidget {
       },
       showError: (error) {
         flushbarWidget(
-            context: context, title: "Error", message: error, error: false);
+            context: context, title: "Error", message: error, error: true);
       },
     );
   }

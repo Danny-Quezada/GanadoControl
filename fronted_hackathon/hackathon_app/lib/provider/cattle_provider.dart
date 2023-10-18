@@ -6,11 +6,7 @@ import 'package:hackathon_app/provider/igeneric_provider.dart';
 
 class CattleProvider extends ChangeNotifier
     with IGenericProvider<Cattle>, MessageNotifierMixin {
-  @override
-  void doNull() {
-    t = null;
-    list = null;
-  }
+
 
   ICattleServices _iCattleServices;
 
