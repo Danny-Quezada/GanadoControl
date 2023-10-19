@@ -262,7 +262,9 @@ class SplashScreen extends StatelessWidget {
           User? user = await SharedPreferencesServices.readUser();
           if (user != null) {
             userProvider.user = user;
-            return PrincipalPage();
+            return PrincipalPage(
+              IdUsuario: user.userId!,
+            );
           } else {
             int count = (await userProvider.readUser()).length;
             if (count > 0) {

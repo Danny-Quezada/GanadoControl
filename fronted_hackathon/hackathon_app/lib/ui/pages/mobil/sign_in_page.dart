@@ -32,11 +32,11 @@ class SignInPage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: MessageListener<UserProvider>(
-        showError: (error){
-           flushbarWidget(context: context, title: "Error", message: error,error: true);
-     
+        showError: (error) {
+          flushbarWidget(
+              context: context, title: "Error", message: error, error: true);
         },
-        showInfo: (info){},
+        showInfo: (info) {},
         child: Scaffold(
             body: Container(
           padding: const EdgeInsets.only(left: 18.0, right: 18.0),
@@ -96,7 +96,6 @@ class SignInPage extends StatelessWidget {
                     SizedBox(
                       height: size.height * 0.035,
                     ),
-                   
                     ButtonWidget(
                       text: "Registrarse",
                       size: const Size(268, 57),
@@ -110,11 +109,11 @@ class SignInPage extends StatelessWidget {
                               email: userNameController.text,
                               password: passwordController.text,
                               workstation: "Técnico");
-                          await userProvider.create(user);
-      
+                          var id = await userProvider.createUser(user);
+
                           if (userProvider.user != null) {
-                             userProvider.changeError();
-                            nextPrincipalPage(context);
+                            userProvider.changeError();
+                            nextPrincipalPage(context, id);
                           }
                         } else {
                           print('Form is invalid');
@@ -129,7 +128,7 @@ class SignInPage extends StatelessWidget {
                         text: "Iniciar sesión",
                         color: ColorPalette.colorPrincipal,
                         fontSize: 16,
-                        function: () =>nextLoginPage(context))
+                        function: () => nextLoginPage(context))
                   ],
                 ),
               )),
@@ -138,10 +137,12 @@ class SignInPage extends StatelessWidget {
     );
   }
 
-  nextPrincipalPage(BuildContext context) {
+  nextPrincipalPage(BuildContext context, int IdUsuario) {
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
       builder: (context) {
-        return PrincipalPage();
+        return PrincipalPage(
+          IdUsuario: IdUsuario,
+        );
       },
     ), (route) => false);
   }

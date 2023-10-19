@@ -32,4 +32,25 @@ class CowCalvingProvider extends ChangeNotifier
     }
     notifyListeners();
   }
+
+  Future<List<AreaDataPoint>> getGraphictoCalving(int IdUsuario) async {
+    Map<String, dynamic> responseBody =
+        await _cowCalvingServices.getGraphicByCowCalving(IdUsuario);
+    if (responseBody.isEmpty ||
+        responseBody['data'] == null ||
+        responseBody['data'].isEmpty) {
+      return [AreaDataPoint("Exitoso", 0), AreaDataPoint("No exitoso", 0)];
+    }
+    return [
+      AreaDataPoint('Exitoso', responseBody['exitoso']?.toDouble() ?? 0.0),
+      AreaDataPoint('No Exitoso', responseBody['noExitoso']?.toDouble() ?? 0.0),
+    ];
+  }
+}
+
+class AreaDataPoint {
+  final String category;
+  final double value;
+
+  AreaDataPoint(this.category, this.value);
 }

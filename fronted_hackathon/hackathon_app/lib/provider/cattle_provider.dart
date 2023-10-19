@@ -6,8 +6,6 @@ import 'package:hackathon_app/provider/igeneric_provider.dart';
 
 class CattleProvider extends ChangeNotifier
     with IGenericProvider<Cattle>, MessageNotifierMixin {
-
-
   ICattleServices _iCattleServices;
 
   CattleProvider({required ICattleServices iCattleServices})
@@ -55,9 +53,30 @@ class CattleProvider extends ChangeNotifier
     try {
       return await _iCattleServices.getCattle(cattleId);
     } catch (e) {
-      
       notifyError(error);
       return null;
     }
   }
+
+  Future<List<BarDataPoint>> getGraphicsByCattle(int IdUsuario) async {
+    Map<String, dynamic> responseBody =
+        await _iCattleServices.getGraphicsByCatlle(IdUsuario);
+    if (responseBody.isEmpty ||
+        responseBody['data'] == null ||
+        responseBody['data'].isEmpty) {
+      return [BarDataPoint("Toro", 0), BarDataPoint("Vaca", 0)];
+    }
+
+    return [
+      BarDataPoint("Toro", responseBody['noVacunadosT']),
+      BarDataPoint("Vaca", responseBody['noVacunadosV'])
+    ];
+  }
+}
+
+class BarDataPoint {
+  final String categoria;
+  final double valor;
+
+  BarDataPoint(this.categoria, this.valor);
 }

@@ -5,4 +5,5 @@ abstract class ICattleServices extends IServices<Cattle> {
   Future<List<Cattle>> getAllCattleByGroup(int groupId);
   Future<Cattle> getCattle(String cattleId);
   Future<String> createCattle(Cattle t);
+  Future<Map<String, dynamic>> getGraphicsByCatlle(int IdUsuario);
 }

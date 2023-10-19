@@ -5,4 +5,5 @@ abstract class ICattleModel extends IModel<Cattle> {
   Future<List<Cattle>> getAllCattleByGroup(int groupId);
   Future<Cattle> getCattle(String cattleId);
   Future<String> createCattle(Cattle t);
+  Future<Map<String, dynamic>> getGraphicByCattle(int IdUsuario);
 }

@@ -24,6 +24,22 @@ class UserProvider extends ChangeNotifier with MessageNotifierMixin {
     }
   }
 
+  Future<int> createUser(User userU) async {
+    try {
+      int userValue = await _iUserServices.create(userU);
+      if (userValue >= 0) {
+        userU.userId = userValue;
+        user = userU;
+        return userValue;
+      }
+      return 0;
+    } catch (e) {
+      notifyError(e);
+      notifyListeners();
+      return 0;
+    }
+  }
+
   Future<void> verifyUser(String userName, password) async {
     try {
       user = await _iUserServices.verifyUser(userName, password);

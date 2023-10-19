@@ -52,16 +52,15 @@ class CattleRepository implements ICattleModel {
   }
 
   @override
-  Future<Cattle> getCattle(String cattleId) async{
-    try{
-      var response=await dio.get("${Constant.getCattle}/$cattleId");
-      if(response.statusCode==200){
+  Future<Cattle> getCattle(String cattleId) async {
+    try {
+      var response = await dio.get("${Constant.getCattle}/$cattleId");
+      if (response.statusCode == 200) {
         return Cattle.fromJson(response.data);
       }
       throw Exception("Hubo un error, intente nuevamente");
-    }
-    catch(e){
- throw Exception("Error en el servidor.");
+    } catch (e) {
+      throw Exception("Error en el servidor.");
     }
   }
 
@@ -92,6 +91,23 @@ class CattleRepository implements ICattleModel {
       throw Exception("Vaca no registrado, intente más tarde");
     } catch (e) {
       throw Exception("Hubo un problema con el servidor");
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> getGraphicByCattle(int IdUsuario) async {
+    try {
+      var response = await dio.get("${Constant.getGraphicByCattle}/$IdUsuario");
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = response.data;
+        if (data.length == 0) {
+          return {};
+        }
+        return response.data;
+      }
+      throw Exception("Hubo un error, intente nuevamente.");
+    } catch (e) {
+      throw Exception("Error en el servidor.");
     }
   }
 }

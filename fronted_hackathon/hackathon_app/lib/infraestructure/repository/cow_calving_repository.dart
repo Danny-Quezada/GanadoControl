@@ -37,4 +37,26 @@ class CowCalvingRepository implements ICowCalvingModel {
     // TODO: implement update
     throw UnimplementedError();
   }
+
+  @override
+  Future<Map<String, dynamic>> getGraphicsByCowCalving(int IdUsuario) async {
+    try {
+      var response =
+          await dio.get("${Constant.getGraphicByCowCalving}", queryParameters: {
+        'fechainicial': DateTime(DateTime.now().year, 1, 1),
+        'fechafinal': DateTime.now(),
+        'IdUsuario': IdUsuario
+      });
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = response.data;
+        if (data.length == 0) {
+          return {};
+        }
+        return response.data;
+      }
+      throw Exception("Hubo un error, intente nuevamente.");
+    } catch (e) {
+      throw Exception("Error en el servidor.");
+    }
+  }
 }

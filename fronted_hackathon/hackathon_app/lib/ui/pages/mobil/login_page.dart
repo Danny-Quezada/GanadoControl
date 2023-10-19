@@ -86,7 +86,7 @@ class LoginPage extends StatelessWidget {
                           _stopwatch.stop();
 
                           if (userProvider.user != null) {
-                            principalPage(context);
+                            principalPage(context, userProvider.user!.userId);
                           }
                         } else {}
                       },
@@ -113,9 +113,12 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  void principalPage(context) {
+  void principalPage(context, int? IdUser) {
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const PrincipalPage()),
+        MaterialPageRoute(
+            builder: (context) => PrincipalPage(
+                  IdUsuario: IdUser!,
+                )),
         (route) => false);
   }
 

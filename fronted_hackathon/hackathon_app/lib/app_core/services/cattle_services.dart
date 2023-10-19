@@ -24,7 +24,7 @@ class CattleServices implements ICattleServices {
   }
 
   @override
-  Future<Cattle> getCattle(String cattleId) async{
+  Future<Cattle> getCattle(String cattleId) async {
     return await iCattleModel.getCattle(cattleId);
   }
 
@@ -43,5 +43,10 @@ class CattleServices implements ICattleServices {
   @override
   Future<String> createCattle(Cattle t) async {
     return await iCattleModel.createCattle(t);
+  }
+
+  @override
+  Future<Map<String, dynamic>> getGraphicsByCatlle(int IdUsuario) async {
+    return await iCattleModel.getGraphicByCattle(IdUsuario);
   }
 }

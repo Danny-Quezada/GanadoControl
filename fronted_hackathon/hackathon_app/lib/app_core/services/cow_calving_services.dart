@@ -29,4 +29,9 @@ class CowCalvingServices implements ICowCalvingServices {
     // TODO: implement update
     throw UnimplementedError();
   }
+
+  @override
+  Future<Map<String, dynamic>> getGraphicByCowCalving(int IdUsuario) async {
+    return await iCowCalvingModel.getGraphicsByCowCalving(IdUsuario);
+  }
 }

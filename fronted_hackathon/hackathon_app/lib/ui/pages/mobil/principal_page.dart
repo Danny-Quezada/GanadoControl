@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/ui/pages/mobil/configuration_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/farm_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/graphics_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/inta_page.dart';
 
 class PrincipalPage extends StatefulWidget {
-  const PrincipalPage({super.key});
+  PrincipalPage({super.key, required this.IdUsuario});
+
+  int IdUsuario;
 
   @override
   State<PrincipalPage> createState() => _PrincipalPageState();
 }
 
-List<Widget> pages = [Container(), FarmPage(), IntaPage(), ConfigurationPage()];
 int _index = 0;
 
 class _PrincipalPageState extends State<PrincipalPage> {
+  List<Widget> pages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    pages = [
+      GraphicsPage(IdUsuario: widget.IdUsuario),
+      FarmPage(),
+      IntaPage(),
+      ConfigurationPage()
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
