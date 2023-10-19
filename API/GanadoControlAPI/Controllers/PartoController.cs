@@ -50,7 +50,7 @@ namespace GanadoControlAPI.Controllers
             }
         }
         [HttpGet("Grafico")]
-        public async Task<IActionResult> GrafParto(DateTime fechainicial, DateTime fechafinal)
+        public async Task<IActionResult> GrafParto(DateTime fechainicial, DateTime fechafinal, int IdUsuario)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace GanadoControlAPI.Controllers
                 {
                     throw new ArgumentException("La fecha iniciaL no puede ser mayor a la fecha final.");
                 }
-                return Ok(await partoRepository.GrafParto(fechainicial,fechafinal));
+                return Ok(await partoRepository.GrafParto(fechainicial,fechafinal, IdUsuario));
             }
             catch (Exception ex)
             {

@@ -110,7 +110,7 @@ namespace Data.Repository
             {
                 SqlCommand cmd = new SqlCommand("uspGrafVacunacion", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(new SqlParameter("@IdGrupo", SqlDbType.Int)).Value = IdGrupo;
+                cmd.Parameters.Add(new SqlParameter("@IdUsuario", SqlDbType.Int)).Value = IdGrupo;
                 try
                 {
                     await conexion.OpenAsync();

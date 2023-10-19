@@ -13,6 +13,6 @@ namespace Models.Interfaces
         Task<List<ProblemaFisico>> ObtenerProblemasFisicosPorGanado(string idGanado);
         Task<bool> EliminarProblemaFisico(int idProblemaFisico);
         Task<bool> ActualizarProblemaFisico(ProblemaFisico problemaFisico);
-        Task<List<DTOGrafDaños>> GrafPartesDañadas();
+        Task<List<DTOGrafDaños>> GrafPartesDañadas(int IdUsuario);
     }
 }

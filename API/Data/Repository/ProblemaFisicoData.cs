@@ -61,13 +61,14 @@ namespace Data.Repository
             }
         }
 
-        public async Task<List<DTOGrafDaños>> GrafPartesDañadas()
+        public async Task<List<DTOGrafDaños>> GrafPartesDañadas(int IdUsuario)
         {
             List<DTOGrafDaños> listaProblemaFisico = new List<DTOGrafDaños>();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand("uspGrafPartesDañadas", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@IdUsuario", SqlDbType.Int)).Value = IdUsuario;
                 try
                 {
                     await conexion.OpenAsync();

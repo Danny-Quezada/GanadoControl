@@ -80,11 +80,11 @@ namespace GanadoControlAPI.Controllers
             catch (Exception ex) { return StatusCode(500, ex.Message); }
         }
         [HttpGet("Grafico")]
-        public async Task<IActionResult> GrafPartesDañadas()
+        public async Task<IActionResult> GrafPartesDañadas(int IdUsuario)
         {
             try
             {
-                return Ok(await problemaFisicoRepository.GrafPartesDañadas());
+                return Ok(await problemaFisicoRepository.GrafPartesDañadas(IdUsuario));
             }
             catch (Exception ex) { return StatusCode(500, ex.Message); }
         }

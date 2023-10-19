@@ -11,6 +11,6 @@ namespace Models.Interfaces
     public interface IPartoRepository: IData<Parto>
     {
         Task<bool> EliminarParto(int id);
-        Task<DTOGrafParto> GrafParto(DateTime fechainicial, DateTime fechafinal);
+        Task<DTOGrafParto> GrafParto(DateTime fechainicial, DateTime fechafinal, int IdUsuario);
     }
 }

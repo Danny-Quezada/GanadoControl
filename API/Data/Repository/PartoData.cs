@@ -38,7 +38,7 @@ namespace Data.Repository
                 }
             }
         }
-        public async Task<DTOGrafParto> GrafParto(DateTime fechainicial, DateTime fechafinal)
+        public async Task<DTOGrafParto> GrafParto(DateTime fechainicial, DateTime fechafinal, int IdUsuario)
         {
             DTOGrafParto dTOGraf = new DTOGrafParto();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
@@ -47,6 +47,7 @@ namespace Data.Repository
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new SqlParameter("@fechainicial", SqlDbType.Date)).Value = fechainicial;
                 cmd.Parameters.Add(new SqlParameter("@fechafinal", SqlDbType.Date)).Value = fechafinal;
+                cmd.Parameters.Add(new SqlParameter("@IdUsuario", SqlDbType.Int)).Value = IdUsuario;
                 try
                 {
                     await conexion.OpenAsync();
