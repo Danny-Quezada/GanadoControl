@@ -1,13 +1,12 @@
 class Constant {
-  static const String route = "http://192.168.1.24:5000/api";
+  static const String route = "http://192.168.1.4:5000/api";
   static const String createUser = "${route}/Usuario/";
   static const String getUser = "${route}/Usuario/verificar";
   static const String userChangeState = "${route}/Usuario/estado";
 
   static const String createFarm = "${route}/Finca";
   static const String getFarms = "${route}/Finca/Usuario";
-  static const String inviteFarm="${route}/Finca/invitacion";
-
+  static const String inviteFarm = "${route}/Finca/invitacion";
 
   static const String createGroup = "${route}/Grupo";
   static const String getGroups = "${route}/Grupo/Finca";
@@ -21,9 +20,7 @@ class Constant {
 
   static const String createCattle = "${route}/Ganado";
   static const String getCattleByGroup = "${route}/Ganado/Grupo";
-  static const String getCattle="${route}/Ganado";
-
- 
+  static const String getCattle = "${route}/Ganado";
 
   static const String createMeditation = "${route}/Farmaco";
   static const String getMeditationbyFarm = "${route}/Farmaco/finca";
@@ -43,4 +40,7 @@ class Constant {
   static const String createInsemination = "${route}/Inseminacion";
 
   static const String createCowCalving = "${route}/Parto";
+
+  static const String getDocuments = "${route}/Documento";
+  static const String getPdfbyDocument = "${route}/Documento";
 }

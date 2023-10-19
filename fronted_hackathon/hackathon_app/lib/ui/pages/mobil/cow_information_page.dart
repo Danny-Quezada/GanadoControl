@@ -6,7 +6,7 @@ import 'package:hackathon_app/infraestructure/repository/treatment_repository.da
 import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/provider/treatment_provider.dart';
 import 'package:hackathon_app/ui/pages/mobil/calendar_page.dart';
-import 'package:hackathon_app/ui/pages/mobil/qr_generate_page.dart';
+import 'package:hackathon_app/ui/widgets/datetime_picker_widget.dart';
 import 'package:hackathon_app/ui/widgets/flushbar_widget.dart';
 
 import 'package:intl/intl.dart';
@@ -28,11 +28,14 @@ PersistentBottomSheetController? _controller;
 
 class CowInformationPage extends StatelessWidget {
   Cattle cattle;
-  int? IdFarm;
-  CowInformationPage({super.key, required this.cattle,  this.IdFarm});
+  int IdFarm;
+  CowInformationPage({super.key, required this.cattle, required this.IdFarm});
 
   @override
   Widget build(BuildContext context) {
+    final treatmentProvider =
+        Provider.of<TreatmentProvider>(context, listen: false);
+    treatmentProvider.doNull();
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: GestureDetector(
@@ -118,8 +121,7 @@ class ListMedical extends StatelessWidget {
   Widget build(BuildContext context) {
     final treatmentProvider =
         Provider.of<TreatmentProvider>(context, listen: false);
-    treatmentProvider.getTreatmentByCattle(cattleId);
-    List<Treatment>? listaItems = treatmentProvider.getTreatmentByType(value);
+    treatmentProvider.getTreatmentByCattle(cattleId, value);
     Size size = MediaQuery.of(context).size;
     return MessageListener<TreatmentProvider>(
       child: Consumer<TreatmentProvider>(
@@ -135,8 +137,7 @@ class ListMedical extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
                   scrollDirection: Axis.vertical,
-                  itemCount:
-                      listaItems?.length == null ? 0 : listaItems?.length,
+                  itemCount: treatmentProvider.list?.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Selector<TreatmentProvider, Treatment>(
                       builder: (context, treatment, child) {
@@ -149,7 +150,7 @@ class ListMedical extends StatelessWidget {
                               function: () {}),
                         );
                       },
-                      selector: (p0, p1) => listaItems![index],
+                      selector: (p0, p1) => treatmentProvider.list![index],
                     );
                   }));
         },
@@ -159,7 +160,7 @@ class ListMedical extends StatelessWidget {
       },
       showError: (error) {
         flushbarWidget(
-            context: context, title: "Error", message: error, error: true);
+            context: context, title: "Error", message: error, error: false);
       },
     );
   }
@@ -212,8 +213,8 @@ class ListMedical extends StatelessWidget {
 
 class OptionMenu extends StatefulWidget {
   Cattle cattle;
-  int? IdFarm;
-  OptionMenu({required this.cattle,  this.IdFarm});
+  int IdFarm;
+  OptionMenu({required this.cattle, required this.IdFarm});
 
   @override
   State<OptionMenu> createState() => _OptionMenuState();
@@ -263,42 +264,24 @@ class _OptionMenuState extends State<OptionMenu> {
               },
             ),
           ),
-          Visibility(
-            visible: widget.IdFarm!=null ? true : false,
-            child: IconButton(
-                onPressed: () {
-                  calendarPage(context, widget.cattle.idCattle, widget.IdFarm!);
-                },
-                icon: Image.asset("assets/images/icons/calendar.png")),
-          ),
+          IconButton(
+              onPressed: () {
+                calendarPage(context, widget.cattle.idCattle, widget.IdFarm);
+              },
+              icon: Image.asset("assets/images/icons/calendar.png")),
           IconButton(
               onPressed: () {},
               icon: Image.asset("assets/images/icons/cowFamily.png")),
-Visibility(
-  visible: widget.IdFarm!=null ? true : false,
-            child: IconButton(
-                onPressed: () {
-                  _controller = _scaffoldKey.currentState!.showBottomSheet(
-                      backgroundColor: Colors.white,
-                      (context) => addTreatmentBottomSheet(
-                            cattleId: widget.cattle.idCattle,
-                            IdFarm: widget.IdFarm!,
-                          ));
-                },
-                icon: Image.asset("assets/images/icons/greenPlus.png")),
-          ),
           IconButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return QRGeneratePage(cattleId: widget.cattle.idCattle);
-                  },
-                ));
+                _controller = _scaffoldKey.currentState!.showBottomSheet(
+                    backgroundColor: Colors.white,
+                    (context) => addTreatmentBottomSheet(
+                          cattleId: widget.cattle.idCattle,
+                          IdFarm: widget.IdFarm,
+                        ));
               },
-              icon: Icon(
-                Icons.qr_code_2,
-                size: 35,
-              ))
+              icon: Image.asset("assets/images/icons/greenPlus.png"))
         ],
       ),
     );
@@ -331,10 +314,9 @@ class _addTreatmentBottomSheetState extends State<addTreatmentBottomSheet> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   TextEditingController dosisController = TextEditingController();
-
   TextEditingController areaController = TextEditingController();
-
   TextEditingController observationController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
 
   FocusNode dosisNode = FocusNode();
 
@@ -342,10 +324,10 @@ class _addTreatmentBottomSheetState extends State<addTreatmentBottomSheet> {
 
   FocusNode observationNode = FocusNode();
   String value = "Vacunas";
+  int? IdMedicamento;
 
   @override
   Widget build(BuildContext context) {
-    int? IdMedicamento;
     var treatmentProvider =
         Provider.of<TreatmentProvider>(context, listen: false);
     return Form(
@@ -355,6 +337,7 @@ class _addTreatmentBottomSheetState extends State<addTreatmentBottomSheet> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomFormField(
+                textInput: TextInputType.number,
                 textEditingController: dosisController,
                 validator: ValidatorTextField.genericStringValidator,
                 nextFocusNode: areaNode,
@@ -378,6 +361,12 @@ class _addTreatmentBottomSheetState extends State<addTreatmentBottomSheet> {
                 hintText: "Molestias en la parte de la aplicación",
                 labelText: "Observación",
                 obscureText: false),
+            DateTimePicker(
+              text: "Fecha",
+              size: const Size(275, 31),
+              dateTimeController: dateController,
+              color: ColorPalette.colorFontTextFieldPrincipal,
+            ),
             DropdownButton(
               items: const [
                 DropdownMenuItem(
@@ -425,7 +414,7 @@ class _addTreatmentBottomSheetState extends State<addTreatmentBottomSheet> {
                     Treatment treatment = Treatment(
                         cattleId: widget.cattleId,
                         meditationId: IdMedicamento.toString(),
-                        date: DateTime.now(),
+                        date: DateTime.parse(dateController.text),
                         type: widget.type,
                         dosis: double.parse(dosisController.text),
                         observation: observationController.text,

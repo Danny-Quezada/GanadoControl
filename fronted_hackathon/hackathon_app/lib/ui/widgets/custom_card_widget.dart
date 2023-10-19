@@ -52,20 +52,26 @@ class CustomCardWidget extends StatelessWidget {
                 SizedBox(
                   width: size.width * .03,
                 ),
-                Container(
-                  padding: const EdgeInsets.only(
-                    top: 10,
-                  ),
-                  height: size.height * .15,
-                  child: InkWell(
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      top: 10,
+                    ),
+                    height: size.height * .15,
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(title,
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold,)),
-                        Text(description, style: const TextStyle(fontSize: 12)),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                            )),
+                        Text(description,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 8,
+                            style: const TextStyle(fontSize: 12)),
                         chips()
                       ],
                     ),

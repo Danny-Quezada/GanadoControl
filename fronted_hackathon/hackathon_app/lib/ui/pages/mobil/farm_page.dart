@@ -94,7 +94,9 @@ class FarmPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return QRScannerPage();
+                    return QRScannerPage(
+                      IdFarm: 1,
+                    );
                   },
                 ));
               },

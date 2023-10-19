@@ -51,14 +51,18 @@ class TreatmentProvider extends ChangeNotifier
     return list!;
   }
 
-  Future<List<Treatment>> getTreatmentByCattle(String IdCattle) async {
+  Future<List<Treatment>?> getTreatmentByCattle(
+      String IdCattle, String type) async {
     if (list != null) {
       return list!;
     }
 
     list = await _iTreatmentServices.getTreatmentByCattle(IdCattle);
+    if (type != "Todo") {
+      list = list!.where((element) => element.type.contains(type)).toList();
+    }
     notifyListeners();
-    return list!;
+    return list;
   }
 
   Future<List<Treatment>> getAllTreatmentByFarm(String IdFarm) async {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_app/ui/pages/mobil/configuration_page.dart';
 import 'package:hackathon_app/ui/pages/mobil/farm_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/inta_page.dart';
 
 class PrincipalPage extends StatefulWidget {
   const PrincipalPage({super.key});
@@ -9,12 +10,7 @@ class PrincipalPage extends StatefulWidget {
   State<PrincipalPage> createState() => _PrincipalPageState();
 }
 
-List<Widget> pages = [
-  Container(),
-  FarmPage(),
-  Container(),
-  ConfigurationPage()
-];
+List<Widget> pages = [Container(), FarmPage(), IntaPage(), ConfigurationPage()];
 int _index = 0;
 
 class _PrincipalPageState extends State<PrincipalPage> {

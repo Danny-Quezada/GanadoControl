@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hackathon_app/app_core/iservices/ianimal_healt_calendar_services.dart';
 import 'package:hackathon_app/app_core/iservices/icattle_services.dart';
 import 'package:hackathon_app/app_core/iservices/icow_calving_services.dart';
+import 'package:hackathon_app/app_core/iservices/idocument_services.dart';
 import 'package:hackathon_app/app_core/iservices/iinsemination_services.dart';
 import 'package:hackathon_app/app_core/iservices/imeditation_services.dart';
 import 'package:hackathon_app/app_core/iservices/iphysical_problem_services.dart';
@@ -10,11 +11,13 @@ import 'package:hackathon_app/app_core/iservices/itreatment_service.dart';
 import 'package:hackathon_app/app_core/services/animal_healt_calendar_services.dart';
 import 'package:hackathon_app/app_core/services/cattle_services.dart';
 import 'package:hackathon_app/app_core/services/cow_calving_services.dart';
+import 'package:hackathon_app/app_core/services/document_services.dart';
 import 'package:hackathon_app/app_core/services/insemination_services.dart';
 import 'package:hackathon_app/app_core/services/meditation_services.dart';
 import 'package:hackathon_app/app_core/services/physical_problems_services.dart';
 import 'package:hackathon_app/app_core/services/shared_preferences_services.dart';
 import 'package:hackathon_app/app_core/services/treatment_services.dart';
+import 'package:hackathon_app/domain/interfaces/document_model.dart';
 import 'package:hackathon_app/domain/interfaces/ianimal_health_calendar_model.dart';
 import 'package:hackathon_app/domain/interfaces/icattle_model.dart';
 import 'package:hackathon_app/domain/interfaces/icow_calving_model.dart';
@@ -27,6 +30,7 @@ import 'package:hackathon_app/domain/models/Entities/user.dart';
 import 'package:hackathon_app/infraestructure/repository/animal_healt_calendar_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/cattle_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/cow_calving_repository.dart';
+import 'package:hackathon_app/infraestructure/repository/document_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/insemination_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/meditation_repository.dart';
 import 'package:hackathon_app/infraestructure/repository/physical_problem_repository.dart';
@@ -36,6 +40,7 @@ import 'package:hackathon_app/provider/animal_healt_calendar_provider.dart';
 import 'package:hackathon_app/provider/body_part_provider.dart';
 import 'package:hackathon_app/provider/cattle_provider.dart';
 import 'package:hackathon_app/provider/cow_calving_provider.dart';
+import 'package:hackathon_app/provider/document_provider.dart';
 import 'package:hackathon_app/provider/insemination_provider.dart';
 import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/provider/physical_problem_provider.dart';
@@ -193,6 +198,16 @@ class MyApp extends StatelessWidget {
           create: (context) => CowCalvingProvider(
               iCowCalvingServices:
                   Provider.of<ICowCalvingServices>(context, listen: false)),
+        ),
+        Provider<IDocumentModel>(create: (_) => DocumentoRepository()),
+        Provider<IDocumentServices>(
+            create: (context) => DocumentServices(
+                iDocumentModel:
+                    Provider.of<IDocumentModel>(context, listen: false))),
+        ChangeNotifierProvider(
+          create: (context) => DocumentProvider(
+              iDocumentServices:
+                  Provider.of<IDocumentServices>(context, listen: false)),
         ),
       ],
       child: MaterialApp(

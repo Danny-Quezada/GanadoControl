@@ -11,7 +11,9 @@ import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class QRScannerPage extends StatefulWidget {
-  const QRScannerPage({super.key});
+  QRScannerPage({super.key, required this.IdFarm});
+
+  int IdFarm;
 
   @override
   State<QRScannerPage> createState() => _QRScannerPageState();
@@ -34,7 +36,6 @@ class _QRScannerPageState extends State<QRScannerPage> {
     controller!.resumeCamera();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MessageListener<CattleProvider>(
@@ -43,14 +44,18 @@ class _QRScannerPageState extends State<QRScannerPage> {
         flushbarWidget(
             context: context, title: "Error", message: error, error: true);
       },
-      child:  cattle!=null ? CowInformationPage(cattle: cattle!) :  Scaffold(
-        body: Column(
-          children: <Widget>[
-            Expanded(flex: 4, child: _buildQrView(context)),
-            
-          ],
-        ),
-      ),
+      child: cattle != null
+          ? CowInformationPage(
+              cattle: cattle!,
+              IdFarm: widget.IdFarm,
+            )
+          : Scaffold(
+              body: Column(
+                children: <Widget>[
+                  Expanded(flex: 4, child: _buildQrView(context)),
+                ],
+              ),
+            ),
     );
   }
 
@@ -65,7 +70,6 @@ class _QRScannerPageState extends State<QRScannerPage> {
     return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
-      
       overlay: QrScannerOverlayShape(
           borderColor: Colors.red,
           borderRadius: 10,
@@ -83,16 +87,15 @@ class _QRScannerPageState extends State<QRScannerPage> {
     controller.scannedDataStream.listen((scanData) async {
       final cattleProvider =
           Provider.of<CattleProvider>(context, listen: false);
-          
+
       if (scanData != null) {
-       if(context.mounted){
-        Cattle? getCattle = await cattleProvider.getCattleById(scanData!.code!);
-        cattle=getCattle;
-       }
+        if (context.mounted) {
+          Cattle? getCattle =
+              await cattleProvider.getCattleById(scanData!.code!);
+          cattle = getCattle;
+        }
       }
-      setState(() {
-            
-          });
+      setState(() {});
     });
   }
 
