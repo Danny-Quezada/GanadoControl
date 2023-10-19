@@ -6,6 +6,7 @@ import 'package:hackathon_app/infraestructure/repository/treatment_repository.da
 import 'package:hackathon_app/provider/meditation_provider.dart';
 import 'package:hackathon_app/provider/treatment_provider.dart';
 import 'package:hackathon_app/ui/pages/mobil/calendar_page.dart';
+import 'package:hackathon_app/ui/pages/mobil/qr_generate_page.dart';
 import 'package:hackathon_app/ui/widgets/datetime_picker_widget.dart';
 import 'package:hackathon_app/ui/widgets/flushbar_widget.dart';
 
@@ -281,7 +282,19 @@ class _OptionMenuState extends State<OptionMenu> {
                           IdFarm: widget.IdFarm,
                         ));
               },
-              icon: Image.asset("assets/images/icons/greenPlus.png"))
+              icon: Image.asset("assets/images/icons/greenPlus.png")),
+                IconButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return QRGeneratePage(cattleId: widget.cattle.idCattle);
+                  },
+                ));
+              },
+              icon: Icon(
+                Icons.qr_code_2,
+                size: 35,
+              ))
         ],
       ),
     );

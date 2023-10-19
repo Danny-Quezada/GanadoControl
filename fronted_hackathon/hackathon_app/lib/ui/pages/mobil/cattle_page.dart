@@ -49,7 +49,7 @@ class CattlePage extends StatelessWidget {
             backgroundColor: Colors.white,
             elevation: 0,
             title: Text(
-              "Ganado",
+              "Rebaños",
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),

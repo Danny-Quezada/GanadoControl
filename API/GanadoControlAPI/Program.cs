@@ -27,7 +27,7 @@ builder.Services.AddScoped<IDetalleFincaRepository>(provider => new DetalleFinca
 builder.Services.AddScoped<IDocumentoRepository>(provider => new DocumentoData(builder.Configuration["ConnectionString"]));
 
 //http://direccion ip:5000
-builder.WebHost.UseUrls("http://192.168.1.4:5000");
+builder.WebHost.UseUrls("http://192.168.1.24:5000");
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 

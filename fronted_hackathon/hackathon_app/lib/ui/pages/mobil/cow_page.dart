@@ -23,6 +23,7 @@ class CowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final cattleProvider=Provider.of<CattleProvider>(context,listen: false);
     return SafeArea(
         child: Scaffold(
       
@@ -43,7 +44,9 @@ class CowPage extends StatelessWidget {
                   padding: 16,
                   iconColor: const Color(0xffABA5A5),
                   backgroundColor: const Color(0xFFf2f2f2),
-                  function: (value) {}),
+                  function: (value) {
+                    cattleProvider.find(value);
+                  }),
               Flexible(
                 child: CattleList(
                   GroupId: flockId,
@@ -78,7 +81,9 @@ class CattleList extends StatelessWidget {
           shrinkWrap: true,
           physics: const ClampingScrollPhysics(),
           scrollDirection: Axis.vertical,
-          itemCount: CattleProviderConsumer.list!.length,
+          itemCount: CattleProviderConsumer.searchList == null
+              ?  CattleProviderConsumer.list!.length
+              :  CattleProviderConsumer.searchList!.length,
           itemBuilder: (BuildContext context, int index) {
             return Selector<CattleProvider, Cattle>(
               builder: (context, cattle, child) {

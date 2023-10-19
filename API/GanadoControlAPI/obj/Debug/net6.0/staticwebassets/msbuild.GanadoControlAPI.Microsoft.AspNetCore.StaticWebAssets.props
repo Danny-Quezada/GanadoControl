@@ -400,6 +400,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\6b7a2f49-bb11-4ee5-81f7-03e727348f1f.png))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\8d490d2d-a1e7-4c00-ba3e-e24208091094.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>GanadoControlAPI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/GanadoControlAPI</BasePath>
+      <RelativePath>FotosDeFincas/8d490d2d-a1e7-4c00-ba3e-e24208091094.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\8d490d2d-a1e7-4c00-ba3e-e24208091094.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FotosDeFincas\9839bff9-960f-409b-9e32-851db54eec37.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>GanadoControlAPI</SourceId>
